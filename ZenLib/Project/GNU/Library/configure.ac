@@ -45,6 +45,7 @@ AC_ARG_ENABLE([arch-x86_64],      [AS_HELP_STRING(([--enable-arch-x86_64],      
 AC_ARG_ENABLE([unicode],          [AS_HELP_STRING(([--disable-unicode],         [Disable unicode]))],                           , [enable_unicode=yes])
 AC_ARG_ENABLE([wstring_missing],  [AS_HELP_STRING(([--enable-wstring_missing],  [Disable wstring support (old compilers)]))],   , [enable_wstring_missing=no])
 AC_ARG_ENABLE([stream_missing],   [AS_HELP_STRING(([--enable-stream_missing],   [Disable stream support (old compilers)]))],    , [enable_stream_missing=no])
+AC_ARG_ENABLE([lpthread_missing], [AS_HELP_STRING(([--enable-lpthread_missing], [Disable lpthread support (some compilers)]))],    , [enable_lpthread_missing=no])
 AC_ARG_ENABLE([large_files],      [AS_HELP_STRING(([--disable-large_files],     [Disable large files support]))],               , [enable_large_files=yes])
 dnl AC_ARG_ENABLE([threads],          [AS_HELP_STRING(([--disable-threads],         [Disable threads support]))],                   , [enable_threads=yes])
  
@@ -122,8 +123,13 @@ dnl #########################################################################
 dnl -------------------------------------------------------------------------
 dnl Common
 dnl
-ZenLib_LIBS="-L$(pwd) -lzen -lpthread -lstdc++ $ZenLib_LIBS"
-ZenLib_LIBS_Static="$(pwd)/.libs/libzen.a -lpthread -lstdc++ $ZenLib_LIBS_Static"
+ZenLib_LIBS="-L$(pwd) -lzen -lstdc++ $ZenLib_LIBS"
+ZenLib_LIBS_Static="$(pwd)/.libs/libzen.a -lstdc++ $ZenLib_LIBS_Static"
+
+if test "$enable_lpthread_missing" = "no"; then
+	ZenLib_LIBS="$ZenLib_LIBS -lpthread"
+	ZenLib_LIBS_Static="$ZenLib_LIBS_Static -lpthread"
+fi
 
 dnl #########################################################################
 dnl ### C/C++ compiler options used to compile
@@ -221,7 +227,11 @@ fi
 dnl -------------------------------------------------------------------------
 dnl External libs
 dnl
-LDFLAGS="$LDFLAGS -lpthread -lstdc++"
+LDFLAGS="$LDFLAGS -lstdc++"
+
+if test "$enable_lpthread_missing" = "no"; then
+	LDFLAGS="$LDFLAGS -lpthread"
+fi
 
 dnl #########################################################################
 dnl ### Output
@@ -249,6 +259,7 @@ echo "  Unicode?                                                $enable_unicode"
 echo "  Large files support?                                    $enable_large_files"
 echo "  wstring missing support?                                $enable_wstring_missing"
 echo "  stream missing support?                                 $enable_stream_missing"
+echo "  lpthread missing support?                               $enable_lpthread_missing"
 echo ""
 echo "  Create static lib?                                      $enable_static"
 echo "  Create shared lib?                                      $enable_shared"
