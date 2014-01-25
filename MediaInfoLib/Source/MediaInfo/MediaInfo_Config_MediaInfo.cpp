@@ -26,6 +26,7 @@
     #include "base64.h"
 #endif //MEDIAINFO_IBI
 #include <algorithm>
+#include <ctype.h>
 #if MEDIAINFO_DEMUX
     #include <cmath>
 #endif //MEDIAINFO_DEMUX

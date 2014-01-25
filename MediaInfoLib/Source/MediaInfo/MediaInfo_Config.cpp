@@ -26,6 +26,7 @@
 #include "ZenLib/ZtringListListF.h"
 #include "ZenLib/File.h"
 #include <algorithm>
+#include <ctype.h>
 using namespace ZenLib;
 using namespace std;
 //---------------------------------------------------------------------------
