@@ -1918,13 +1918,21 @@ void MediaInfo_Config_MediaInfo::Event_SubFile_Start(const Ztring &FileName_Abso
     Event.StreamIDs_Size=0;
 
     std::string FileName_Relative_Ansi=FileName_Relative.To_UTF8();
+    #ifndef WSTRING_MISSING
     std::wstring FileName_Relative_Unicode=FileName_Relative.To_Unicode();
+    #endif // WSTRING_MISSING
     std::string FileName_Absolute_Ansi=FileName_Absolute.To_UTF8();
+    #ifndef WSTRING_MISSING
     std::wstring FileName_Absolute_Unicode=FileName_Absolute.To_Unicode();
+    #endif // WSTRING_MISSING
     Event.FileName_Relative=FileName_Relative_Ansi.c_str();
+    #ifndef WSTRING_MISSING
     Event.FileName_Relative_Unicode=FileName_Relative_Unicode.c_str();
+    #endif // WSTRING_MISSING
     Event.FileName_Absolute=FileName_Absolute_Ansi.c_str();
+    #ifndef WSTRING_MISSING
     Event.FileName_Absolute_Unicode=FileName_Absolute_Unicode.c_str();
+    #endif // WSTRING_MISSING
 
     Event_Send(NULL, (const int8u*)&Event, Event.EventSize);
 }
