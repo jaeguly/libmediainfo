@@ -1448,7 +1448,7 @@ void File__Analyze::Get_VL(const vlc Vlc[], size_t &Info, const char* Name)
             if (Trace_Activated)
             {
                 Ztring ToDisplay=Ztring::ToZtring(Value, 2);
-                ToDisplay.insert(0, CountOfBits-ToDisplay.size(), __T('0'));
+                ToDisplay.insert((size_t)0, CountOfBits-ToDisplay.size(), __T('0'));
                 ToDisplay+=__T(" (")+Ztring::ToZtring(CountOfBits)+__T(" bits)");
                 Param(Name, ToDisplay);
             }
@@ -1508,7 +1508,7 @@ void File__Analyze::Get_VL(vlc_fast &Vlc, size_t &Info, const char* Name)
     if (Trace_Activated)
     {
         Ztring ToDisplay=Ztring::ToZtring(Value, 2);
-        ToDisplay.insert(0, Vlc.Size-ToDisplay.size(), __T('0'));
+        ToDisplay.insert((size_t)0, Vlc.Size-ToDisplay.size(), __T('0'));
         ToDisplay.resize(Vlc.BitsToSkip[Value]);
         ToDisplay+=__T(" (")+Ztring::ToZtring(Vlc.BitsToSkip[Value])+__T(" bits)");
         Param(Name, ToDisplay);

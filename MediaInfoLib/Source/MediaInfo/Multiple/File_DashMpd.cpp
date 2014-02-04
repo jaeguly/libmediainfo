@@ -358,7 +358,7 @@ void template_generic::Decode()
                     Ztring Media_Name_Temp(Media_Name);
                     Ztring Index; Index.From_Number(Index_Pos_Temp);
                     if (Index.size()<Index_Size)
-                        Index.insert(0, Index_Size-Index.size(), __T('0'));
+                        Index.insert((size_t)0, Index_Size-Index.size(), __T('0'));
                     Media_Name_Temp.insert(Index_Pos, Index);
 
                     Ztring File_Name;
@@ -385,7 +385,7 @@ void template_generic::Decode()
                         {
                             Ztring Index; Index.From_Number(SegmentTimeLines_startNumber);
                             if (Index.size()<Index_Size)
-                                Index.insert(0, Index_Size-Index.size(), __T('0'));
+                                Index.insert((size_t)0, Index_Size-Index.size(), __T('0'));
                             Media_Name_Temp.insert(Index_Pos, Index);
                             if (Time_Pos!=string::npos && Time_Pos>Index_Pos)
                                 Time_Pos_Temp+=Index.size();

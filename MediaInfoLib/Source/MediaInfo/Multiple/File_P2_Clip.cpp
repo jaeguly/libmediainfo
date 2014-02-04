@@ -280,7 +280,7 @@ bool File_P2_Clip::FileHeader_Begin()
                                     MXF_File+=file;
                                     Ztring Pos=Ztring::ToZtring(Audio_Count);
                                     if (Pos.size()<2)
-                                        Pos.insert(0, 1, __T('0'));
+                                        Pos.insert((size_t)0, 1, __T('0'));
                                     MXF_File+=Pos;
 
                                     Dirs=Dir::GetAllFileNames(File_Name.substr(0, File_Name.size()-10-1)+PathSeparator+MXF_File+__T(".MXF"), Dir::Include_Files);

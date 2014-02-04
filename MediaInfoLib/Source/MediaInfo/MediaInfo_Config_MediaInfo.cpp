@@ -1820,7 +1820,7 @@ void MediaInfo_Config_MediaInfo::Event_Send (File__Analyze* Source, const int8u*
                     Ztring ID;
                     ID.From_Number(Event->StreamIDs[Pos], 16);
                     while (ID.size()<Event->StreamIDs_Width[Pos])
-                        ID.insert(0,  1, __T('0'));
+                        ID.insert((size_t)0, 1, __T('0'));
                     if (ID.size()>Event->StreamIDs_Width[Pos])
                         ID.erase(0, ID.size()-Event->StreamIDs_Width[Pos]);
                     File_Name_Final+=__T('.')+ID;

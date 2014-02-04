@@ -511,7 +511,7 @@ Ztring MediaInfo_Internal::Xml_Name_Escape (const Ztring &Name)
     Ztring ToReturn(Name);
 
     if (ToReturn.operator()(0)>='0' && ToReturn.operator()(0)<='9')
-        ToReturn.insert(0, 1, __T('_'));
+        ToReturn.insert((size_t)0, 1, __T('_'));
     ToReturn.FindAndReplace(__T(" "), __T("_"), 0, Ztring_Recursive);
     ToReturn.FindAndReplace(__T("/"), __T("_"), 0, Ztring_Recursive);
     ToReturn.FindAndReplace(__T("("), __T("_"), 0, Ztring_Recursive);

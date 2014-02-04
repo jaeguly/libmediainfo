@@ -819,7 +819,7 @@ Ztring& Ztring::From_Number (const int8u I, int8u Radix)
             {
                 if (I<(((int8u)1)<<Pos))
                     break;
-                insert(0, 1, (I&(((int8u)1)<<Pos))?__T('1'):__T('0'));
+                insert((size_t)0, 1, (I&(((int8u)1)<<Pos))?__T('1'):__T('0'));
             }
         }
         else
@@ -886,7 +886,7 @@ Ztring& Ztring::From_Number (const int16u I, int8u Radix)
             {
                 if (I<(((int16u)1)<<Pos))
                     break;
-                insert(0, 1, (I&(((int16u)1)<<Pos))?__T('1'):__T('0'));
+                insert((size_t)0, 1, (I&(((int16u)1)<<Pos))?__T('1'):__T('0'));
             }
         }
         else
@@ -949,7 +949,7 @@ Ztring& Ztring::From_Number (const int32u I, int8u Radix)
             {
                 if (I<(((int32u)1)<<Pos))
                     break;
-                insert(0, 1, (I&(((int32u)1)<<Pos))?__T('1'):__T('0'));
+                insert((size_t)0, 1, (I&(((int32u)1)<<Pos))?__T('1'):__T('0'));
             }
         }
         else
@@ -1012,7 +1012,7 @@ Ztring& Ztring::From_Number (const int64u I, int8u Radix)
             {
                 if (I<(((int64u)1)<<Pos))
                     break;
-                insert(0, 1, (I&(((int64u)1)<<Pos))?__T('1'):__T('0'));
+                insert((size_t)0, 1, (I&(((int64u)1)<<Pos))?__T('1'):__T('0'));
             }
         }
         else
