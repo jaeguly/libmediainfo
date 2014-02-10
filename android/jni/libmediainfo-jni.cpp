@@ -319,7 +319,9 @@ MediaInfo_open(JNIEnv* pEnv, jobject self, jlong peer, jstring filename)
     if (!jstrHolder.toString(strFilename))
         return 0;
 
-    size_t res = pMediaInfo->Open(strFilename);
+	// TEST
+    //size_t res = pMediaInfo->Open(strFilename);
+    size_t res = pMediaInfo->Open(L"/mnt/sdcard/Download/test/test-part1.avi");
     LOG("MediaInfo->Open('%s') returns %d\n", PrintableChars(strFilename.c_str()), res);
 
     if (res == 0)
@@ -347,8 +349,11 @@ MediaInfo_getById(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint 
     if (!pMediaInfo)
         return 0;
 
-	// TODO
-	return 0;
+    String strInfo = pMediaInfo->Get(CastStreamKind(streamKind), streamNum, parameter);
+    LOG("MediaInfo->Get(%d,%d,%d) returns '%s'\n",
+        CastStreamKind(streamKind), streamNum, parameter, PrintableChars(strInfo.c_str()));
+
+    return NewJString(pEnv, strInfo);
 }
 
 JNIEXPORT jstring JNICALL
@@ -360,8 +365,16 @@ MediaInfo_getByName(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jin
     if (!pMediaInfo)
         return 0;
 
-	// TODO
-	return 0;
+    String strParameter;
+    JStringHolder jstrHolder(pEnv, parameter);
+    if (!jstrHolder.toString(strParameter))
+        return 0;
+
+    String strInfo = pMediaInfo->Get(CastStreamKind(streamKind), streamNum, strParameter);
+    LOG("MediaInfo->Get(%d,%d,'%s') returns '%s'\n",
+        CastStreamKind(streamKind), streamNum, PrintableChars(strParameter.c_str()), PrintableChars2(strInfo.c_str()));
+
+    return NewJString(pEnv, strInfo);
 }
 
 JNIEXPORT jstring JNICALL
@@ -373,8 +386,12 @@ MediaInfo_getByIdDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind,
     if (!pMediaInfo)
         return 0;
 
-	// TODO
-	return 0;
+    String strInfo = pMediaInfo->Get(CastStreamKind(streamKind), streamNum, parameter,
+                                     CastInfoKind(kindOfInfo));
+    LOG("MediaInfo->Get(%d,%d,%d,%d) returns '%s'\n",
+        CastStreamKind(streamKind), streamNum, parameter, kindOfInfo, PrintableChars(strInfo.c_str()));
+
+    return NewJString(pEnv, strInfo);
 }
 
 JNIEXPORT jstring JNICALL
@@ -386,8 +403,19 @@ MediaInfo_getByNameDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKin
     if (!pMediaInfo)
         return 0;
 
-	// TODO
-	return 0;
+    String strParameter;
+    JStringHolder jstrHolder(pEnv, parameter);
+    if (!jstrHolder.toString(strParameter))
+        return 0;
+
+    String strInfo = pMediaInfo->Get(CastStreamKind(streamKind), streamNum, strParameter,
+                                     CastInfoKind(kindOfInfo), CastInfoKind(kindOfSearch));
+
+    LOG("MediaInfo->Get(%d,%d,'%s',%d,%d) returns '%s'\n",
+        CastStreamKind(streamKind), streamNum, PrintableChars(strParameter.c_str()),
+        CastInfoKind(kindOfInfo), CastInfoKind(kindOfSearch), PrintableChars2(strInfo.c_str()));
+
+    return NewJString(pEnv, strInfo);
 }
 
 
@@ -404,8 +432,27 @@ MediaInfo_getOption(JNIEnv* pEnv, jobject self, jlong peer, jstring option)
     if (!pMediaInfo)
         return 0;
 
-	// TODO
-	return 0;
+    const jchar* jchars = pEnv->GetStringChars(option, NULL);
+    if (jchars == NULL) {
+        LOGW("GetStringChars() fails.\n");
+        return 0;
+    }
+
+    String strOption;
+    strOption.assign(CastChars(jchars), pEnv->GetStringLength(option));
+
+    LOG("called __getOption('%s')\n", PrintableChars(strOption.c_str()));
+
+    String strInfo = pMediaInfo->Option(strOption);
+
+    LOG("__getOption() returns '%s'.\n", PrintableChars(strInfo.c_str()));
+
+    jstring res = pEnv->NewString(CastChars(strInfo.c_str()), strInfo.size());
+
+    pEnv->ReleaseStringChars(option, jchars);
+
+    return res;
+
 }
 
 JNIEXPORT jint JNICALL
@@ -416,8 +463,9 @@ MediaInfo_count(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint st
     if (!pMediaInfo)
         return 0;
 
-	// TODO
-	return 0;
+    LOG("called __count(%d,%d)\n", streamKind, streamNum);
+
+    return pMediaInfo->Count_Get(CastStreamKind(streamKind), (size_t) streamNum);
 }
 
 #endif /* 0 */
