@@ -72,8 +72,61 @@ size_t mbstowcs(wchar_t* wcstr, const char* mbstr, size_t max)
     if (!mbstr)
         return (size_t) -1;
 
-	// TODO
-	return (size_t) -1;
+    const conv_t    conv = 0;  // dummy handle for iconv
+    const char*     p = mbstr;
+    const char*     mbend;
+    ucs4_t          wc;
+    int             res;
+
+    mbend = mbstr;
+    while (*mbend++)
+        ;
+
+    if (!wcstr) { // count only mode
+        int count = 0;
+
+        while (*p) {
+            
+            res = cp949_mbtowc(conv, &wc, (const unsigned char*) p, mbend - p);
+            LOG("cp949_mbtowc(conv, &wc, '%s', %d) return %d", p, mbend - p, res);
+            if (res <= 0) {
+                LOGW("mbstowcs(NULL, '%s', %d) returns %d", mbstr, max, -1);
+                return (size_t) -1;
+            }
+
+            ; // not store into wcstr
+
+            p += res;
+            ++count;
+        }
+
+        res = count;
+        LOG("mbstowcs(NULL, '%s', %d) returns %d", mbstr, max, res);
+
+    } else {
+
+        const wchar_t* tend = wcstr + max;
+        wchar_t* t = wcstr;
+ 
+        while ((p < mbend) && (t < tend)) {
+            res = cp949_mbtowc(conv, &wc, (const unsigned char*) p, mbend - p);
+            LOG("cp949_mbtowc(conv, &wc, '%s', %d) return %d", p, mbend - p, res);
+            if (res <= 0) {
+                LOGW("mbstowcs(wchar_t*, '%s', %d) returns %d", mbstr, max, -1);
+                return (size_t) -1;
+            }
+ 
+            *t++ = (wchar_t) wc;
+ 
+            p += res;
+        }
+ 
+        res = t - wcstr;
+
+        LOG("mbstowcs(%x %x %x, '%s', %d) returns %d", wcstr[0], wcstr[1], wcstr[2], mbstr, max, res);
+    }
+
+    return res;
 }
 
 /**
@@ -97,8 +150,57 @@ size_t wcstombs(char* mbstr, const wchar_t* wcstr, size_t max)
     if (!wcstr)
         return (size_t) -1;
 
-	// TODO
-    return (size_t) -1;
+    const conv_t    conv = 0;  // dummy handle for iconv
+    const wchar_t*  pwc = wcstr;
+    const wchar_t*  wcend;
+    int             res;
+
+    wcend = wcstr;
+    while (*wcend++)
+        ;
+
+    if (!mbstr) { // count only mode
+        unsigned char cbuf[MB_MAX_LEN];
+        int count = 0;
+
+        while (*pwc) {
+            
+            res = cp949_wctomb(conv, cbuf, *pwc, MB_MAX_LEN);
+            if (res <= 0) {
+                LOGW("wcstombs(NULL, %s, %d) returns %d", wcstr, max, -1);
+                return (size_t) -1;
+            }
+
+            ; // not store into mbstr
+
+            ++pwc;
+            count += res;
+        }
+
+        res = count;
+
+    } else {
+
+        const char* tend = mbstr + max;
+        char* t = mbstr;
+ 
+        while ((pwc < wcend) && (t < tend)) {
+            res = cp949_wctomb(conv, (unsigned char*)t, *pwc, tend - t);
+            LOG("cp949_wctomb(conv, t, wc, %d) return %d", tend - t, res);
+            if (res <= 0) {
+                LOGW("wcstombs(char*, %s, %d) returns %d", wcstr, max, -1);
+                return (size_t) -1;
+            }
+ 
+            ++pwc;
+            t += res;
+        }
+ 
+        res = t - mbstr;
+    }
+
+    LOG("wcstombs(char*, '%s', %d) returns %d", wcstr, max, res);
+    return res;
 }
 
 /**
@@ -134,8 +236,13 @@ int wctomb(char *pmb, wchar_t character)
         return 0;
     }
 
-	// TODO
-	return -1;
+    const conv_t conv = 0; // dummy handle for iconv
+    int res = cp949_wctomb(conv, (unsigned char*)pmb, character, MB_MAX_LEN);
+    if (res < 0)
+        res = -1;
+
+    LOG("wctomb(pmb, %c) returns %d\n", character, res);
+    return res;
 }
 
 
