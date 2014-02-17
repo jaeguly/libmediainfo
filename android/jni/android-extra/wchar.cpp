@@ -44,8 +44,8 @@ typedef struct {
 
 #include <android/log.h>
 
-#define LOG(...)  __android_log_print(ANDROID_LOG_DEBUG, "android-extra", __VA_ARGS__)
-//#define LOG(...)  ((void)0)
+//#define LOG(...)  __android_log_print(ANDROID_LOG_DEBUG, "android-extra", __VA_ARGS__)
+#define LOG(...)  ((void)0)
 #define LOGW(...)  __android_log_print(ANDROID_LOG_WARN, "android-extra", __VA_ARGS__)
 
 
@@ -88,9 +88,9 @@ size_t mbstowcs(wchar_t* wcstr, const char* mbstr, size_t max)
         while (*p) {
             
             res = cp949_mbtowc(conv, &wc, (const unsigned char*) p, mbend - p);
-            LOG("cp949_mbtowc(conv, &wc, '%s', %d) return %d", p, mbend - p, res);
+            //LOG("cp949_mbtowc(conv, &wc, '%s', %d) return %d", p, mbend - p, res);
             if (res <= 0) {
-                LOGW("mbstowcs(NULL, '%s', %d) returns %d", mbstr, max, -1);
+                //LOGW("mbstowcs(NULL, '%s', %d) returns %d", mbstr, max, -1);
                 return (size_t) -1;
             }
 
@@ -110,9 +110,9 @@ size_t mbstowcs(wchar_t* wcstr, const char* mbstr, size_t max)
  
         while ((p < mbend) && (t < tend)) {
             res = cp949_mbtowc(conv, &wc, (const unsigned char*) p, mbend - p);
-            LOG("cp949_mbtowc(conv, &wc, '%s', %d) return %d", p, mbend - p, res);
+            //LOG("cp949_mbtowc(conv, &wc, '%s', %d) return %d", p, mbend - p, res);
             if (res <= 0) {
-                LOGW("mbstowcs(wchar_t*, '%s', %d) returns %d", mbstr, max, -1);
+                //LOGW("mbstowcs(wchar_t*, '%s', %d) returns %d", mbstr, max, -1);
                 return (size_t) -1;
             }
  
@@ -167,7 +167,7 @@ size_t wcstombs(char* mbstr, const wchar_t* wcstr, size_t max)
             
             res = cp949_wctomb(conv, cbuf, *pwc, MB_MAX_LEN);
             if (res <= 0) {
-                LOGW("wcstombs(NULL, %s, %d) returns %d", wcstr, max, -1);
+                //LOGW("wcstombs(NULL, %s, %d) returns %d", wcstr, max, -1);
                 return (size_t) -1;
             }
 
@@ -186,9 +186,9 @@ size_t wcstombs(char* mbstr, const wchar_t* wcstr, size_t max)
  
         while ((pwc < wcend) && (t < tend)) {
             res = cp949_wctomb(conv, (unsigned char*)t, *pwc, tend - t);
-            LOG("cp949_wctomb(conv, t, wc, %d) return %d", tend - t, res);
+            //LOG("cp949_wctomb(conv, t, wc, %d) return %d", tend - t, res);
             if (res <= 0) {
-                LOGW("wcstombs(char*, %s, %d) returns %d", wcstr, max, -1);
+                //LOGW("wcstombs(char*, %s, %d) returns %d", wcstr, max, -1);
                 return (size_t) -1;
             }
  
