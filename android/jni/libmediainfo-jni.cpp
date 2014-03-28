@@ -258,7 +258,19 @@ public:
             }
         }
 
-        str.assign(CastChars(_jchars), _env->GetStringLength(_jstr));
+        //
+        // convert a wchar_t(maybe 4bytes) strings from a jstring(maybe 2bytes)
+        //
+        int jchars_len = _env->GetStringLength(_jstr);
+
+        // allocate a actually buffer and set a given length
+        str.resize(jchars_len);
+
+        Char *cstr = (Char*) str.c_str();
+
+        while (jchars_len-- > 0)
+            *cstr++ = (Char) *_jchars++;
+
         return true;
     }
 
