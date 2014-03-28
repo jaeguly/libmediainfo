@@ -319,7 +319,7 @@ MediaInfo_destroy(JNIEnv* pEnv, jobject self, jlong peer)
 JNIEXPORT jint JNICALL
 MediaInfo_open(JNIEnv* pEnv, jobject self, jlong peer, jstring filename)
 {
-    LOG("Char(%d bytes) wchar_t(%d bytes)\n", sizeof(Char), sizeof(wchar_t));
+    //LOG("Char(%d bytes) wchar_t(%d bytes)\n", sizeof(Char), sizeof(wchar_t));
     FuncCallLog funclog(FUNC);
 
     MediaInfo* pMediaInfo = GetMediaInfo(peer);
@@ -331,10 +331,8 @@ MediaInfo_open(JNIEnv* pEnv, jobject self, jlong peer, jstring filename)
     if (!jstrHolder.toString(strFilename))
         return 0;
 
-	// TEST
-    //size_t res = pMediaInfo->Open(strFilename);
-    size_t res = pMediaInfo->Open(L"/mnt/sdcard/Download/test/test-part1.avi");
-    LOG("MediaInfo->Open('%s') returns %d\n", PrintableChars(strFilename.c_str()), res);
+    size_t res = pMediaInfo->Open(strFilename);
+    //LOG("MediaInfo->Open('%s') returns %d\n", PrintableChars(strFilename.c_str()), res);
 
     if (res == 0)
         LOGW("MediaInfo->Open() fails!\n");
