@@ -194,22 +194,6 @@ GetMediaInfo(jlong peer)
     return (MediaInfo*) peer;
 }
 
-static inline const Char*
-CastChars(const jchar* chars)
-{
-    //assert(sizeof(jchar) == sizeof(Char));
-
-    return (const Char*) chars;
-}
-
-static inline const jchar*
-CastChars(const Char* chars)
-{
-    //assert(sizeof(jchar) == sizeof(Char));
-
-    return (const jchar*) chars;
-}
-
 static inline stream_t
 CastStreamKind(jint streamKind)
 {
@@ -229,10 +213,22 @@ CastInfoKind(jint infoKind)
 static inline jstring
 NewJString(JNIEnv *pEnv, String str)
 {
-    jstring jstr = pEnv->NewString(CastChars(str.c_str()), str.size());
+    jsize len = str.size();
+    const Char *raw = (Char *) str.c_str();
+
+    // Allocate a buffer for the java string to pass JavaVM.
+    // First arguments "" is such a hack for only a buffer allocation.
+    jstring jstr = pEnv->NewString((jchar*)"", len);
+    jchar* jchars = (jchar*) pEnv->GetStringChars(jstr, NULL);
+
+    // Discard two lead bytes in raw string
+    while (len-- > 0)
+        *jchars++ = (jchar) *raw++;
 
     if (!jstr)
         LOGW("env->NewString('%s', %d) fails!\n", PrintableChars(str.c_str()), str.size());
+
+    pEnv->ReleaseStringChars(jstr, jchars);
 
     return jstr;
 }
