@@ -63,6 +63,8 @@ public class MediaInfoData {
 
     // public String image_chroma;
 
+    public String inform_detail;
+
     public MediaInfoData() {
         general_filename = "";
         general_fileextension = "";
@@ -107,6 +109,8 @@ public class MediaInfoData {
         image_width = 0;
         image_height = 0;
         image_bitdepth = 0;
+        
+        inform_detail = "";
     }
 
     public String toStringGeneralPart() {

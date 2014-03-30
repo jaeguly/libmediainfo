@@ -160,6 +160,7 @@ public class MediaFormatTest {
             Log.i(LOG_TAG, infoData.toStringVideoPart());
             Log.i(LOG_TAG, infoData.toStringAudioPart());
             Log.i(LOG_TAG, infoData.toStringImagePart());
+            Log.i(LOG_TAG, infoData.inform_detail);
         }
     }
 

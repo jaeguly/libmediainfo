@@ -123,6 +123,7 @@ extern "C" {
     JNIEXPORT jstring JNICALL MediaInfo_getByName(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter);
     JNIEXPORT jstring JNICALL MediaInfo_getByIdDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jint parameter, jint kindOfInfo);
     JNIEXPORT jstring JNICALL MediaInfo_getByNameDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter, jint kindOfInfo, jint kindOfSearch);
+    JNIEXPORT jstring JNICALL MediaInfo_informDetail(JNIEnv* pEnv, jobject self, jlong peer);
 #if 0
     JNIEXPORT jstring JNICALL MediaInfo_getOption(JNIEnv* pEnv, jobject self, jlong peer, jstring option);
     JNIEXPORT jint    JNICALL MediaInfo_count(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum);
@@ -139,6 +140,7 @@ static const JNINativeMethod gMethods[] = {
     { "getByName", "(JIILjava/lang/String;)Ljava/lang/String;", (void*)MediaInfo_getByName},
     { "getByIdDetail", "(JIIII)Ljava/lang/String;", (void*)MediaInfo_getByIdDetail},
     { "getByNameDetail", "(JIILjava/lang/String;II)Ljava/lang/String;", (void*)MediaInfo_getByNameDetail},
+    { "informDetail", "(J)Ljava/lang/String;", (void*)MediaInfo_informDetail},
 };
 
 JNIEXPORT jint JNICALL
@@ -424,6 +426,22 @@ MediaInfo_getByNameDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKin
     return NewJString(pEnv, strInfo);
 }
 
+JNIEXPORT jstring JNICALL
+MediaInfo_informDetail(JNIEnv* pEnv, jobject self, jlong peer)
+{
+    MediaInfo* pMediaInfo = GetMediaInfo(peer);
+
+    if (!pMediaInfo)
+        return 0;
+
+    String strInfo = pMediaInfo->Inform();
+
+    LOG("MediaInfo->Inform() returns '%s'.\n", PrintableChars(strInfo.c_str()));
+
+    return NewJString(pEnv, strInfo);
+
+}
+ 
 
 
 

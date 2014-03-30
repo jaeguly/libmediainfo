@@ -100,6 +100,10 @@ public class MediaInfo {
         return getByNameDetail(peer, streamKind.ordinal(), streamNum, parameter, infoKind.ordinal(), searchKind.ordinal());
     }
 
+    public String inform() {
+        return informDetail(peer);
+    }
+
 //    /**
 //     * Configuration or get information about MediaInfoLib
 //     * @param name The name of option
@@ -144,6 +148,8 @@ public class MediaInfo {
 
     private native String getByNameDetail(long peer, int streamKind, int streamNum, String parameter,
             int kindOfInfo, int kindOfSearch);
+
+    private native String informDetail(long peer);
 
 //    private native String getOption(long peer, String option);
 

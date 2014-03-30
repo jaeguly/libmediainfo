@@ -157,6 +157,8 @@ public class MediaInfoDataBuilder {
             data.image_bitdepth = parseInt(getImageInfo(mi, "BitDepth"));
         }
 
+        data.inform_detail = mi.inform();
+
         mi.close();
 
         return data;
