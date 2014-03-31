@@ -1732,6 +1732,7 @@ void MediaInfo_Config_MediaInfo::Event_Send (File__Analyze* Source, const int8u*
 
     if (Source==NULL)
     {
+        #if MEDIAINFO_DEMUX
         if (Demux_Offset_Frame!=(int64u)-1)
         {
             MediaInfo_Event_Generic* Temp=(MediaInfo_Event_Generic*)Data_Content;
@@ -1756,6 +1757,7 @@ void MediaInfo_Config_MediaInfo::Event_Send (File__Analyze* Source, const int8u*
                     Temp->PTS-=Demux_Offset_DTS_FromStream;
             }
         }
+        #endif //MEDIAINFO_DEMUX
     }
 
     if (Source)
