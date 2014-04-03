@@ -118,7 +118,7 @@ extern const float32 Avc_PixelAspectRatio[]=
 };
 
 //---------------------------------------------------------------------------
-extern const char* Avc_video_format[]=
+const char* Avc_video_format[]=
 {
     "Component",
     "PAL",
