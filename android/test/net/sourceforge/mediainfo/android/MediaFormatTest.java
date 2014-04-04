@@ -24,9 +24,21 @@ import net.sourceforge.mediainfo.MediaInfo;
 public class MediaFormatTest {
 
 	public static final String LOG_TAG = "MediaFormatTest";
+
+	protected MediaFormatTest () {
+		
+	}
 	
+	public void releaseAll() {
+        // release all objects
+        mediaInfo = null;
+        excludesList = null;
+	}
+
     public static void main(String[] args) {
 
+    	MediaFormatTest test = new MediaFormatTest();
+    	
         // check given arguments
         int argIndex = 0;
         int itemIndex = 0;
@@ -34,14 +46,14 @@ public class MediaFormatTest {
 
         while (argIndex < args.length) {
             if (args[argIndex].equals("-v")) {
-                sVerboseMode = true;
+                test.verboseMode = true;
             } else if (args[argIndex].equals("-r")) {
-                sRecursiveMode = true;
+                test.recursiveMode = true;
             } else if (args[argIndex].equals("--time")) {
-                sTimeRecordMode = true;
+                test.timeRecordMode = true;
             } else if (args[argIndex].equals("--excludes")) {
                 argIndex++;
-                sExcludesList = args[argIndex].toUpperCase().split(";");
+                test.excludesList = args[argIndex].toUpperCase().split(";");
             } else if (args[argIndex].equals("-i")) {
                 try {
                     Log.i(LOG_TAG, "waiting a key press ..\n");
@@ -62,18 +74,15 @@ public class MediaFormatTest {
         }
 
         for (int i = 0; i < itemIndex; i++)
-            doMatchingFormat(items[i]);
+            test.doMatchingFormat(items[i]);
 
-        // release all objects
-        sMediaInfo = null;
-        sExcludesList = null;
-        items = null;
-
+        test.releaseAll();
+        
         Runtime r = Runtime.getRuntime();
         r.gc();
     }
 
-    private static void doMatchingFormat(String path) {
+    private void doMatchingFormat(String path) {
         File file = new File(path);
 
         if (file.isDirectory()) {
@@ -101,7 +110,7 @@ public class MediaFormatTest {
         }
     }
 
-    private static void checkFileFormat(String path) {
+    private void checkFileFormat(String path) {
         //if (sVerboseMode)
             Log.i(LOG_TAG, "'" + path + "'\n");
 
@@ -112,9 +121,9 @@ public class MediaFormatTest {
         }
 
         // ignore case: if filename's extension is in a excluded list.
-        if (sExcludesList != null) {
+        if (excludesList != null) {
             String upperPath = path.toUpperCase();
-            for (String extension : sExcludesList) {
+            for (String extension : excludesList) {
 
                 if (upperPath.endsWith('.' + extension)) {
                     Log.w(LOG_TAG, "(skipped)\n");
@@ -124,7 +133,7 @@ public class MediaFormatTest {
         }
 
         Calendar cal1 = Calendar.getInstance();
-        MediaInfoData infoData = MediaInfoDataBuilder.build(sMediaInfo, path);
+        MediaInfoData infoData = MediaInfoDataBuilder.build(mediaInfo, path);
         if (infoData == null) {
             Log.w(LOG_TAG, "(can't parse)\n");
             return ;
@@ -139,14 +148,14 @@ public class MediaFormatTest {
         String profileName = "-";
         String mimeName = infoData.general_internetmediatype;
 
-        if (sVerboseMode) {
+        if (verboseMode) {
             String filename = path.substring(path.lastIndexOf("\\") + 1);
             Log.i(LOG_TAG, filename + " '" + profileName + "' '" + mimeName + "'\n");
         }
 
         File file = new File(path);
 
-        if (sTimeRecordMode) {
+        if (timeRecordMode) {
             Log.i(LOG_TAG, "[RESULT]\t" + path + "\t" + profileName + "\t" + mimeName + "\t" + file.length()
                     + "bytes\t" + (cal2.getTimeInMillis() - cal1.getTimeInMillis()) + "ms\t"
                     + (cal3.getTimeInMillis() - cal2.getTimeInMillis()) + "ms\n");
@@ -155,7 +164,7 @@ public class MediaFormatTest {
                     + " bytes\n");
         }
 
-        if (sVerboseMode) {
+        if (verboseMode) {
             Log.i(LOG_TAG, infoData.toStringGeneralPart());
             Log.i(LOG_TAG, infoData.toStringVideoPart());
             Log.i(LOG_TAG, infoData.toStringAudioPart());
@@ -164,9 +173,9 @@ public class MediaFormatTest {
         }
     }
 
-    private static MediaInfo sMediaInfo = new MediaInfo();
-    private static boolean sTimeRecordMode = false;
-    private static boolean sVerboseMode = false;
-    private static boolean sRecursiveMode = false;
-    private static String[] sExcludesList;
+    private MediaInfo mediaInfo = new MediaInfo();
+    private boolean timeRecordMode = false;
+    private boolean verboseMode = false;
+    private boolean recursiveMode = false;
+    private String[] excludesList;
 }
