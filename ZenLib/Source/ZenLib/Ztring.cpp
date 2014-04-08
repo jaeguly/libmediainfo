@@ -785,7 +785,7 @@ Ztring& Ztring::From_Number (const int8s I, int8u Radix)
     #else
         toStringStream Stream;
         #ifdef UNICODE
-            Stream << setbase(Radix) << I;
+            Stream << setbase(Radix) << (signed int)I;
         #else //UNICODE
             Stream << setbase(Radix) << (size_t)I; //On linux (at least), (un)signed char is detected as a char
         #endif //UNICODE
@@ -826,7 +826,7 @@ Ztring& Ztring::From_Number (const int8u I, int8u Radix)
         {
             toStringStream Stream;
             #ifdef UNICODE
-                Stream << setbase(Radix) << I;
+                Stream << setbase(Radix) << (unsigned int)I;
             #else //UNICODE
                 Stream << setbase(Radix) << (size_t)I; //On linux (at least), (un)signed char is detected as a char
             #endif //UNICODE
