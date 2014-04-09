@@ -19,7 +19,7 @@ typedef signed char int8s;
 ...
 xStringStream stream;
 int8s n = 33;
-Stream << n;
+stream << n;
 ```
 
 Android ndk에 패키징되어있는 arm-gcc와 stlport을 이용해서 컴파일하게 되면, `int8s`에 대한 처리가 다르게 이루어진다. 코드는 *n* 이 숫자형으로 처리되길 기대하였으나 android compilation 환경에서는 *n* 을 문자형으로 간주하여 문자가 입력된 것으로 처리한다.
@@ -48,5 +48,5 @@ operator<<(basic_ostream<_CharT, _Traits>& __os, unsinged char __c) {
 그러나 이렇게 NDK를 수정해서 사용하게 되면 (일단은) 안드로이드용으로 mediainfo를 개발하는 환경마다 patch를 가해야하는 불편함이 있어서 아래와 같이 이 문제를 피해갈 수 있게 수정하였다.
 
 ```
-Stream << (signed int) n;
+stream << (signed int) n;
 ```
