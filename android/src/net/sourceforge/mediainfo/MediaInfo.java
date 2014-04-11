@@ -110,11 +110,12 @@ public class MediaInfo {
      * <ul>Known options are:
      * <li>(NOT IMPLEMENTED YET) "BlockMethod": Configure when Open Method must return (default or not command not understood: "1")
      *      <ul>
-     *      <li>"0": Immediatly
-     *      <li>"1": After geting local information
-     *      <li>"2": When user interaction is needed, or whan Internet information is get
+     *      <li>"0": immediately
+     *      <li>"1": After getting local information
+     *      <li>"2": When user interaction is needed, or when Internet information is get
      *      </ul>
-     * <li>"Complete": For debug, configure if MediaInfoLib::Inform() show all information (doesn't care of InfoOption_NoShow tag): shows all information if true, shows only useful for user information if false (No by default)
+     * <li>"Complete": For debug, configure if MediaInfoLib::Inform() show all information (doesn't care of InfoOption_NoShow tag): 
+     *                 shows all information if true, shows only useful for user information if false (No by default)
      * <li>"Complete_Get": return the state of "Complete"
      * <li>"Language": Configure language (default language, and this object); Value is Description of language (format: "Column1;Colum2...)
      *      <ul>
@@ -122,7 +123,7 @@ public class MediaInfo {
      *      <li>Column 2: translation ("Octets", "Titre")
      *      </ul>
      * <li>"Language_Get": Get the language file in memory
-     * <li>"Language_Update": Configure language of this object only (for optimisation); Value is Description of language (format: "Column1;Colum2...)
+     * <li>"Language_Update": Configure language of this object only (for optimization); Value is Description of language (format: "Column1;Colum2...)
      *      <ul>
      *      <li>Column 1: Unique name ("Bytes", "Title")
      *      <li>Column 2: translation ("Octets", "Titre")
@@ -130,7 +131,7 @@ public class MediaInfo {
      * <li>"Inform": Configure custom text, See MediaInfoLib::Inform() function; Description of views (format: "Column1;Colum2...)
      *      <ul>
      *      <li>Column 1: code (11 lines: "General", "Video", "Audio", "Text", "Other", "Begin", "End", "Page_Begin", "Page_Middle", "Page_End")
-     *      <li>Column 2: The text to show (exemple: "Audio: %FileName% is at %BitRate/String%")
+     *      <li>Column 2: The text to show (example: "Audio: %FileName% is at %BitRate/String%")
      *      </ul>
      * <li>"ParseUnknownExtensions": Configure if MediaInfo parse files with unknown extension
      * <li>"ParseUnknownExtensions_Get": Get if MediaInfo parse files with unknown extension
