@@ -106,6 +106,54 @@ public class MediaInfo {
 
     /**
      * Configuration or get information about MediaInfoLib
+     *
+     * <ul>Known options are:
+     * <li>(NOT IMPLEMENTED YET) "BlockMethod": Configure when Open Method must return (default or not command not understood: "1")
+     *      <ul>
+     *      <li>"0": Immediatly
+     *      <li>"1": After geting local information
+     *      <li>"2": When user interaction is needed, or whan Internet information is get
+     *      </ul>
+     * <li>"Complete": For debug, configure if MediaInfoLib::Inform() show all information (doesn't care of InfoOption_NoShow tag): shows all information if true, shows only useful for user information if false (No by default)
+     * <li>"Complete_Get": return the state of "Complete"
+     * <li>"Language": Configure language (default language, and this object); Value is Description of language (format: "Column1;Colum2...)
+     *      <ul>
+     *      <li>Column 1: Unique name ("Bytes", "Title")
+     *      <li>Column 2: translation ("Octets", "Titre")
+     *      </ul>
+     * <li>"Language_Get": Get the language file in memory
+     * <li>"Language_Update": Configure language of this object only (for optimisation); Value is Description of language (format: "Column1;Colum2...)
+     *      <ul>
+     *      <li>Column 1: Unique name ("Bytes", "Title")
+     *      <li>Column 2: translation ("Octets", "Titre")
+     *      </ul>
+     * <li>"Inform": Configure custom text, See MediaInfoLib::Inform() function; Description of views (format: "Column1;Colum2...)
+     *      <ul>
+     *      <li>Column 1: code (11 lines: "General", "Video", "Audio", "Text", "Other", "Begin", "End", "Page_Begin", "Page_Middle", "Page_End")
+     *      <li>Column 2: The text to show (exemple: "Audio: %FileName% is at %BitRate/String%")
+     *      </ul>
+     * <li>"ParseUnknownExtensions": Configure if MediaInfo parse files with unknown extension
+     * <li>"ParseUnknownExtensions_Get": Get if MediaInfo parse files with unknown extension
+     * <li>"ShowFiles": Configure if MediaInfo keep in memory files with specific kind of streams (or no streams); Value is Description of components (format: "Column1;Colum2...)
+     *      <ul>
+     *      <li>Column 1: code (available: "Nothing" for unknown format, "VideoAudio" for at least 1 video and 1 audio, "VideoOnly" for video streams only, "AudioOnly", "TextOnly")
+     *      <li>Column 2: "" (nothing) not keeping, other for keeping
+     *      </ul>
+     * <li>(NOT IMPLEMENTED YET) "TagSeparator": Configure the separator if there are multiple same tags (" | " by default)
+     * <li>(NOT IMPLEMENTED YET) "TagSeparator_Get": return the state of "TagSeparator"
+     * <li>(NOT IMPLEMENTED YET) "Internet": Authorize Internet connection (Yes by default)
+     * <li>(NOT IMPLEMENTED YET) "Internet_Title_Get": When State=5000, give all possible titles for this file (one per line)
+     *      <ul>
+     *      <li>Form: Author TagSeparator Title TagSeparator Year...
+     *      </ul>
+     * <li>(NOT IMPLEMENTED YET) "Internet_Title_Set": Set the Good title (same as given by Internet_Title_Get)
+     *      <ul>
+     *      <li>Form: Author TagSeparator Title TagSeparator Year
+     *      </ul>
+     * <li>"Info_Parameters": Information about what are known unique names for parameters
+     * <li>"Info_Parameters_CSV": Information about what are known unique names for parameters, in CSV format
+     * </ul>
+     *
      * @param name The name of option
      * @param value The value of option
      * @return Depend of the option: "" by default means No, other means Yes
