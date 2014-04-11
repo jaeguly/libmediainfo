@@ -124,8 +124,8 @@ extern "C" {
     JNIEXPORT jstring JNICALL MediaInfo_getByIdDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jint parameter, jint kindOfInfo);
     JNIEXPORT jstring JNICALL MediaInfo_getByNameDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter, jint kindOfInfo, jint kindOfSearch);
     JNIEXPORT jstring JNICALL MediaInfo_informDetail(JNIEnv* pEnv, jobject self, jlong peer);
+    JNIEXPORT jstring JNICALL MediaInfo_option(JNIEnv* pEnv, jobject self, jlong peer, jstring option, jstring value);
 #if 0
-    JNIEXPORT jstring JNICALL MediaInfo_getOption(JNIEnv* pEnv, jobject self, jlong peer, jstring option);
     JNIEXPORT jint    JNICALL MediaInfo_count(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum);
 #endif
 }
@@ -141,6 +141,7 @@ static const JNINativeMethod gMethods[] = {
     { "getByIdDetail", "(JIIII)Ljava/lang/String;", (void*)MediaInfo_getByIdDetail},
     { "getByNameDetail", "(JIILjava/lang/String;II)Ljava/lang/String;", (void*)MediaInfo_getByNameDetail},
     { "informDetail", "(J)Ljava/lang/String;", (void*)MediaInfo_informDetail},
+    { "option", "(JLjava/lang/String;Ljava/lang/String;)Ljava/lang/String;", (void*)MediaInfo_option},
 };
 
 JNIEXPORT jint JNICALL
@@ -442,42 +443,38 @@ MediaInfo_informDetail(JNIEnv* pEnv, jobject self, jlong peer)
 
 }
  
-
-
-
-// comment-out by jaeguly for unused functions
-#if 0
-
 JNIEXPORT jstring JNICALL
-MediaInfo_getOption(JNIEnv* pEnv, jobject self, jlong peer, jstring option)
+MediaInfo_option(JNIEnv* pEnv, jobject self, jlong peer, jstring option, jstring value)
 {
     MediaInfo* pMediaInfo = GetMediaInfo(peer);
 
     if (!pMediaInfo)
         return 0;
 
-    const jchar* jchars = pEnv->GetStringChars(option, NULL);
-    if (jchars == NULL) {
-        LOGW("GetStringChars() fails.\n");
-        return 0;
-    }
-
     String strOption;
-    strOption.assign(CastChars(jchars), pEnv->GetStringLength(option));
+    String strValue;
 
-    LOG("called __getOption('%s')\n", PrintableChars(strOption.c_str()));
+    JStringHolder jstrOption(pEnv, option);
+    JStringHolder jstrValue(pEnv, value);
 
-    String strInfo = pMediaInfo->Option(strOption);
+    if (!jstrOption.toString(strOption))
+        return 0;
 
-    LOG("__getOption() returns '%s'.\n", PrintableChars(strInfo.c_str()));
+    if (!jstrValue.toString(strValue))
+        return 0;
 
-    jstring res = pEnv->NewString(CastChars(strInfo.c_str()), strInfo.size());
+    String strResult = pMediaInfo->Option(strOption, strValue);
+    LOG("MediaInfo->Option('%s', ..) returns '%s'.\n",
+        PrintableChars(strOption.c_str()), PrintableChars2(strResult.c_str()));
 
-    pEnv->ReleaseStringChars(option, jchars);
-
-    return res;
-
+    return NewJString(pEnv, strResult);
 }
+
+
+
+
+// comment-out by jaeguly for unused functions
+#if 0
 
 JNIEXPORT jint JNICALL
 MediaInfo_count(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum)

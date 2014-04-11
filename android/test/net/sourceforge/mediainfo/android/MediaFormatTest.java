@@ -26,7 +26,8 @@ public class MediaFormatTest {
 	public static final String LOG_TAG = "MediaFormatTest";
 
 	protected MediaFormatTest () {
-		
+		mediaInfo = new MediaInfo();
+		mediaInfo.option("Complete", "1");
 	}
 	
 	public void releaseAll() {
@@ -173,9 +174,9 @@ public class MediaFormatTest {
         }
     }
 
-    private MediaInfo mediaInfo = new MediaInfo();
+    private MediaInfo mediaInfo = null;
     private boolean timeRecordMode = false;
     private boolean verboseMode = false;
     private boolean recursiveMode = false;
-    private String[] excludesList;
+    private String[] excludesList = null;
 }

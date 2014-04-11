@@ -104,15 +104,15 @@ public class MediaInfo {
         return informDetail(peer);
     }
 
-//    /**
-//     * Configuration or get information about MediaInfoLib
-//     * @param name The name of option
-//     * @param value The value of option
-//     * @return Depend of the option: "" by default means No, other means Yes
-//     */
-//    public String getOption(String name) {
-//        return getOption(peer, name);
-//    }
+    /**
+     * Configuration or get information about MediaInfoLib
+     * @param name The name of option
+     * @param value The value of option
+     * @return Depend of the option: "" by default means No, other means Yes
+     */
+    public String option(String name, String value) {
+        return option(peer, name, value);
+    }
 
 //    /** Count of streams of a stream kind. */
 //    public int count(StreamKind streamKind) {
@@ -151,7 +151,7 @@ public class MediaInfo {
 
     private native String informDetail(long peer);
 
-//    private native String getOption(long peer, String option);
+    private native String option(long peer, String option, String value);
 
 //    private native int count(long peer, int streamKind, int streamNum);
 
