@@ -7,9 +7,6 @@ extern "C" {
 extern size_t mbstowcs(wchar_t* wcstr, const char* mbstr, size_t max);
 extern size_t wcstombs(char* mbstr, const wchar_t* wcstr, size_t max);
 extern int wctomb(char *pmb, wchar_t character);
-extern size_t wcslen(const wchar_t *);
-extern wchar_t *wcsncpy(wchar_t *, const wchar_t *, size_t);
-extern int wcscmp(const wchar_t *, const wchar_t *);
 extern size_t wcrtomb(char *, wchar_t, mbstate_t *);
 
 
@@ -166,6 +163,7 @@ size_t wcstombs(char* mbstr, const wchar_t* wcstr, size_t max)
         while (*pwc) {
             
             res = cp949_wctomb(conv, cbuf, *pwc, MB_MAX_LEN);
+
             if (res <= 0) {
                 //LOGW("wcstombs(NULL, %s, %d) returns %d", wcstr, max, -1);
                 return (size_t) -1;
@@ -187,6 +185,7 @@ size_t wcstombs(char* mbstr, const wchar_t* wcstr, size_t max)
         while ((pwc < wcend) && (t < tend)) {
             res = cp949_wctomb(conv, (unsigned char*)t, *pwc, tend - t);
             //LOG("cp949_wctomb(conv, t, wc, %d) return %d", tend - t, res);
+
             if (res <= 0) {
                 //LOGW("wcstombs(char*, %s, %d) returns %d", wcstr, max, -1);
                 return (size_t) -1;
@@ -243,57 +242,6 @@ int wctomb(char *pmb, wchar_t character)
 
     LOG("wctomb(pmb, %c) returns %d\n", character, res);
     return res;
-}
-
-
-size_t wcslen(const wchar_t *s)
-{
-    LOG("wcslen()\n");
-
-    const wchar_t *p = s;
-
-    while (*++p)
-        ;
-
-    LOG("wcslen(%s) returns %d (wchar_t is %d bytes)\n", s, (p - s), sizeof(wchar_t));
-    return p - s;
-}
-
-
-wchar_t *wcsncpy(wchar_t *dst, const wchar_t *src, size_t n)
-{
-    LOG("wcsncpy()\n");
-
-    if (n != 0) {
-        wchar_t *d = dst;
-        const wchar_t *s = src;
-        do {
-            if ((*d++ = *s++) == L'\0') {
-                /* NUL pad the remaining n-1 bytes */
-                while (--n != 0)
-                    *d++ = L'\0';
-
-                break;
-            }
-        } while (--n != 0);
-    }
-
-    LOG("wcsncpy(dst, %s, %d) returns 0x%u", src, n, (unsigned*)dst);
-    return (dst);
-}
-
-int wcscmp(const wchar_t *s1, const wchar_t *s2)
-{
-    if (!s1)
-        return s2 ? -1 : 0;
-
-    if (!s2)
-        return 1;
-
-    while (*s1 && (*s1 == *s2))
-        ++s1, ++s2;
-
-    return (int) (*s1 - *s2);
 }
 
 // convert a wide-character code to a character (restartable) 
