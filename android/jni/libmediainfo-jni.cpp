@@ -224,6 +224,9 @@ NewJString(JNIEnv *pEnv, String str)
     jstring jstr = pEnv->NewString((jchar*)"", len);
     jchar* jchars = (jchar*) pEnv->GetStringChars(jstr, NULL);
 
+    assert(raw != NULL);
+    assert(jchars != NULL);
+
     // Discard two lead bytes in raw string
     while (len-- > 0)
         *jchars++ = (jchar) *raw++;
@@ -380,8 +383,9 @@ MediaInfo_getByName(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jin
         return 0;
 
     String strInfo = pMediaInfo->Get(CastStreamKind(streamKind), streamNum, strParameter);
-    LOG("MediaInfo->Get(%d,%d,'%s') returns '%s'\n",
-        CastStreamKind(streamKind), streamNum, PrintableChars(strParameter.c_str()), PrintableChars2(strInfo.c_str()));
+
+    LOG("MediaInfo->Get(%d,%d,'%s') returns '%s'%d\n",
+        CastStreamKind(streamKind), streamNum, PrintableChars(strParameter.c_str()), PrintableChars2(strInfo.c_str()), strInfo.length());
 
     return NewJString(pEnv, strInfo);
 }
