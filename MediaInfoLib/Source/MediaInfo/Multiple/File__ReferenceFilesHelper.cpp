@@ -494,7 +494,7 @@ void File__ReferenceFilesHelper::ParseReferences()
                     for (references::iterator ReferenceSource=References.begin(); ReferenceSource!=References.end(); ++ReferenceSource)
                         if (ReferenceSource->FileNames.empty())
                             CountOfReferencesToParse--;
-                    DTS_Interval=3000000000; // 3 seconds
+                    DTS_Interval=3000000000u; // 3 seconds
                 }
             }
             else
