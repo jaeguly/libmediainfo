@@ -41,7 +41,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE	:= libmediainfo
 LOCAL_SRC_FILES := \
 	$(ANDROID_EXTRA_DIR)/glob.c \
-	$(ANDROID_EXTRA_DIR)/wchar.cpp \
+	$(ANDROID_EXTRA_DIR)/wchar_multibyte.cpp \
 	$(LIBZEN_SRC_DIR)/Conf.cpp \
 	$(LIBZEN_SRC_DIR)/CriticalSection.cpp \
 	$(LIBZEN_SRC_DIR)/Dir.cpp \
