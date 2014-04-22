@@ -76,8 +76,8 @@ size_t mbstowcs(wchar_t* wcstr, const char* mbstr, size_t max)
     int             res;
 
     mbend = mbstr;
-    while (*mbend++)
-        ;
+    while (*mbend)
+        ++mbend;
 
     if (!wcstr) { // count only mode
         int count = 0;
@@ -153,8 +153,8 @@ size_t wcstombs(char* mbstr, const wchar_t* wcstr, size_t max)
     int             res;
 
     wcend = wcstr;
-    while (*wcend++)
-        ;
+    while (*wcend)
+        ++wcend;
 
     if (!mbstr) { // count only mode
         unsigned char cbuf[MB_MAX_LEN];
