@@ -49,7 +49,7 @@ fi
 #
 # Build a libzen for android native library.
 #
-pushd ../ZenLib/Project/GNU/Library
+pushd ../../ZenLib/Project/GNU/Library
 	autoreconf -i
 
 	## added stlport
@@ -70,7 +70,7 @@ popd
 #
 # Build a libmediainfo for android native library.
 #
-pushd ../MediaInfoLib/Project/GNU/Library
+pushd ../../MediaInfoLib/Project/GNU/Library
 	autoreconf -i
 
 	CFLAGS="-DWSTRING_MISSING -DNO_EXCEPTIONS $CFLAGS"
