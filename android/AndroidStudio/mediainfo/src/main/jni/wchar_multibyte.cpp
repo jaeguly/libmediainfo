@@ -35,9 +35,9 @@ typedef struct {
 //#define NULL (0)
 #define MB_MAX_LEN      (8)
 
-#include "../../libiconv/lib/ascii.h"
-#include "../../libiconv/lib/ksc5601.h"
-#include "../../libiconv/lib/cp949.h"
+#include "libiconv/lib/ascii.h"
+#include "libiconv/lib/ksc5601.h"
+#include "libiconv/lib/cp949.h"
 
 #include <android/log.h>
 

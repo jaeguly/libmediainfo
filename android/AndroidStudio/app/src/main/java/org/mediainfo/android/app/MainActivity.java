@@ -1,5 +1,6 @@
 package org.mediainfo.android.app;
 
+import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+
+import java.io.File;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -23,8 +26,31 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+        test();
     }
 
+    private void test() {
+        android.util.Log.d("mediainfo-tester","started\n");
+
+        // list up all files in a specific directory.
+        File extPath = Environment.getExternalStorageDirectory();
+        //String testMediaDir = extPath.getAbsolutePath() + "/mediainfo-tests";
+        //String testMediaDir = extPath.getAbsolutePath() + "/www.dlnacontent.org";
+        //String testMediaDir = extPath.getAbsolutePath() + "/www.dlnacontent.org/Image";
+        //String testMediaDir = extPath.getAbsolutePath() + "/www.dlnacontent.org/Image/JPEG_LRG/B-JPEG_L-20.jpg";
+        //String testMediaDir = "/mnt/sdcard/www.dlnacontent.org/Audio/AAC_ADTS_320/O-AAC_ADTS_320-stereo-44.1kHz-96k.adts";
+        //String testMediaDir = "/mnt/sdcard/external_sd/SF_Reported_Contents";
+        String testMediaDir = "/mnt/sdcard";
+
+
+        //MediaInfoTest.doTest(testMediaDir, gr, this);
+        String[] args = { "-r", "-v", "/mnt/sdcard/Download/cds-data" };
+
+        net.sourceforge.mediainfo.android.MediaFormatTest.main(args);
+
+        android.util.Log.d("mediainfo-tester","ended\n");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

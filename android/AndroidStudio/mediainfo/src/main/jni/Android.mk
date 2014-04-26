@@ -5,12 +5,12 @@
 
 LOCAL_PATH := $(call my-dir)
 
-MEDIAINFO_DIR       = ../../..
+MEDIAINFO_DIR       = ../../../../../..
 LIBZEN_INC_DIR		= $(MEDIAINFO_DIR)/ZenLib/Source
 LIBZEN_SRC_DIR		= $(MEDIAINFO_DIR)/ZenLib/Source/ZenLib
 LIBMEDIAINFO_INC_DIR= $(MEDIAINFO_DIR)/MediaInfoLib/Source
 LIBMEDIAINFO_SRC_DIR= $(MEDIAINFO_DIR)/MediaInfoLib/Source/MediaInfo
-ANDROID_EXTRA_DIR   = android-extra
+THIRDPARTY_DIR		= ../../../thirdparty
 
 #USER_CFLAGS		+= -fshort-wchar
 USER_CFLAGS		+= -DUNICODE
@@ -40,8 +40,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE	:= libmediainfo
 LOCAL_SRC_FILES := \
-	$(ANDROID_EXTRA_DIR)/glob.c \
-	$(ANDROID_EXTRA_DIR)/wchar_multibyte.cpp \
+	$(THIRDPARTY_DIR)/glob/glob.c \
 	$(LIBZEN_SRC_DIR)/Conf.cpp \
 	$(LIBZEN_SRC_DIR)/CriticalSection.cpp \
 	$(LIBZEN_SRC_DIR)/Dir.cpp \
@@ -258,9 +257,11 @@ LOCAL_SRC_FILES := \
 	$(LIBMEDIAINFO_SRC_DIR)/Video/File_Y4m.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/../ThirdParty/md5/md5.c \
 	$(LIBMEDIAINFO_SRC_DIR)/../ThirdParty/tinyxml2/tinyxml2.cpp \
+	wchar_multibyte.cpp \
 	libmediainfo-jni.cpp
 
-LOCAL_C_INCLUDES        += $(LOCAL_PATH)/$(ANDROID_EXTRA_DIR)
+LOCAL_C_INCLUDES        += $(LOCAL_PATH)/$(THIRDPARTY_DIR)
+LOCAL_C_INCLUDES        += $(LOCAL_PATH)/$(THIRDPARTY_DIR)/glob
 LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBMEDIAINFO_INC_DIR)
 LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBMEDIAINFO_INC_DIR)/ThirdParty/base64
 LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBMEDIAINFO_INC_DIR)/ThirdParty/md5
