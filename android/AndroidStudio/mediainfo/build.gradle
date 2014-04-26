@@ -27,8 +27,7 @@ android {
                 '-C', file('src/main/jni').absolutePath,
                 '-j', Runtime.runtime.availableProcessors(),
                 'all',
-                'NDK_DEBUG=0',
-                '--debug'
+                'NDK_DEBUG=0'
     }
 
     task cleanNative(type: Exec, description: 'Clean JNI object files') {
