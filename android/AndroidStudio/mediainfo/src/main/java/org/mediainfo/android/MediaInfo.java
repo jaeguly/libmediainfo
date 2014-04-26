@@ -1,4 +1,4 @@
-package net.sourceforge.mediainfo;
+package org.mediainfo.android;
 
 
 /**

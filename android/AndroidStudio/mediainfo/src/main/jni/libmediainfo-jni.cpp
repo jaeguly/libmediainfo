@@ -162,7 +162,7 @@ JNI_OnLoad (JavaVM * vm, void * reserved)
         return -1;
     }
 
-    static const char* const kClassName = "net/sourceforge/mediainfo/MediaInfo";
+    static const char* const kClassName = "org/mediainfo/android/MediaInfo";
     LOG("Registering %s natives\n", kClassName);
 
     jclass clazz = env->FindClass(kClassName);

@@ -1,4 +1,4 @@
-package net.sourceforge.mediainfo.android;
+package org.mediainfo.android.app;
 
 import java.io.File;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import net.sourceforge.mediainfo.MediaInfo;
+import org.mediainfo.android.MediaInfo;
 import net.iharder.Base64;
 
 public class MediaInfoTest {

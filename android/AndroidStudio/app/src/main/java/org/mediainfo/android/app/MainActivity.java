@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
         //MediaInfoTest.doTest(testMediaDir, gr, this);
         String[] args = { "-r", "-v", "/mnt/sdcard/Download/cds-data" };
 
-        net.sourceforge.mediainfo.android.MediaFormatTest.main(args);
+        MediaFormatTest.main(args);
 
         android.util.Log.d("mediainfo-tester","ended\n");
     }

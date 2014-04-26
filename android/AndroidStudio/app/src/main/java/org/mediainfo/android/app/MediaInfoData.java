@@ -1,4 +1,4 @@
-package net.sourceforge.mediainfo.android;
+package org.mediainfo.android.app;
 
 import android.util.Log;
 

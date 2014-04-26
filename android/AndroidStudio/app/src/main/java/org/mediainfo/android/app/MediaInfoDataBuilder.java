@@ -1,11 +1,11 @@
 /**
  * 
  */
-package net.sourceforge.mediainfo.android;
+package org.mediainfo.android.app;
 
 import android.util.Log;
 import java.util.StringTokenizer;
-import net.sourceforge.mediainfo.MediaInfo;
+import org.mediainfo.android.MediaInfo;
 
 /**
  * @author jaeguly

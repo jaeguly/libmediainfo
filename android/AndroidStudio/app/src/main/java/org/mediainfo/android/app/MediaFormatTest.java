@@ -1,4 +1,4 @@
-package net.sourceforge.mediainfo.android;
+package org.mediainfo.android.app;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import android.util.Log;
 
-import net.sourceforge.mediainfo.MediaInfo;
+import org.mediainfo.android.MediaInfo;
 
 /*
  * MediaFormatTest은 주어진 미디어 파일이나 특정 디렉토리 아래의 미디어 파일에 대한

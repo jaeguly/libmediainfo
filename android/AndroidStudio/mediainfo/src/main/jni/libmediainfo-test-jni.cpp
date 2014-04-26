@@ -17,21 +17,21 @@ using namespace MediaInfoLib;
 
 
 extern "C" {
-    JNIEXPORT jlong   JNICALL Java_net_sourceforge_mediainfo_MediaInfo_create(JNIEnv* pEnv, jobject self);
-    JNIEXPORT void    JNICALL Java_net_sourceforge_mediainfo_MediaInfo_destroy(JNIEnv* pEnv, jobject self, jlong peer);
-    JNIEXPORT jint    JNICALL Java_net_sourceforge_mediainfo_MediaInfo_open(JNIEnv* pEnv, jobject self, jlong peer, jstring filename);
-    JNIEXPORT void    JNICALL Java_net_sourceforge_mediainfo_MediaInfo_close(JNIEnv* pEnv, jobject self, jlong peer);
-    JNIEXPORT jstring JNICALL Java_net_sourceforge_mediainfo_MediaInfo_getById(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jint parameter);
-    JNIEXPORT jstring JNICALL Java_net_sourceforge_mediainfo_MediaInfo_getByName(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter);
-    JNIEXPORT jstring JNICALL Java_net_sourceforge_mediainfo_MediaInfo_getByIdDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jint parameter, jint kindOfInfo);
-    JNIEXPORT jstring JNICALL Java_net_sourceforge_mediainfo_MediaInfo_getByNameDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter, jint kindOfInfo, jint kindOfSearch);
-    JNIEXPORT jstring JNICALL Java_net_sourceforge_mediainfo_MediaInfo_getOption(JNIEnv* pEnv, jobject self, jlong peer, jstring option);
-    JNIEXPORT jint    JNICALL Java_net_sourceforge_mediainfo_MediaInfo_count(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum);
+    JNIEXPORT jlong   JNICALL Java_org_mediainfo_android_MediaInfo_create(JNIEnv* pEnv, jobject self);
+    JNIEXPORT void    JNICALL Java_org_mediainfo_android_MediaInfo_destroy(JNIEnv* pEnv, jobject self, jlong peer);
+    JNIEXPORT jint    JNICALL Java_org_mediainfo_android_MediaInfo_open(JNIEnv* pEnv, jobject self, jlong peer, jstring filename);
+    JNIEXPORT void    JNICALL Java_org_mediainfo_android_MediaInfo_close(JNIEnv* pEnv, jobject self, jlong peer);
+    JNIEXPORT jstring JNICALL Java_org_mediainfo_android_MediaInfo_getById(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jint parameter);
+    JNIEXPORT jstring JNICALL Java_org_mediainfo_android_MediaInfo_getByName(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter);
+    JNIEXPORT jstring JNICALL Java_org_mediainfo_android_MediaInfo_getByIdDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jint parameter, jint kindOfInfo);
+    JNIEXPORT jstring JNICALL Java_org_mediainfo_android_MediaInfo_getByNameDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter, jint kindOfInfo, jint kindOfSearch);
+    JNIEXPORT jstring JNICALL Java_org_mediainfo_android_MediaInfo_getOption(JNIEnv* pEnv, jobject self, jlong peer, jstring option);
+    JNIEXPORT jint    JNICALL Java_org_mediainfo_android_MediaInfo_count(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum);
 }
 
 
 JNIEXPORT jlong JNICALL
-Java_net_sourceforge_mediainfo_MediaInfo_create(JNIEnv* pEnv, jobject self)
+Java_org_mediainfo_android_MediaInfo_create(JNIEnv* pEnv, jobject self)
 {
     LOG(("called __create()\n"));
 
@@ -39,7 +39,7 @@ Java_net_sourceforge_mediainfo_MediaInfo_create(JNIEnv* pEnv, jobject self)
 }
 
 JNIEXPORT void JNICALL
-Java_net_sourceforge_mediainfo_MediaInfo_destroy(JNIEnv* pEnv, jobject self, jlong peer)
+Java_org_mediainfo_android_MediaInfo_destroy(JNIEnv* pEnv, jobject self, jlong peer)
 {
     LOG(("called __destroy()\n"));
 
@@ -92,7 +92,7 @@ ConvChars(const Char* chars)
 
 
 JNIEXPORT jint JNICALL
-Java_net_sourceforge_mediainfo_MediaInfo_open(JNIEnv* pEnv, jobject self, jlong peer, jstring filename)
+Java_org_mediainfo_android_MediaInfo_open(JNIEnv* pEnv, jobject self, jlong peer, jstring filename)
 {
     if (!peer)
         return 0;
@@ -118,18 +118,18 @@ Java_net_sourceforge_mediainfo_MediaInfo_open(JNIEnv* pEnv, jobject self, jlong 
 }
 
 JNIEXPORT void JNICALL
-Java_net_sourceforge_mediainfo_MediaInfo_close(JNIEnv* pEnv, jobject self, jlong peer)
+Java_org_mediainfo_android_MediaInfo_close(JNIEnv* pEnv, jobject self, jlong peer)
 {
 }
 
 JNIEXPORT jstring JNICALL
-Java_net_sourceforge_mediainfo_MediaInfo_getById(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jint parameter)
+Java_org_mediainfo_android_MediaInfo_getById(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jint parameter)
 {
     return 0;
 }
 
 JNIEXPORT jstring JNICALL
-Java_net_sourceforge_mediainfo_MediaInfo_getByName(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter)
+Java_org_mediainfo_android_MediaInfo_getByName(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter)
 {
 	ZenLib::Ztring strInfo;
 
@@ -165,26 +165,26 @@ Java_net_sourceforge_mediainfo_MediaInfo_getByName(JNIEnv* pEnv, jobject self, j
 }
 
 JNIEXPORT jstring JNICALL
-Java_net_sourceforge_mediainfo_MediaInfo_getByIdDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jint parameter, jint kindOfInfo)
+Java_org_mediainfo_android_MediaInfo_getByIdDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jint parameter, jint kindOfInfo)
 {
     return 0;
 }
 
 JNIEXPORT jstring JNICALL
-Java_net_sourceforge_mediainfo_MediaInfo_getByNameDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter, jint kindOfInfo, jint kindOfSearch)
+Java_org_mediainfo_android_MediaInfo_getByNameDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter, jint kindOfInfo, jint kindOfSearch)
 {
     return 0;
 }
 
 JNIEXPORT jstring JNICALL
-Java_net_sourceforge_mediainfo_MediaInfo_getOption(JNIEnv* pEnv, jobject self, jlong peer, jstring option)
+Java_org_mediainfo_android_MediaInfo_getOption(JNIEnv* pEnv, jobject self, jlong peer, jstring option)
 {
     return 0;
 
 }
 
 JNIEXPORT jint JNICALL
-Java_net_sourceforge_mediainfo_MediaInfo_count(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum)
+Java_org_mediainfo_android_MediaInfo_count(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum)
 {
     return 0;
 }
