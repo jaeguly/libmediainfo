@@ -1,3 +1,6 @@
+### License
+
+Read `../MediaInfoLib/License.html`
 
 ### Issues
 
