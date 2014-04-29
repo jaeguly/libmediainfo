@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">MediaInfo</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="mediainfo_messages">MediaInfo Messages</string>
 
 </resources>
