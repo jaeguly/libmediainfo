@@ -38,6 +38,9 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
         for (String path : list) {
             mi.open(path);
 
+            mi.option("Complete", "1");
+
+            publishProgress("\n>> '" + path + "'\n\n");
             publishProgress(mi.inform());
 
             mi.close();
@@ -49,7 +52,8 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
     @Override
     /** Runs on the UI thread after publishProgress(Progress...) is invoked. */
     protected void onProgressUpdate(String... infos) {
-        mTextView.append(infos[0]);
+        for (String info : infos)
+            mTextView.append(info);
     }
 
     @Override
