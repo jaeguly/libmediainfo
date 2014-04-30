@@ -3,21 +3,12 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/dark_blue"
                 android:padding="8dip"
                 tools:context=".MainActivity$PlaceholderFragment">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/font_medium"
-        android:text="@string/mediainfo_messages"
-        android:textColor="@color/light_blue"
-        android:id="@+id/textView"/>
+    <!--android:background="@color/dark_blue"-->
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_below="@+id/textView"
         android:layout_height="fill_parent">
 
         <TextView

@@ -39,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_do_test) {
             // TEST CODE
             mMessageView = (TextView)findViewById(R.id.message_view_a);
             mediaInfoRetrieverTask = new MediaInfoRetrieverTask(mMessageView);

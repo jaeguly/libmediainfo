@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">MediaInfo</string>
-    <string name="action_settings">Settings</string>
-    <string name="mediainfo_messages">MediaInfo Messages</string>
+    <string name="app_name">Full Information Display (all internal tags)</string>
+    <string name="action_do_test">Do Test</string>
 
 </resources>
