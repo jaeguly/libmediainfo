@@ -18,6 +18,7 @@
             android:background="@color/white"
             android:textColor="@color/black"
             android:padding="8dip"
+            android:textIsSelectable="true"
             android:typeface="monospace"
             />
     </ScrollView>
