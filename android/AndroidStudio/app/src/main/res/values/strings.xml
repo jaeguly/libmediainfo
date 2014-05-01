@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Full Information Display (all internal tags)</string>
+    <string name="app_name">MediaInfo</string>
+    <string name="app_desc">Full Information Display (all internal tags)</string>
     <string name="action_do_test">Do Test</string>
 
 </resources>
