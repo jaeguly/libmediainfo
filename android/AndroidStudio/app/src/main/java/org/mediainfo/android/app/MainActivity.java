@@ -1,8 +1,11 @@
 package org.mediainfo.android.app;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,15 +43,48 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_do_test) {
-            // TEST CODE
-            mMessageView = (TextView)findViewById(R.id.message_view_a);
-            mediaInfoRetrieverTask = new MediaInfoRetrieverTask(mMessageView);
-            mediaInfoRetrieverTask.execute("/mnt/sdcard/Download/cds-data");
 
+            new RequestMediaInfoRetriever().execute("/mnt/sdcard/Download/cds-data");
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mMessageView = (TextView) findViewById(R.id.message_view_a);
+
+        // If launches by an intent
+        if (getIntent() != null)
+            handleIntent(getIntent());
+    }
+
+    private boolean handleIntent(Intent intent) {
+        String action = intent.getAction();
+
+        // android.intent.action.VIEW
+        if (action.equals(Intent.ACTION_VIEW)) {
+            Uri fileUri = intent.getData();
+
+            new RequestMediaInfoRetriever().execute(fileUri.getPath());
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private class RequestMediaInfoRetriever extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... params) {
+
+            new MediaInfoRetrieverTask(mMessageView).execute(params);
+
+            return null;
+        }
     }
 
     /**
