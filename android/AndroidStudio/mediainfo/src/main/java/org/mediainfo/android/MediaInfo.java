@@ -88,7 +88,7 @@ public class MediaInfo {
      * @return a string about information you search, an empty string if there is a problem.
      */
     public String get(StreamKind streamKind, int streamNum, int parameter) {
-        return getById(handle, streamKind.ordinal(), streamNum, parameter, InfoKind.TEXT.ordinal());
+        return getById(handle, streamKind.ordinal(), streamNum, parameter); /* InfoKind.TEXT */
     }
 
     /**
@@ -103,7 +103,7 @@ public class MediaInfo {
      * @return a string about information you search, an empty string if there is a problem.
      */
     public String get(StreamKind streamKind, int streamNum, int parameter, InfoKind infoKind) {
-        return getById(handle, streamKind.ordinal(), streamNum, parameter, infoKind.ordinal());
+        return getByIdDetail(handle, streamKind.ordinal(), streamNum, parameter, infoKind.ordinal());
     }
 
 
@@ -236,7 +236,9 @@ public class MediaInfo {
 
     private native void close(long handle);
 
-    private native String getById(long handle, int streamKind, int streamNum, int parameter, int kindOfInfo);
+    private native String getById(long handle, int streamKind, int streamNum, int parameter);
+
+    private native String getByIdDetail(long handle, int streamKind, int streamNum, int parameter, int kindOfInfo);
 
     private native String getByName(long handle, int streamKind, int streamNum, String parameter);
 
