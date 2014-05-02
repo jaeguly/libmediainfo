@@ -13,11 +13,12 @@ public class MediaInfo {
         VIDEO,
         AUDIO,
         TEXT,
-        CHAPTERS,
+        OTHER,
         IMAGE,
-        MENU
+        MENU,
+        MAX
     }
-    
+
     // @remark Don't change it carelessly.
     // This order is from MediaInfo_Const.h
     public enum InfoKind {
@@ -28,186 +29,225 @@ public class MediaInfo {
         NAME_TEXT,      // Translated name of parameter
         MEASURE_TEXT,   // Translated name of measure unit
         INFO,           // More information about the parameter
-        HOWTO,          // How this parameter is supported, could be N(No), B(Beta), R(Read only),
-                        // W (Read/Write)
-        DOMAIN          // Domain of this piece of information
+        HOWTO,          // How this parameter is supported, could be N(No), B(Beta), R(Read only), W(Read/Write)
+        DOMAIN,         // Domain of this piece of information
+        MAX
     }
 
     public MediaInfo() {
-        peer = create();
+        handle = create();
     }
 
     public void destroy() {
-        if (peer != 0) {
-            destroy(peer);
-            peer = 0;
-        }
+        if (handle == 0)
+            throw new IllegalStateException();
+
+        destroy(handle);
+        handle = 0;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        if (handle != 0)
+            destroy();
     }
 
     /**
      * Open a file and collect information about it (technical information and tags)
-     * @param finename Full name of file to open
-     * @return 0 file not opened
-     *         1 file opened
+     *
+     * @param filename Full name of file to open
+     * @return 1 if file was opened, 0 if file was not opened
      */
     public int open(String filename) {
-        return open(peer, filename);
+        return open(handle, filename);
     }
 
-    /** Close a file opened before with open(). */
+    /**
+     * Close a file opened before with open().
+     */
     public void close() {
-        close(peer);
+        close(handle);
+    }
+
+    /**
+     * Get all details about a file.
+     *
+     * @return All details about a file in one string
+     */
+    public String inform() {
+        return informDetail(handle);
     }
 
     /**
      * Get a piece of information about a file. (parameter is an integer)
+     *
      * @param streamKind Kind of Stream
-     * @param streamNum Stream number in Kind of stream
-     * @param parameter Parameter you are looking for in the stream (codec, width, bitrate, ..),
-     *                  in integer format
-     * @param infoKind Kind of information you want about the parameter (the text, the measure,
-     *                 the help, ..)
-     * @return a string about information you search
-     *         an empty string if there is a problem
+     * @param streamNum  Stream number in Kind of stream
+     * @param parameter  Parameter you are looking for in the stream (codec, width, bitrate, ..),
+     *                   in integer format
+     * @return a string about information you search, an empty string if there is a problem.
      */
     public String get(StreamKind streamKind, int streamNum, int parameter) {
-        return getById(peer, streamKind.ordinal(), streamNum, parameter); /* InfoKind.TEXT */
+        return getById(handle, streamKind.ordinal(), streamNum, parameter, InfoKind.TEXT.ordinal());
+    }
+
+    /**
+     * Get a piece of information about a file. (parameter is an integer)
+     *
+     * @param streamKind Kind of Stream
+     * @param streamNum  Stream number in Kind of stream
+     * @param parameter  Parameter you are looking for in the stream (codec, width, bitrate, ..),
+     *                   in integer format
+     * @param infoKind   Kind of information you want about the parameter (the text, the measure,
+     *                   the help, ..)
+     * @return a string about information you search, an empty string if there is a problem.
+     */
+    public String get(StreamKind streamKind, int streamNum, int parameter, InfoKind infoKind) {
+        return getById(handle, streamKind.ordinal(), streamNum, parameter, infoKind.ordinal());
+    }
+
+
+    /**
+     * Get a piece of information about a file. (parameter is an string)
+     *
+     * @param streamKind Kind of Stream (general, video, audio, ..)
+     * @param streamNum  Stream number in Kind of stream
+     * @param parameter  Parameter you are looking for in the stream (codec, width, bitrate, ..),
+     *                   in string format ("Codec", "Width", ..)
+     * @return a string about information you search, an empty string if there is a problem
+     */
+    public String get(StreamKind streamKind, int streamNum, String parameter) {
+        return getByName(handle, streamKind.ordinal(), streamNum, parameter); /*InfoKind.TEXT, InfoKind.NAME*/
+    }
+
+
+    /**
+     * Get a piece of information about a file. (parameter is an string)
+     *
+     * @param streamKind Kind of Stream (general, video, audio, ..)
+     * @param streamNum  Stream number in Kind of stream
+     * @param parameter  Parameter you are looking for in the stream (codec, width, bitrate, ..),
+     *                   in string format ("Codec", "Width", ..)
+     * @param infoKind   Kind of information you want about the parameter (the text, the measure,
+     *                   the help, ..)
+     * @return a string about information you search, an empty string if there is a problem.
+     */
+    public String get(StreamKind streamKind, int streamNum, String parameter, InfoKind infoKind) {
+        return getByNameDetail(handle, streamKind.ordinal(), streamNum, parameter, infoKind.ordinal(), InfoKind.NAME.ordinal());
     }
 
     /**
      * Get a piece of information about a file. (parameter is an string)
+     *
      * @param streamKind Kind of Stream (general, video, audio, ..)
-     * @param streamNum Stream number in Kind of stream
-     * @param parameter Parameter you are looking for in the stream (codec, width, bitrate, ..),
-     *                  in string format ("Codec", "Width", ..)
-     * @param infoKind Kind of information you want about the parameter (the text, the measure,
-     *                 the help, ..)
+     * @param streamNum  Stream number in Kind of stream
+     * @param parameter  Parameter you are looking for in the stream (codec, width, bitrate, ..),
+     *                   in string format ("Codec", "Width", ..)
+     * @param infoKind   Kind of information you want about the parameter (the text, the measure,
+     *                   the help, ..)
      * @param searchKind Where to look for the parameter
-     * @return a string about information you search
-     *         an empty string if there is a problem
-     * @see option("Info_Parameters") to have the full list for @p parameter
+     * @return a string about information you search, an empty string if there is a problem.
      */
-    public String get(StreamKind streamKind, int streamNum, String parameter) {
-        return getByName(peer, streamKind.ordinal(), streamNum, parameter); /*InfoKind.TEXT, InfoKind.NAME*/
-    }
-
-    public String get(StreamKind streamKind, int streamNum, String parameter, InfoKind infoKind) {
-        return getByNameDetail(peer, streamKind.ordinal(), streamNum, parameter, infoKind.ordinal(), InfoKind.NAME.ordinal());
-    }
-
-    public String get(StreamKind streamKind, int streamNum, String parameter, InfoKind infoKind,
-            InfoKind searchKind) {
-        return getByNameDetail(peer, streamKind.ordinal(), streamNum, parameter, infoKind.ordinal(), searchKind.ordinal());
-    }
-
-    public String inform() {
-        return informDetail(peer);
+    public String get(StreamKind streamKind, int streamNum, String parameter, InfoKind infoKind, InfoKind searchKind) {
+        return getByNameDetail(handle, streamKind.ordinal(), streamNum, parameter, infoKind.ordinal(), searchKind.ordinal());
     }
 
     /**
      * Configuration or get information about MediaInfoLib
-     *
+     * <p/>
      * <ul>Known options are:
      * <li>(NOT IMPLEMENTED YET) "BlockMethod": Configure when Open Method must return (default or not command not understood: "1")
-     *      <ul>
-     *      <li>"0": immediately
-     *      <li>"1": After getting local information
-     *      <li>"2": When user interaction is needed, or when Internet information is get
-     *      </ul>
-     * <li>"Complete": For debug, configure if MediaInfoLib::Inform() show all information (doesn't care of InfoOption_NoShow tag): 
-     *                 shows all information if true, shows only useful for user information if false (No by default)
+     * <ul>
+     * <li>"0": immediately
+     * <li>"1": After getting local information
+     * <li>"2": When user interaction is needed, or when Internet information is get
+     * </ul>
+     * <li>"Complete": For debug, configure if MediaInfoLib::Inform() show all information (doesn't care of InfoOption_NoShow tag):
+     * shows all information if true, shows only useful for user information if false (No by default)
      * <li>"Complete_Get": return the state of "Complete"
      * <li>"Language": Configure language (default language, and this object); Value is Description of language (format: "Column1;Colum2...)
-     *      <ul>
-     *      <li>Column 1: Unique name ("Bytes", "Title")
-     *      <li>Column 2: translation ("Octets", "Titre")
-     *      </ul>
+     * <ul>
+     * <li>Column 1: Unique name ("Bytes", "Title")
+     * <li>Column 2: translation ("Octets", "Titre")
+     * </ul>
      * <li>"Language_Get": Get the language file in memory
      * <li>"Language_Update": Configure language of this object only (for optimization); Value is Description of language (format: "Column1;Colum2...)
-     *      <ul>
-     *      <li>Column 1: Unique name ("Bytes", "Title")
-     *      <li>Column 2: translation ("Octets", "Titre")
-     *      </ul>
+     * <ul>
+     * <li>Column 1: Unique name ("Bytes", "Title")
+     * <li>Column 2: translation ("Octets", "Titre")
+     * </ul>
      * <li>"Inform": Configure custom text, See MediaInfoLib::Inform() function; Description of views (format: "Column1;Colum2...)
-     *      <ul>
-     *      <li>Column 1: code (11 lines: "General", "Video", "Audio", "Text", "Other", "Begin", "End", "Page_Begin", "Page_Middle", "Page_End")
-     *      <li>Column 2: The text to show (example: "Audio: %FileName% is at %BitRate/String%")
-     *      </ul>
+     * <ul>
+     * <li>Column 1: code (11 lines: "General", "Video", "Audio", "Text", "Other", "Begin", "End", "Page_Begin", "Page_Middle", "Page_End")
+     * <li>Column 2: The text to show (example: "Audio: %FileName% is at %BitRate/String%")
+     * </ul>
      * <li>"ParseUnknownExtensions": Configure if MediaInfo parse files with unknown extension
      * <li>"ParseUnknownExtensions_Get": Get if MediaInfo parse files with unknown extension
      * <li>"ShowFiles": Configure if MediaInfo keep in memory files with specific kind of streams (or no streams); Value is Description of components (format: "Column1;Colum2...)
-     *      <ul>
-     *      <li>Column 1: code (available: "Nothing" for unknown format, "VideoAudio" for at least 1 video and 1 audio, "VideoOnly" for video streams only, "AudioOnly", "TextOnly")
-     *      <li>Column 2: "" (nothing) not keeping, other for keeping
-     *      </ul>
+     * <ul>
+     * <li>Column 1: code (available: "Nothing" for unknown format, "VideoAudio" for at least 1 video and 1 audio, "VideoOnly" for video streams only, "AudioOnly", "TextOnly")
+     * <li>Column 2: "" (nothing) not keeping, other for keeping
+     * </ul>
      * <li>(NOT IMPLEMENTED YET) "TagSeparator": Configure the separator if there are multiple same tags (" | " by default)
      * <li>(NOT IMPLEMENTED YET) "TagSeparator_Get": return the state of "TagSeparator"
      * <li>(NOT IMPLEMENTED YET) "Internet": Authorize Internet connection (Yes by default)
      * <li>(NOT IMPLEMENTED YET) "Internet_Title_Get": When State=5000, give all possible titles for this file (one per line)
-     *      <ul>
-     *      <li>Form: Author TagSeparator Title TagSeparator Year...
-     *      </ul>
+     * <ul>
+     * <li>Form: Author TagSeparator Title TagSeparator Year...
+     * </ul>
      * <li>(NOT IMPLEMENTED YET) "Internet_Title_Set": Set the Good title (same as given by Internet_Title_Get)
-     *      <ul>
-     *      <li>Form: Author TagSeparator Title TagSeparator Year
-     *      </ul>
+     * <ul>
+     * <li>Form: Author TagSeparator Title TagSeparator Year
+     * </ul>
      * <li>"Info_Parameters": Information about what are known unique names for parameters
      * <li>"Info_Parameters_CSV": Information about what are known unique names for parameters, in CSV format
      * </ul>
      *
-     * @param name The name of option
+     * @param name  The name of option
      * @param value The value of option
      * @return Depend of the option: "" by default means No, other means Yes
      */
     public String option(String name, String value) {
-        return option(peer, name, value);
+        return option(handle, name, value);
     }
 
 //    /** Count of streams of a stream kind. */
 //    public int count(StreamKind streamKind) {
-//        return count(peer, streamKind.ordinal(), -1);
+//        return count(handle, streamKind.ordinal(), -1);
 //    }
 
 //    /** Count of piece of information in this stream. */
 //    public int count(StreamKind streamKind, int streamNum) {
-//        return count(peer, streamKind.ordinal(), streamNum);
+//        return count(handle, streamKind.ordinal(), streamNum);
 //    }
 
 
     //
     // private, protected, static
     //
-    
-    private long peer;
+
+    private long handle;
 
     private native long create();
 
-    private native void destroy(long peer);
+    private native void destroy(long handle);
 
-    private native int open(long peer, String filename);
+    private native int open(long handle, String filename);
 
-    private native void close(long peer);
+    private native void close(long handle);
 
-    private native String getById(long peer, int streamKind, int streamNum, int parameter);
+    private native String getById(long handle, int streamKind, int streamNum, int parameter, int kindOfInfo);
 
-    private native String getByIdDetail(long peer, int streamKind, int streamNum, int parameter,
-            int kindOfInfo);
+    private native String getByName(long handle, int streamKind, int streamNum, String parameter);
 
-    private native String getByName(long peer, int streamKind, int streamNum, String parameter);
+    private native String getByNameDetail(long handle, int streamKind, int streamNum, String parameter, int kindOfInfo, int kindOfSearch);
 
-    private native String getByNameDetail(long peer, int streamKind, int streamNum, String parameter,
-            int kindOfInfo, int kindOfSearch);
+    private native String informDetail(long handle);
 
-    private native String informDetail(long peer);
+    private native String option(long handle, String option, String value);
 
-    private native String option(long peer, String option, String value);
+//    private native int count(long handle, int streamKind, int streamNum);
 
-//    private native int count(long peer, int streamKind, int streamNum);
-
-
-    protected void finalize() {
-        destroy();
-    }
 
     static {
         try {
