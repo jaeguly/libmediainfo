@@ -6,4 +6,8 @@
           android:title="@string/action_do_test"
           android:orderInCategory="100"
           app:showAsAction="never"/>
+    <item android:id="@+id/action_copy_clipboard"
+          android:title="@string/action_copy_clipboard"
+          android:orderInCategory="110"
+          app:showAsAction="never"/>
 </menu>

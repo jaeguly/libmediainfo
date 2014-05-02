@@ -4,5 +4,6 @@
     <string name="app_name">MediaInfo</string>
     <string name="app_desc">Full Information Display (all internal tags)</string>
     <string name="action_do_test">Do Test</string>
+    <string name="action_copy_clipboard">Copy all to clipboard</string>
 
 </resources>

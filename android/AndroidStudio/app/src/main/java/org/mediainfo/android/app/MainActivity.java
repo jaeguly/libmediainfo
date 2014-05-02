@@ -1,5 +1,6 @@
 package org.mediainfo.android.app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -42,10 +43,28 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_do_test) {
+        switch (id) {
+            case R.id.action_do_test:
+                new RequestMediaInfoRetriever().execute("/mnt/sdcard/Download/cds-data");
+                return true;
+            case R.id.action_copy_clipboard:
 
-            new RequestMediaInfoRetriever().execute("/mnt/sdcard/Download/cds-data");
-            return true;
+                if (mMessageView != null) {
+                    String text = mMessageView.getText().toString();
+
+                    if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
+                        android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+
+                        clipboard.setText(text);
+                    } else {
+                        android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+
+                        clipboard.setPrimaryClip(android.content.ClipData.newPlainText("copied text", text));
+                    }
+                }
+                return true;
+            default:
+                break;
         }
 
         return super.onOptionsItemSelected(item);
