@@ -50,7 +50,7 @@ public class MediaInfoTest {
 
                 testGetInfo(mi, targetMedia, gr, me);
 
-                mi.destroy();
+                mi.dispose();
 
             } else {
 

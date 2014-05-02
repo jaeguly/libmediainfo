@@ -38,7 +38,7 @@ public class MediaInfo {
         handle = create();
     }
 
-    public void destroy() {
+    public void dispose() {
         if (handle == 0)
             throw new IllegalStateException();
 
@@ -49,7 +49,7 @@ public class MediaInfo {
     @Override
     protected void finalize() throws Throwable {
         if (handle != 0)
-            destroy();
+            dispose();
     }
 
     /**
