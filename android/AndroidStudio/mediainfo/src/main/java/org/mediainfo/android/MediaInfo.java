@@ -174,9 +174,19 @@ public class MediaInfo {
     }
 
     /**
-     * Configuration or get information about MediaInfoLib
+     * Configure or get information about MediaInfo
+     *
+     * @param name The name of option
+     * @return
+     */
+    public String option(String name) {
+        return option(handle, name);
+    }
+
+    /**
+     * Configuration or get information about MediaInfo
      * <p/>
-     * <ul>Known options are:
+     * <ul>Known options are (refer to a native MediaInfoLib):
      * <li>(NOT IMPLEMENTED YET) "BlockMethod": Configure when Open Method must return (default or not command not understood: "1")
      * <ul>
      * <li>"0": immediately
@@ -232,6 +242,21 @@ public class MediaInfo {
         return option(handle, name, value);
     }
 
+    /**
+     * Configure or get information about MediaInfo (static version).
+     *
+     * @param name the name of option
+     * @return
+     */
+    public native static String optionStatic(String name);
+
+    /**
+     * Configure or get information about MediaInfo (static version).
+     *
+     * @param name the name of option
+     * @param value the name of option
+     * @return Depend of the option: "" by default means No, other means Yes
+     */
     public native static String optionStatic(String name, String value);
 
 
@@ -262,6 +287,8 @@ public class MediaInfo {
     private native int countGet(long handle, int streamKind, int streamNum);
 
     private native String option(long handle, String option, String value);
+
+    private native String option(long handle, String option);
 
 
     static {

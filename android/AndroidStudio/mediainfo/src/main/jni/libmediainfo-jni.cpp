@@ -126,7 +126,9 @@ extern "C" {
     JNIEXPORT jstring JNICALL MediaInfo_informDetail(JNIEnv* pEnv, jobject self, jlong peer);
     JNIEXPORT jint    JNICALL MediaInfo_countGet(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum);
     JNIEXPORT jstring JNICALL MediaInfo_option(JNIEnv* pEnv, jobject self, jlong peer, jstring option, jstring value);
+    JNIEXPORT jstring JNICALL MediaInfo_option2(JNIEnv* pEnv, jobject self, jlong peer, jstring option);
     JNIEXPORT jstring JNICALL MediaInfo_optionStatic(JNIEnv* pEnv, jclass clazz, jstring option, jstring value);
+    JNIEXPORT jstring JNICALL MediaInfo_optionStatic2(JNIEnv* pEnv, jclass clazz, jstring option);
 }
 
 
@@ -142,7 +144,9 @@ static const JNINativeMethod gMethods[] = {
     { "informDetail", "(J)Ljava/lang/String;", (void*)MediaInfo_informDetail},
     { "countGet", "(JII)I", (void*)MediaInfo_countGet},
     { "option", "(JLjava/lang/String;Ljava/lang/String;)Ljava/lang/String;", (void*)MediaInfo_option},
+    { "option", "(JLjava/lang/String;)Ljava/lang/String;", (void*)MediaInfo_option2},
     { "optionStatic", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", (void*)MediaInfo_optionStatic},
+    { "optionStatic", "(Ljava/lang/String;)Ljava/lang/String;", (void*)MediaInfo_optionStatic2},
 };
 
 JNIEXPORT jint JNICALL
@@ -486,6 +490,27 @@ MediaInfo_option(JNIEnv* pEnv, jobject self, jlong peer, jstring option, jstring
     return NewJString(pEnv, strResult);
 }
 
+JNIEXPORT jstring JNICALL
+MediaInfo_option2(JNIEnv* pEnv, jobject self, jlong peer, jstring option)
+{
+    MediaInfo* pMediaInfo = GetMediaInfo(peer);
+
+    if (!pMediaInfo)
+        return 0;
+
+    String strOption;
+
+    JStringHolder jstrOption(pEnv, option);
+
+    if (!jstrOption.toString(strOption))
+        return 0;
+
+    String strResult = pMediaInfo->Option(strOption, __T(""));
+    LOG("MediaInfo->Option('%s', ..) returns '%s'.\n",
+        PrintableChars(strOption.c_str()), PrintableChars2(strResult.c_str()));
+
+    return NewJString(pEnv, strResult);
+}
 
 JNIEXPORT jstring JNICALL
 MediaInfo_optionStatic(JNIEnv* pEnv, jclass clazz, jstring option, jstring value)
@@ -503,6 +528,24 @@ MediaInfo_optionStatic(JNIEnv* pEnv, jclass clazz, jstring option, jstring value
         return 0;
 
     String strResult = MediaInfo::Option_Static(strOption, strValue);
+
+    LOG("MediaInfo::Option_Static('%s', ..) returns '%s'.\n",
+        PrintableChars(strOption.c_str()), PrintableChars2(strResult.c_str()));
+
+    return NewJString(pEnv, strResult);
+}
+
+JNIEXPORT jstring JNICALL
+MediaInfo_optionStatic2(JNIEnv* pEnv, jclass clazz, jstring option)
+{
+    String strOption;
+
+    JStringHolder jstrOption(pEnv, option);
+
+    if (!jstrOption.toString(strOption))
+        return 0;
+
+    String strResult = MediaInfo::Option_Static(strOption, __T(""));
 
     LOG("MediaInfo::Option_Static('%s', ..) returns '%s'.\n",
         PrintableChars(strOption.c_str()), PrintableChars2(strResult.c_str()));
