@@ -153,6 +153,27 @@ public class MediaInfo {
     }
 
     /**
+     * Count of streams of a stream kin (StreamNumber not filled), or count of piece of information in this stream.
+     *
+     * @param streamKind Kind of Stream (general, video, audio, ..)
+     * @return number of streams of the given stream kind
+     */
+    public int countGet(StreamKind streamKind) {
+        return countGet(handle, streamKind.ordinal(), -1);
+    }
+
+    /**
+     * Count of streams of a stream kin (StreamNumber not filled), or count of piece of information in this stream.
+     *
+     * @param streamKind   Kind of Stream (general, video, audio, ..)
+     * @param streamNumber Stream number in Kind of stream
+     * @return number of streams of the given stream kind
+     */
+    public int countGet(StreamKind streamKind, int streamNumber) {
+        return countGet(handle, streamKind.ordinal(), streamNumber);
+    }
+
+    /**
      * Configuration or get information about MediaInfoLib
      * <p/>
      * <ul>Known options are:
@@ -211,15 +232,7 @@ public class MediaInfo {
         return option(handle, name, value);
     }
 
-//    /** Count of streams of a stream kind. */
-//    public int count(StreamKind streamKind) {
-//        return count(handle, streamKind.ordinal(), -1);
-//    }
-
-//    /** Count of piece of information in this stream. */
-//    public int count(StreamKind streamKind, int streamNum) {
-//        return count(handle, streamKind.ordinal(), streamNum);
-//    }
+    public native static String optionStatic(String name, String value);
 
 
     //
@@ -246,9 +259,9 @@ public class MediaInfo {
 
     private native String informDetail(long handle);
 
-    private native String option(long handle, String option, String value);
+    private native int countGet(long handle, int streamKind, int streamNum);
 
-//    private native int count(long handle, int streamKind, int streamNum);
+    private native String option(long handle, String option, String value);
 
 
     static {
