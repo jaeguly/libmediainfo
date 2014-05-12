@@ -15,6 +15,9 @@ import java.util.List;
  */
 public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
 
+    protected MediaInfoRetrieverTask() {
+    }
+
     public MediaInfoRetrieverTask(TextView textView) {
         mTextView = textView;
     }

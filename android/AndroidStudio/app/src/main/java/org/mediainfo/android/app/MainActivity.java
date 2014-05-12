@@ -44,7 +44,10 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         switch (id) {
-            case R.id.action_do_test:
+            case R.id.action_exampleogg_test:
+                new RequestMediaInfoReportRetriever().execute("/mnt/sdcard/Download/Example.ogg");
+                return true;
+            case R.id.action_cdsdata_test:
                 new RequestMediaInfoRetriever().execute("/mnt/sdcard/Download/cds-data");
                 return true;
             case R.id.action_copy_clipboard:
@@ -101,6 +104,16 @@ public class MainActivity extends ActionBarActivity {
         protected Void doInBackground(String... params) {
 
             new MediaInfoRetrieverTask(mMessageView).execute(params);
+
+            return null;
+        }
+    }
+
+    private class RequestMediaInfoReportRetriever extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... params) {
+
+            new MediaInfoReportRetrieverTask(mMessageView).execute(params);
 
             return null;
         }

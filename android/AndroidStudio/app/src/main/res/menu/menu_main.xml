@@ -2,10 +2,15 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context=".MainActivity">
-    <item android:id="@+id/action_do_test"
-          android:title="@string/action_do_test"
+    <item android:id="@+id/action_cdsdata_test"
+          android:title="@string/action_cdsdata_test"
           android:orderInCategory="100"
           app:showAsAction="never"/>
+    <item android:id="@+id/action_exampleogg_test"
+          android:title="@string/action_exampleogg_test"
+          android:orderInCategory="100"
+          app:showAsAction="never"/>
+
     <item android:id="@+id/action_copy_clipboard"
           android:title="@string/action_copy_clipboard"
           android:orderInCategory="110"
