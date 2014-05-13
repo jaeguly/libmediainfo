@@ -2,7 +2,6 @@ package org.mediainfo.android.app.util;
 
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 // FIXME:
