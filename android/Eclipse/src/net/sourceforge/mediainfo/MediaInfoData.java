@@ -1,11 +1,11 @@
-package org.mediainfo.android.app;
+package net.sourceforge.mediainfo;
 
 import android.util.Log;
 
 public class MediaInfoData {
 
-	public static final String LOG_TAG = "MediaInfoData";
-	
+    public static final String LOG_TAG = "MediaInfoData";
+
     public String general_title;
     public String general_album;
     public String general_genre;
@@ -109,7 +109,7 @@ public class MediaInfoData {
         image_width = 0;
         image_height = 0;
         image_bitdepth = 0;
-        
+
         inform_detail = "";
     }
 
@@ -147,12 +147,15 @@ public class MediaInfoData {
         str += "FrameRate:         " + video_framerate + "\n";
         str += "AspectRatio:       " + video_aspectratio + "\n";
         switch (video_scantype) {
-        case 0: // unknowwn
-            str += "ScanType:          Unknown\n"; break;
-        case 1: // interlaced
-            str += "ScanType:          Interlaced\n"; break;
-        case 2: // progressive
-            str += "ScanType:          Progressive\n"; break;
+            case 0: // unknowwn
+                str += "ScanType:          Unknown\n";
+                break;
+            case 1: // interlaced
+                str += "ScanType:          Interlaced\n";
+                break;
+            case 2: // progressive
+                str += "ScanType:          Progressive\n";
+                break;
         }
         return str;
     }
@@ -177,7 +180,7 @@ public class MediaInfoData {
         str += "Width:             " + image_width + "\n";
         str += "Height:            " + image_height + "\n";
         str += "BitDepth:          " + image_bitdepth + "\n";
-        
+
         return str;
     }
 

@@ -1,29 +1,22 @@
-package org.mediainfo.android.app;
+package net.sourceforget.net;
+
+import android.app.Activity;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import net.iharder.Base64;
+
+import org.mediainfo.android.MediaInfo;
 
 import java.io.File;
 import java.util.Arrays;
 
-import android.graphics.BitmapFactory;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.util.Log;
-
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.os.Environment;
-import android.app.Activity;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
-
-import org.mediainfo.android.MediaInfo;
-import net.iharder.Base64;
-
 public class MediaInfoTest {
 
-	public static String LOG_TAG = "mediainfo_test";
+    public static String LOG_TAG = "mediainfo_test";
 
     //    public static void main(String[] args) {
     public static void doTest(String targetMedia, LinearLayout gr, Activity me) {
@@ -60,7 +53,7 @@ public class MediaInfoTest {
             }
 
         } catch (Exception e) {
-            
+
             String msg = "Exception: " + e.getMessage() + "\n";
             StackTraceElement[] els = e.getStackTrace();
 
@@ -100,13 +93,13 @@ public class MediaInfoTest {
 
         // test for MediaInfo.getGeneralInfo()
         //
-        String[] generalInfos = { "StreamKind", "Title", "InternetMediaType", "Format",
+        String[] generalInfos = {"StreamKind", "Title", "InternetMediaType", "Format",
                 "Format/Url", "Format_Commercial", "Format_Commercial_IfAny", "Format_Profile",
                 "Format_Settings", "Lyrics", "Image_Format_List", "Album", "Track", "Label",
                 "Genre", "File_Created_Date", "Performer", "DotsPerInch", "Lightness",
                 "Played_Count", "Duration", "BitsRage/String", "StreamSize", "FileSize", "CodecID",
                 "CodecID/Info", "Duration/String3", "File_Modified_Date", "Cover", "Cover_Type",
-                "Cover_Mime" }; // too many "Cover_Data"
+                "Cover_Mime"}; // too many "Cover_Data"
 
         tv.append("General-------------------------\n");
 
@@ -133,11 +126,11 @@ public class MediaInfoTest {
 
         // test for MediaInfo.getVideoInfo()
         //
-        String[] videoInfos = { "StreamKind", "StreamCount", "Format", "Format/Info",
+        String[] videoInfos = {"StreamKind", "StreamCount", "Format", "Format/Info",
                 "Format_Profile", "InternetMediaType", "Duration", "BitRate_Mode", "BitRate",
                 "Width", "Height", "Width_Original", "Height_Original", "Rotation",
                 "FrameRate_Mode", "FrameRate", "Compression_Mode", "StreamSize",
-                "Compression_Mode", "Title", "Encoded_Library", "Language" };
+                "Compression_Mode", "Title", "Encoded_Library", "Language"};
 
         vi.append("Video-------------------------\n");
 
@@ -146,9 +139,9 @@ public class MediaInfoTest {
 
         // test for MediaInfo.getAudioInfo()
         //
-        String[] audioInfos = { "StreamKind", "ID", "Format", "Format/Info", "CodecID", "Duration",
+        String[] audioInfos = {"StreamKind", "ID", "Format", "Format/Info", "CodecID", "Duration",
                 "BitRate_Mode", "BitRate", "Channel(s)", "SamplingRate", "Compression_Mode",
-                "StreamSize", "Title", "Language" };
+                "StreamSize", "Title", "Language"};
 
         vi.append("Audio-------------------------\n");
 
@@ -157,8 +150,8 @@ public class MediaInfoTest {
 
         // test for MediaInfo.getImageInfo()
         //
-        String[] imageInfos = { "StreamKind", "ID", "Title", "Format", "InternetMediaType",
-                "Width", "Height", "Resolution", "Encoded_Library", "Language" };
+        String[] imageInfos = {"StreamKind", "ID", "Title", "Format", "InternetMediaType",
+                "Width", "Height", "Resolution", "Encoded_Library", "Language"};
 
         vi.append("Image-------------------------\n");
 

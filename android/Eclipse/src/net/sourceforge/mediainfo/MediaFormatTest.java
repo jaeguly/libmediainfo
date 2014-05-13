@@ -1,13 +1,13 @@
-package org.mediainfo.android.app;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Arrays;
+package net.sourceforge.mediainfo;
 
 import android.util.Log;
 
 import org.mediainfo.android.MediaInfo;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Calendar;
 
 /*
  * MediaFormatTest은 주어진 미디어 파일이나 특정 디렉토리 아래의 미디어 파일에 대한
@@ -23,23 +23,23 @@ import org.mediainfo.android.MediaInfo;
  */
 public class MediaFormatTest {
 
-	public static final String LOG_TAG = "MediaFormatTest";
+    public static final String LOG_TAG = "MediaFormatTest";
 
-	protected MediaFormatTest () {
-		mediaInfo = new MediaInfo();
-		mediaInfo.option("Complete", "1");
-	}
-	
-	public void releaseAll() {
+    protected MediaFormatTest() {
+        mediaInfo = new MediaInfo();
+        mediaInfo.option("Complete", "1");
+    }
+
+    public void releaseAll() {
         // release all objects
         mediaInfo = null;
         excludesList = null;
-	}
+    }
 
     public static void main(String[] args) {
 
-    	MediaFormatTest test = new MediaFormatTest();
-    	
+        MediaFormatTest test = new MediaFormatTest();
+
         // check given arguments
         int argIndex = 0;
         int itemIndex = 0;
@@ -78,7 +78,7 @@ public class MediaFormatTest {
             test.doMatchingFormat(items[i]);
 
         test.releaseAll();
-        
+
         Runtime r = Runtime.getRuntime();
         r.gc();
     }
@@ -94,7 +94,7 @@ public class MediaFormatTest {
             if (fileNames != null) {
                 // sort the list of files
                 Arrays.sort(fileNames);
-    
+
                 for (int i = 0; i < fileNames.length; i++) {
                     doMatchingFormat(path + "/" + fileNames[i]);
                 }
@@ -102,7 +102,7 @@ public class MediaFormatTest {
 
         } else if (file.isFile()) {
 
-        	checkFileFormat(path);
+            checkFileFormat(path);
 
         } else {
             // error case
@@ -113,7 +113,7 @@ public class MediaFormatTest {
 
     private void checkFileFormat(String path) {
         //if (sVerboseMode)
-            Log.i(LOG_TAG, "'" + path + "'\n");
+        Log.i(LOG_TAG, "'" + path + "'\n");
 
         // ignore case: if filename started with '_'.
         if (path.substring(path.lastIndexOf("\\") + 1).startsWith("_")) {
@@ -137,10 +137,10 @@ public class MediaFormatTest {
         MediaInfoData infoData = MediaInfoDataBuilder.build(mediaInfo, path);
         if (infoData == null) {
             Log.w(LOG_TAG, "(can't parse)\n");
-            return ;
+            return;
         }
-        
-         // media detection on native environment
+
+        // media detection on native environment
         Calendar cal2 = Calendar.getInstance();
 
         // DLNA profile detection on JVM

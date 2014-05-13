@@ -1,15 +1,11 @@
-/**
- * 
- */
-package org.mediainfo.android.app;
+package net.sourceforge.mediainfo
 
-import android.util.Log;
-import java.util.StringTokenizer;
 import org.mediainfo.android.MediaInfo;
+
+import java.util.StringTokenizer;
 
 /**
  * @author jaeguly
- * 
  */
 public class MediaInfoDataBuilder {
 
@@ -100,7 +96,7 @@ public class MediaInfoDataBuilder {
             data.video_bitdepth = parseInt(getVideoInfo(mi, "BitDepth"));
             data.video_framerate = parseFloat(getVideoInfo(mi, "FrameRate"));
             data.video_aspectratio = getVideoInfo(mi, "DisplayAspectRatio/String");
-            
+
             String scanType = getVideoInfo(mi, "ScanType");
             if (scanType.equals("Interlaced"))
                 data.video_scantype = 1;
