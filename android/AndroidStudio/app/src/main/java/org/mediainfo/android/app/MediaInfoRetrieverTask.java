@@ -48,6 +48,7 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
             }
 
             mi.option("Complete", "1");
+            mi.option("Inform");
 
             publishProgress("\n>> '" + path + "'\n\n");
             publishProgress(mi.inform());
