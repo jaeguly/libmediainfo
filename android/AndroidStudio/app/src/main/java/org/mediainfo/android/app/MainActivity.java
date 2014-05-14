@@ -20,7 +20,9 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
@@ -74,6 +76,16 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 
@@ -82,6 +94,14 @@ public class MainActivity extends ActionBarActivity {
         // If launches by an intent
         if (getIntent() != null)
             handleIntent(getIntent());
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // cleanup AsyncTasks
+        cancelMediaInfoTask();
     }
 
     private boolean handleIntent(Intent intent) {
@@ -99,11 +119,31 @@ public class MainActivity extends ActionBarActivity {
         return false;
     }
 
+
+    /**
+     * Return a old AsyncTask.
+     */
+    private void setMediaInfoTask(AsyncTask task) {
+        // If exists already a running task
+        cancelMediaInfoTask();
+
+        mMediaInfoTask = task;
+    }
+
+    private void cancelMediaInfoTask() {
+        if (mMediaInfoTask != null && mMediaInfoTask.getStatus() != AsyncTask.Status.FINISHED) {
+            mMediaInfoTask.cancel(true);
+            mMediaInfoTask = null;
+        }
+    }
+
     private class RequestMediaInfoRetriever extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... params) {
 
-            new MediaInfoRetrieverTask(mMessageView).execute(params);
+            AsyncTask task = new MediaInfoRetrieverTask(mMessageView);
+            setMediaInfoTask(task);
+            task.execute(params);
 
             return null;
         }
@@ -113,7 +153,9 @@ public class MainActivity extends ActionBarActivity {
         @Override
         protected Void doInBackground(String... params) {
 
-            new MediaInfoReportRetrieverTask(mMessageView).execute(params);
+            AsyncTask task = new MediaInfoReportRetrieverTask(mMessageView);
+            setMediaInfoTask(task);
+            task.execute(params);
 
             return null;
         }
@@ -136,7 +178,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private TextView mMessageView;
-    private MediaInfoRetrieverTask mediaInfoRetrieverTask;
-//    private StatusTracker mStatusTracker = StatusTracker.getInstance();
+    private AsyncTask mMediaInfoTask;
 }
 

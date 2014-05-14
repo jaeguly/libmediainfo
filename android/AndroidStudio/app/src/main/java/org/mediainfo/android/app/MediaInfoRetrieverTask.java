@@ -15,9 +15,6 @@ import java.util.List;
  */
 public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
 
-    protected MediaInfoRetrieverTask() {
-    }
-
     public MediaInfoRetrieverTask(TextView textView) {
         mTextView = textView;
     }
@@ -35,19 +32,37 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
             }
         }
 
-
         MediaInfo mi = new MediaInfo();
 
         for (String path : list) {
+            // checks cancelled
+            if (isCancelled())
+                break;
+
             mi.open(path);
+
+            // checks cancelled
+            if (isCancelled()) {
+                mi.close();
+                break;
+            }
 
             mi.option("Complete", "1");
 
             publishProgress("\n>> '" + path + "'\n\n");
             publishProgress(mi.inform());
 
+            // checks cancelled
+            if (isCancelled()) {
+                mi.close();
+                break;
+            }
+
             mi.close();
         }
+
+        // release all resources of mi
+        mi.dispose();
 
         return null;
     }
@@ -65,5 +80,10 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
         // TODO: do something
     }
 
-    private TextView mTextView;
+    @Override
+    protected void onCancelled() {
+        // TODO: do something
+    }
+
+    protected TextView mTextView;
 }

@@ -41,6 +41,9 @@ public class MediaInfoReportRetrieverTask extends MediaInfoRetrieverTask {
         MediaInfo mi = new MediaInfo();
 
         for (String path : list) {
+            // checks cancelled
+            if (isCancelled())
+                break;
 
             // print a file path
             publishProgress("\n\n>> '", path, "'\n\n");
@@ -51,15 +54,39 @@ public class MediaInfoReportRetrieverTask extends MediaInfoRetrieverTask {
             else
                 publishProgress("\n\nOpen has a problem\n");
 
+            // checks cancelled
+            if (isCancelled()) {
+                mi.close();
+                break;
+            }
+
             // try to inform
             mi.option("Complete", "");
             publishProgress("\n\nInform with Complete=false\n", mi.inform());
 
+            // checks cancelled
+            if (isCancelled()) {
+                mi.close();
+                break;
+            }
+
             mi.option("Complete", "1");
             publishProgress("\n\nInform with Complete=true\n", mi.inform());
 
+            // checks cancelled
+            if (isCancelled()) {
+                mi.close();
+                break;
+            }
+
             mi.option("Inform", "General;Example : FileSize=%FileSize%");
             publishProgress("\n\nCustom Inform\n", mi.inform());
+
+            // checks cancelled
+            if (isCancelled()) {
+                mi.close();
+                break;
+            }
 
             // try to get
             publishProgress("\n\nGetI with Stream=General and Parameter=2\n",
@@ -82,6 +109,9 @@ public class MediaInfoReportRetrieverTask extends MediaInfoRetrieverTask {
 
             mi.close();
         }
+
+        // release all resources of mi
+        mi.dispose();
 
         return null;
     }
