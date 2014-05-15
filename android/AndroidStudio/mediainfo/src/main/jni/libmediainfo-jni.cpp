@@ -1,6 +1,13 @@
 #include <assert.h>
 #include <jni.h>
 
+
+// if need to debug messages, comment out below undef lines.
+#undef _DEBUG
+#undef DEBUG
+
+
+
 #if defined(WIN32) && defined(_DEBUG)
 #   include <vld.h>
 #endif
@@ -52,7 +59,7 @@
 
 #endif
 
-static inline char*
+static inline const char*
 _PrintableChars(const Char* chars, char* buf, size_t buflen)
 {
     assert(buf);
@@ -69,7 +76,7 @@ _PrintableChars(const Char* chars, char* buf, size_t buflen)
     return buf;
 }
 
-static inline char*
+static inline const char*
 PrintableChars(const Char* chars)
 {
 #if defined(_DEBUG) || defined(DEBUG)
@@ -80,7 +87,7 @@ PrintableChars(const Char* chars)
 #endif
 }
 
-static inline char*
+static inline const char*
 PrintableChars2(const Char* chars)
 {
 #if defined(_DEBUG) || defined(DEBUG)
@@ -93,8 +100,11 @@ PrintableChars2(const Char* chars)
 
 
 class FuncCallLog {
+
 public:
     FuncCallLog(const char* pszFuncName) {
+
+#if defined(_DEBUG) || defined(DEBUG)
         _pszFuncName = pszFuncName;
         LOG("%s() is called.\n", pszFuncName);
     }
@@ -105,6 +115,12 @@ public:
 
 private:
     const char* _pszFuncName;
+
+#else // defined(_DEBUG) || defined(DEBUG)
+
+    } // end of constructor
+
+#endif // defined(_DEBUG) || defined(DEBUG)
 };
 
 
