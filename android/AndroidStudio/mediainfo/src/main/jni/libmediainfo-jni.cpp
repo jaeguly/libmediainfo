@@ -115,18 +115,18 @@ private:
 
 extern "C" {
     JNIEXPORT jlong   JNICALL MediaInfo_create(JNIEnv* pEnv, jobject self);
-    JNIEXPORT void    JNICALL MediaInfo_destroy(JNIEnv* pEnv, jobject self, jlong peer);
-    JNIEXPORT jint    JNICALL MediaInfo_open(JNIEnv* pEnv, jobject self, jlong peer, jstring filename);
-    JNIEXPORT void    JNICALL MediaInfo_close(JNIEnv* pEnv, jobject self, jlong peer);
+    JNIEXPORT void    JNICALL MediaInfo_destroy(JNIEnv* pEnv, jobject self, jlong handle);
+    JNIEXPORT jint    JNICALL MediaInfo_open(JNIEnv* pEnv, jobject self, jlong handle, jstring filename);
+    JNIEXPORT void    JNICALL MediaInfo_close(JNIEnv* pEnv, jobject self, jlong handle);
 
-    JNIEXPORT jstring JNICALL MediaInfo_getById(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jint parameter);
-    JNIEXPORT jstring JNICALL MediaInfo_getByName(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter);
-    JNIEXPORT jstring JNICALL MediaInfo_getByIdDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jint parameter, jint kindOfInfo);
-    JNIEXPORT jstring JNICALL MediaInfo_getByNameDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter, jint kindOfInfo, jint kindOfSearch);
-    JNIEXPORT jstring JNICALL MediaInfo_informDetail(JNIEnv* pEnv, jobject self, jlong peer);
-    JNIEXPORT jint    JNICALL MediaInfo_countGet(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum);
-    JNIEXPORT jstring JNICALL MediaInfo_option(JNIEnv* pEnv, jobject self, jlong peer, jstring option, jstring value);
-    JNIEXPORT jstring JNICALL MediaInfo_option2(JNIEnv* pEnv, jobject self, jlong peer, jstring option);
+    JNIEXPORT jstring JNICALL MediaInfo_getById(JNIEnv* pEnv, jobject self, jlong handle, jint streamKind, jint streamNum, jint parameter);
+    JNIEXPORT jstring JNICALL MediaInfo_getByName(JNIEnv* pEnv, jobject self, jlong handle, jint streamKind, jint streamNum, jstring parameter);
+    JNIEXPORT jstring JNICALL MediaInfo_getByIdDetail(JNIEnv* pEnv, jobject self, jlong handle, jint streamKind, jint streamNum, jint parameter, jint kindOfInfo);
+    JNIEXPORT jstring JNICALL MediaInfo_getByNameDetail(JNIEnv* pEnv, jobject self, jlong handle, jint streamKind, jint streamNum, jstring parameter, jint kindOfInfo, jint kindOfSearch);
+    JNIEXPORT jstring JNICALL MediaInfo_informDetail(JNIEnv* pEnv, jobject self, jlong handle);
+    JNIEXPORT jint    JNICALL MediaInfo_countGet(JNIEnv* pEnv, jobject self, jlong handle, jint streamKind, jint streamNum);
+    JNIEXPORT jstring JNICALL MediaInfo_option(JNIEnv* pEnv, jobject self, jlong handle, jstring option, jstring value);
+    JNIEXPORT jstring JNICALL MediaInfo_option2(JNIEnv* pEnv, jobject self, jlong handle, jstring option);
     JNIEXPORT jstring JNICALL MediaInfo_optionStatic(JNIEnv* pEnv, jclass clazz, jstring option, jstring value);
     JNIEXPORT jstring JNICALL MediaInfo_optionStatic2(JNIEnv* pEnv, jclass clazz, jstring option);
 }
@@ -194,12 +194,15 @@ JNI_OnLoad (JavaVM * vm, void * reserved)
 ////////////////////////////////////////////////////////////////////////////
 
 static inline MediaInfo*
-GetMediaInfo(jlong peer)
+GetMediaInfo(jlong handle)
 {
-    if (!peer)
+    if (!handle) {
         LOGW("The mediainfo handle is invalid!\n");
+    } else {
+        LOG("The mediainfo handle is %lld\n", handle);
+    }
 
-    return (MediaInfo*) peer;
+    return (MediaInfo*) handle;
 }
 
 static inline stream_t
@@ -236,8 +239,9 @@ NewJString(JNIEnv *pEnv, String str)
     while (len-- > 0)
         *jchars++ = (jchar) *raw++;
 
-    if (!jstr)
+    if (!jstr) {
         LOGW("env->NewString('%s', %d) fails!\n", PrintableChars(str.c_str()), str.size());
+    }
 
     pEnv->ReleaseStringChars(jstr, jchars);
 
@@ -300,36 +304,40 @@ MediaInfo_create(JNIEnv* pEnv, jobject self)
     FuncCallLog funclog(FUNC);
 
     MediaInfo* pMediaInfo = new MediaInfo();
-    if (!pMediaInfo)
-        LOGW("MediaInfo->New() fails!\n");
-//    else
-//        LOGW("MediaInfo->New() ok!\n");
 
-    return (jlong) pMediaInfo;
+    // avoid an implicit cast problem between signed and unsigned.
+    jlong handle = (jlong) ((unsigned long long) pMediaInfo);
+
+    if (handle) {
+        LOG("MediaInfo->New() ok! %lld\n", handle);
+    } else {
+        LOGW("MediaInfo->New() fails!\n");
+    }
+
+    return handle;
 }
 
 JNIEXPORT void JNICALL
-MediaInfo_destroy(JNIEnv* pEnv, jobject self, jlong peer)
+MediaInfo_destroy(JNIEnv* pEnv, jobject self, jlong handle)
 {
     FuncCallLog funclog(FUNC);
 
-    MediaInfo* pMediaInfo = GetMediaInfo(peer);
+    MediaInfo* pMediaInfo = GetMediaInfo(handle);
 
     if (pMediaInfo) {
         delete pMediaInfo;
-//        LOGW("MediaInfo->Destroy() ok!\n");
+        LOG("MediaInfo->Destroy() ok! %lld\n", handle);
     } else {
         LOGW("MediaInfo->Destroy() skip!\n");
     }
 }
 
 JNIEXPORT jint JNICALL
-MediaInfo_open(JNIEnv* pEnv, jobject self, jlong peer, jstring filename)
+MediaInfo_open(JNIEnv* pEnv, jobject self, jlong handle, jstring filename)
 {
-    //LOG("Char(%d bytes) wchar_t(%d bytes)\n", sizeof(Char), sizeof(wchar_t));
     FuncCallLog funclog(FUNC);
 
-    MediaInfo* pMediaInfo = GetMediaInfo(peer);
+    MediaInfo* pMediaInfo = GetMediaInfo(handle);
     if (!pMediaInfo)
         return 0;   // error
 
@@ -339,30 +347,31 @@ MediaInfo_open(JNIEnv* pEnv, jobject self, jlong peer, jstring filename)
         return 0;
 
     size_t res = pMediaInfo->Open(strFilename);
-    //LOG("MediaInfo->Open('%s') returns %d\n", PrintableChars(strFilename.c_str()), res);
+    LOG("MediaInfo->Open('%s') returns %d\n", PrintableChars(strFilename.c_str()), res);
 
-    if (res == 0)
+    if (res == 0) {
         LOGW("MediaInfo->Open() fails!\n");
+    }
 
     return (jint) res;
 }
 
 JNIEXPORT void JNICALL
-MediaInfo_close(JNIEnv* pEnv, jobject self, jlong peer)
+MediaInfo_close(JNIEnv* pEnv, jobject self, jlong handle)
 {
     FuncCallLog funclog(FUNC);
 
-    MediaInfo* pMediaInfo = GetMediaInfo(peer);
+    MediaInfo* pMediaInfo = GetMediaInfo(handle);
     if (pMediaInfo)
         pMediaInfo->Close();
 }
 
 JNIEXPORT jstring JNICALL
-MediaInfo_getById(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jint parameter)
+MediaInfo_getById(JNIEnv* pEnv, jobject self, jlong handle, jint streamKind, jint streamNum, jint parameter)
 {
     FuncCallLog funclog(FUNC);
 
-    MediaInfo* pMediaInfo = GetMediaInfo(peer);
+    MediaInfo* pMediaInfo = GetMediaInfo(handle);
     if (!pMediaInfo)
         return 0;
 
@@ -374,11 +383,11 @@ MediaInfo_getById(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint 
 }
 
 JNIEXPORT jstring JNICALL
-MediaInfo_getByName(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter)
+MediaInfo_getByName(JNIEnv* pEnv, jobject self, jlong handle, jint streamKind, jint streamNum, jstring parameter)
 {
     FuncCallLog funclog(FUNC);
 
-    MediaInfo* pMediaInfo = GetMediaInfo(peer);
+    MediaInfo* pMediaInfo = GetMediaInfo(handle);
     if (!pMediaInfo)
         return 0;
 
@@ -396,11 +405,11 @@ MediaInfo_getByName(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jin
 }
 
 JNIEXPORT jstring JNICALL
-MediaInfo_getByIdDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jint parameter, jint kindOfInfo)
+MediaInfo_getByIdDetail(JNIEnv* pEnv, jobject self, jlong handle, jint streamKind, jint streamNum, jint parameter, jint kindOfInfo)
 {
     FuncCallLog funclog(FUNC);
 
-    MediaInfo* pMediaInfo = GetMediaInfo(peer);
+    MediaInfo* pMediaInfo = GetMediaInfo(handle);
     if (!pMediaInfo)
         return 0;
 
@@ -413,11 +422,11 @@ MediaInfo_getByIdDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind,
 }
 
 JNIEXPORT jstring JNICALL
-MediaInfo_getByNameDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum, jstring parameter, jint kindOfInfo, jint kindOfSearch)
+MediaInfo_getByNameDetail(JNIEnv* pEnv, jobject self, jlong handle, jint streamKind, jint streamNum, jstring parameter, jint kindOfInfo, jint kindOfSearch)
 {
     FuncCallLog funclog(FUNC);
 
-    MediaInfo* pMediaInfo = GetMediaInfo(peer);
+    MediaInfo* pMediaInfo = GetMediaInfo(handle);
     if (!pMediaInfo)
         return 0;
 
@@ -437,9 +446,9 @@ MediaInfo_getByNameDetail(JNIEnv* pEnv, jobject self, jlong peer, jint streamKin
 }
 
 JNIEXPORT jstring JNICALL
-MediaInfo_informDetail(JNIEnv* pEnv, jobject self, jlong peer)
+MediaInfo_informDetail(JNIEnv* pEnv, jobject self, jlong handle)
 {
-    MediaInfo* pMediaInfo = GetMediaInfo(peer);
+    MediaInfo* pMediaInfo = GetMediaInfo(handle);
 
     if (!pMediaInfo)
         return 0;
@@ -453,9 +462,9 @@ MediaInfo_informDetail(JNIEnv* pEnv, jobject self, jlong peer)
 }
  
 JNIEXPORT jint JNICALL
-MediaInfo_countGet(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint streamNum)
+MediaInfo_countGet(JNIEnv* pEnv, jobject self, jlong handle, jint streamKind, jint streamNum)
 {
-    MediaInfo* pMediaInfo = GetMediaInfo(peer);
+    MediaInfo* pMediaInfo = GetMediaInfo(handle);
 
     if (!pMediaInfo)
         return 0;
@@ -464,9 +473,9 @@ MediaInfo_countGet(JNIEnv* pEnv, jobject self, jlong peer, jint streamKind, jint
 }
 
 JNIEXPORT jstring JNICALL
-MediaInfo_option(JNIEnv* pEnv, jobject self, jlong peer, jstring option, jstring value)
+MediaInfo_option(JNIEnv* pEnv, jobject self, jlong handle, jstring option, jstring value)
 {
-    MediaInfo* pMediaInfo = GetMediaInfo(peer);
+    MediaInfo* pMediaInfo = GetMediaInfo(handle);
 
     if (!pMediaInfo)
         return 0;
@@ -491,9 +500,9 @@ MediaInfo_option(JNIEnv* pEnv, jobject self, jlong peer, jstring option, jstring
 }
 
 JNIEXPORT jstring JNICALL
-MediaInfo_option2(JNIEnv* pEnv, jobject self, jlong peer, jstring option)
+MediaInfo_option2(JNIEnv* pEnv, jobject self, jlong handle, jstring option)
 {
-    MediaInfo* pMediaInfo = GetMediaInfo(peer);
+    MediaInfo* pMediaInfo = GetMediaInfo(handle);
 
     if (!pMediaInfo)
         return 0;
