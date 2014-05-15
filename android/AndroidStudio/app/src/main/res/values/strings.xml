@@ -5,6 +5,7 @@
     <string name="app_desc">Full Information Display (all internal tags)</string>
     <string name="action_exampleogg_test">Test Example.ogg</string>
     <string name="action_cdsdata_test">Test cds-data</string>
-    <string name="action_copy_clipboard">Copy all to clipboard</string>
+    <string name="action_clear_messages">Clear messages</string>
+    <string name="action_copy_clipboard">Copy to clipboard</string>
 
 </resources>

@@ -49,9 +49,16 @@ public class MainActivity extends ActionBarActivity {
             case R.id.action_exampleogg_test:
                 new RequestMediaInfoReportRetriever().execute("/mnt/sdcard/Download/Example.ogg");
                 return true;
+
             case R.id.action_cdsdata_test:
                 new RequestMediaInfoRetriever().execute("/mnt/sdcard/Download/cds-data");
                 return true;
+
+            case R.id.action_clear_messages:
+                if (mMessageView != null)
+                    mMessageView.setText("");
+                return true;
+
             case R.id.action_copy_clipboard:
 
                 if (mMessageView != null) {
