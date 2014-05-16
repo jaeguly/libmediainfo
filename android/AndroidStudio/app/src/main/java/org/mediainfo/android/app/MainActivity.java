@@ -47,18 +47,24 @@ public class MainActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_exampleogg_test:
+                if (mMessageView != null)
+                    mMessageView.setText("");
+
                 new RequestMediaInfoReportRetriever().execute("/mnt/sdcard/Download/Example.ogg");
                 return true;
 
             case R.id.action_cdsdata_test:
-                new RequestMediaInfoRetriever().execute("/mnt/sdcard/Download/cds-data");
-                return true;
-
-            case R.id.action_clear_messages:
                 if (mMessageView != null)
                     mMessageView.setText("");
 
+                new RequestMediaInfoRetriever().execute("/mnt/sdcard/Download/cds-data");
                 return true;
+
+//            case R.id.action_clear_messages:
+//                if (mMessageView != null)
+//                    mMessageView.setText("");
+//
+//                return true;
 
             case R.id.action_detailed_info:
                 if (mMessageView != null)

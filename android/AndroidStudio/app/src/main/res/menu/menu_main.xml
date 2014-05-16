@@ -13,11 +13,11 @@
         android:orderInCategory="100"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_clear_messages"
-        android:title="@string/action_clear_messages"
-        android:orderInCategory="110"
-        app:showAsAction="never"/>
+    <!--<item-->
+        <!--android:id="@+id/action_clear_messages"-->
+        <!--android:title="@string/action_clear_messages"-->
+        <!--android:orderInCategory="110"-->
+        <!--app:showAsAction="never"/>-->
 
     <item
         android:id="@+id/action_copy_clipboard"
