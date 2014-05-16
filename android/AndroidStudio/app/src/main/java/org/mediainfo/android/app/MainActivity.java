@@ -57,6 +57,14 @@ public class MainActivity extends ActionBarActivity {
             case R.id.action_clear_messages:
                 if (mMessageView != null)
                     mMessageView.setText("");
+
+                return true;
+
+            case R.id.action_detailed_info:
+                if (mMessageView != null)
+                    mMessageView.setText("");
+
+                new RequestMediaInfoReportRetriever().execute();
                 return true;
 
             case R.id.action_copy_clipboard:

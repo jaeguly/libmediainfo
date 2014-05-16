@@ -24,4 +24,11 @@
         android:title="@string/action_copy_clipboard"
         android:orderInCategory="110"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_detailed_info"
+        android:title="@string/action_detailed_info"
+        android:orderInCategory="110"
+        app:showAsAction="never"/>
+
 </menu>
