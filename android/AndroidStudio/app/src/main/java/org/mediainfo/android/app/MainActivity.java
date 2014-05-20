@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.io.File;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -162,7 +164,11 @@ public class MainActivity extends ActionBarActivity {
         @Override
         protected Void doInBackground(String... params) {
 
-            AsyncTask task = new MediaInfoRetrieverTask(mMessageView);
+            File logDir = new File(LogDir);
+            if (!logDir.exists())
+                logDir.mkdirs();
+
+            AsyncTask task = new MediaInfoRetrieverTask(mMessageView, logDir);
             setMediaInfoTask(task);
             task.execute(params);
 
@@ -198,6 +204,7 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    public static final String LogDir = "/mnt/sdcard/LogFiles/MediaInfo";
     private TextView mMessageView;
     private AsyncTask mMediaInfoTask;
 }

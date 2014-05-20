@@ -31,12 +31,6 @@ public class MediaInfoReportRetrieverTask extends MediaInfoRetrieverTask {
             }
         }
 
-        // Info about the library
-        publishProgress(MediaInfo.optionStatic("Info_Version", ""));
-
-        String[] infos = {"Info_Parameters", "Info_Capacities", "Info_Codecs"};
-        for (String info : infos)
-            publishProgress("\n\n", info, "\n", MediaInfo.optionStatic(info));
 
         MediaInfo mi = new MediaInfo();
 
@@ -46,7 +40,7 @@ public class MediaInfoReportRetrieverTask extends MediaInfoRetrieverTask {
                 break;
 
             // print a file path
-            publishProgress("\n\n>> '", path, "'\n\n");
+            publishProgress("\n#\n# '" + path + "'\n#\n");
 
             // try to open
             if (mi.open(path) > 0)

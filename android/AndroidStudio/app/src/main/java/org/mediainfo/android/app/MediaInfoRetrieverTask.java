@@ -7,6 +7,8 @@ import org.mediainfo.android.MediaInfo;
 import org.mediainfo.android.app.util.FileTreeWalker;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,11 @@ import java.util.List;
 public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
 
     public MediaInfoRetrieverTask(TextView textView) {
+        mTextView = textView;
+    }
+
+    public MediaInfoRetrieverTask(TextView textView, File outputDir) {
+        mOutDir = outputDir;
         mTextView = textView;
     }
 
@@ -40,26 +47,29 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
                 break;
 
             mi.open(path);
+            openOutput(path);
 
             // checks cancelled
-            if (isCancelled()) {
-                mi.close();
+            if (isCancelled())
                 break;
-            }
 
             mi.option("Complete", "1");
             mi.option("Inform");
 
-            publishProgress("\n>> '" + path + "'\n\n");
-            publishProgress(mi.inform());
+            printOutput("\n#\n# '" + path + "'\n#\n");
+            printOutput(mi.inform());
 
             // checks cancelled
-            if (isCancelled()) {
-                mi.close();
+            if (isCancelled())
                 break;
-            }
 
             mi.close();
+            closeOutput();
+        }
+
+        if (isCancelled()) {
+            mi.close();
+            closeOutput();
         }
 
         // release all resources of mi
@@ -86,5 +96,43 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
         // TODO: do something
     }
 
+    private void openOutput(String file) {
+        if (mOutDir != null) {
+            try {
+                mOutStream = new FileOutputStream(
+                        File.createTempFile(new File(file).getName(), ".info", mOutDir)
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void printOutput(String... params) {
+        publishProgress(params);
+
+        if (mOutStream != null) {
+            for (String param : params) {
+                try {
+                    mOutStream.write(param.getBytes());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void closeOutput() {
+        if (mOutStream != null) {
+            try {
+                mOutStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    protected File mOutDir;
+    protected FileOutputStream mOutStream;
     protected TextView mTextView;
 }

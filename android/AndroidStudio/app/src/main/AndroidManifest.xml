@@ -9,7 +9,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="org.mediainfo.android.app.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_desc">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -26,4 +26,5 @@
         </activity>
     </application>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>
