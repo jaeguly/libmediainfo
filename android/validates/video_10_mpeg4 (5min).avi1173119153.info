@@ -1,0 +1,217 @@
+
+#
+# '/mnt/sdcard/Download/cds-data/video/video_10_mpeg4 (5min).avi'
+#
+General
+Count                                    : 284
+Count of stream of this kind             : 1
+Kind of stream                           : General
+Kind of stream                           : General
+Stream identifier                        : 0
+Count of video streams                   : 1
+Count of audio streams                   : 1
+Video_Format_List                        : AVC
+Video_Format_WithHint_List               : AVC
+Codecs Video                             : AVC
+Audio_Format_List                        : AC-3
+Audio_Format_WithHint_List               : AC-3
+Audio codecs                             : AC3
+Complete name                            : /mnt/sdcard/Download/cds-data/video/video_10_mpeg4 (5min).avi
+Folder name                              : /mnt/sdcard/Download/cds-data/video
+File name                                : video_10_mpeg4 (5min)
+File extension                           : avi
+Format                                   : AVI
+Format                                   : AVI
+Format/Info                              : Audio Video Interleave
+Format/Extensions usually used           : avi
+Commercial name                          : AVI
+Internet media type                      : video/vnd.avi
+Interleaved                              : Yes
+Codec                                    : AVI
+Codec                                    : AVI
+Codec/Info                               : Audio Video Interleave
+Codec/Extensions usually used            : avi
+File size                                : 16807200
+File size                                : 16.0 MiB
+File size                                : 16 MiB
+File size                                : 16 MiB
+File size                                : 16.0 MiB
+File size                                : 16.03 MiB
+Duration                                 : 299840
+Duration                                 : 4mn 59s
+Duration                                 : 4mn 59s 840ms
+Duration                                 : 4mn 59s
+Duration                                 : 00:04:59.840
+Overall bit rate                         : 448431
+Overall bit rate                         : 448 Kbps
+Stream size                              : 416866
+Stream size                              : 407 KiB (2%)
+Stream size                              : 407 KiB
+Stream size                              : 407 KiB
+Stream size                              : 407 KiB
+Stream size                              : 407.1 KiB
+Stream size                              : 407 KiB (2%)
+Proportion of this stream                : 0.02480
+File last modification date              : UTC 2014-11-26 06:30:38
+File last modification date (local)      : 2014-11-26 15:30:38
+
+Video
+Count                                    : 272
+Count of stream of this kind             : 1
+Kind of stream                           : Video
+Kind of stream                           : Video
+Stream identifier                        : 0
+StreamOrder                              : 0
+ID                                       : 0
+ID                                       : 0
+Format                                   : AVC
+Format/Info                              : Advanced Video Codec
+Format/Url                               : http://developers.videolan.org/x264.html
+Commercial name                          : AVC
+Format profile                           : High@L3.2
+Format settings                          : CABAC / 4 Ref Frames
+Format settings, CABAC                   : Yes
+Format settings, CABAC                   : Yes
+Format settings, ReFrames                : 4
+Format settings, ReFrames                : 4 frames
+Internet media type                      : video/H264
+Codec ID                                 : H264
+Codec                                    : H264
+Codec                                    : AVC
+Codec/Family                             : AVC
+Codec/Info                               : Intel H.264
+Codec/CC                                 : H264
+Codec profile                            : High@L3.2
+Codec settings                           : CABAC / 4 Ref Frames
+Codec settings, CABAC                    : Yes
+Codec_Settings_RefFrames                 : 4
+Duration                                 : 299840
+Duration                                 : 4mn 59s
+Duration                                 : 4mn 59s 840ms
+Duration                                 : 4mn 59s
+Duration                                 : 00:04:59.840
+Bit rate                                 : 309391
+Bit rate                                 : 309 Kbps
+Width                                    : 1376
+Width                                    : 1 376 pixels
+Height                                   : 768
+Height                                   : 768 pixels
+Pixel aspect ratio                       : 1.000
+Display aspect ratio                     : 1.792
+Display aspect ratio                     : 16:9
+Frame rate mode                          : VFR
+Frame rate mode                          : Variable
+Frame rate                               : 25.000
+Frame rate                               : 25.000 fps
+Frame count                              : 7496
+Resolution                               : 8
+Resolution                               : 8 bits
+Colorimetry                              : 4:2:0
+Color space                              : YUV
+Chroma subsampling                       : 4:2:0
+Bit depth                                : 8
+Bit depth                                : 8 bits
+Scan type                                : Progressive
+Scan type                                : Progressive
+Interlacement                            : PPF
+Interlacement                            : Progressive
+Bits/(Pixel*Frame)                       : 0.012
+Delay                                    : 0
+Delay                                    : 00:00:00.000
+Stream size                              : 11595966
+Stream size                              : 11.1 MiB (69%)
+Stream size                              : 11 MiB
+Stream size                              : 11 MiB
+Stream size                              : 11.1 MiB
+Stream size                              : 11.06 MiB
+Stream size                              : 11.1 MiB (69%)
+Proportion of this stream                : 0.68994
+Writing library                          : x264 - core 120 r2120 0c7dab9
+Writing library                          : x264 core 120 r2120 0c7dab9
+Writing library/Name                     : x264
+Writing library/Version                  : core 120 r2120 0c7dab9
+Encoding settings                        : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex / subme=7 / psy=1 / psy_rd=1.00:0.00 / mixed_ref=1 / me_range=16 / chroma_me=1 / trellis=1 / 8x8dct=1 / cqm=0 / deadzone=21,11 / fast_pskip=1 / chroma_qp_offset=-2 / threads=6 / sliced_threads=0 / nr=0 / decimate=1 / interlaced=0 / bluray_compat=0 / constrained_intra=0 / bframes=3 / b_pyramid=2 / b_adapt=1 / b_bias=0 / direct=1 / weightb=1 / open_gop=0 / weightp=2 / keyint=250 / keyint_min=25 / scenecut=40 / intra_refresh=0 / rc_lookahead=40 / rc=crf / mbtree=1 / crf=26.0 / qcomp=0.60 / qpmin=0 / qpmax=51 / qpstep=4 / ip_ratio=1.40 / aq=1:1.00
+colour_description_present               : Yes
+Matrix coefficients                      : SMPTE 240M
+
+Audio
+Count                                    : 235
+Count of stream of this kind             : 1
+Kind of stream                           : Audio
+Kind of stream                           : Audio
+Stream identifier                        : 0
+StreamOrder                              : 1
+ID                                       : 1
+ID                                       : 1
+Format                                   : AC-3
+Format/Info                              : Audio Coding 3
+Commercial name                          : AC-3
+Mode extension                           : CM (complete main)
+Format settings, Endianness              : Big
+Codec ID                                 : 2000
+Codec                                    : AC3
+Codec                                    : AC3
+Codec/Family                             : AC3
+Codec/Info                               : Dolby AC3
+Codec/CC                                 : 2000
+Duration                                 : 299648
+Duration                                 : 4mn 59s
+Duration                                 : 4mn 59s 648ms
+Duration                                 : 4mn 59s
+Duration                                 : 00:04:59.648
+Source duration                          : 299648
+Source duration                          : 4mn 59s
+Source duration                          : 4mn 59s 648ms
+Source duration                          : 4mn 59s
+Source duration                          : 00:04:59.648
+Bit rate mode                            : CBR
+Bit rate mode                            : Constant
+Bit rate                                 : 128000
+Bit rate                                 : 128 Kbps
+Channel(s)                               : 2
+Channel(s)                               : 2 channels
+Channel positions                        : Front: L R
+Channel positions                        : 2/0/0
+ChannelLayout                            : L R
+Sampling rate                            : 48000
+Sampling rate                            : 48.0 KHz
+Samples count                            : 14383104
+Resolution                               : 16
+Resolution                               : 16 bits
+Bit depth                                : 16
+Bit depth                                : 16 bits
+Compression mode                         : Lossy
+Compression mode                         : Lossy
+Delay                                    : 0
+Delay                                    : 00:00:00.000
+Delay, origin                            : Stream
+Delay, origin                            : Raw stream
+Delay relative to video                  : 0
+Video0 delay                             : 0
+Stream size                              : 4794368
+Stream size                              : 4.57 MiB (29%)
+Stream size                              : 5 MiB
+Stream size                              : 4.6 MiB
+Stream size                              : 4.57 MiB
+Stream size                              : 4.572 MiB
+Stream size                              : 4.57 MiB (29%)
+Proportion of this stream                : 0.28526
+Alignment                                : Aligned
+Alignment                                : Aligned on interleaves
+Interleave, duration                     : 0.80
+Interleave, duration                     : 32
+Interleave, duration                     : 32 ms (0.80 video frame)
+bsid                                     : 8
+dialnorm                                 : -31
+dialnorm/String                          : -31 dB
+dsurmod                                  : 0
+acmod                                    : 2
+lfeon                                    : 0
+dialnorm_Average                         : -31
+dialnorm_Average/String                  : -31 dB
+dialnorm_Minimum                         : -31
+dialnorm_Minimum/String                  : -31 dB
+dialnorm_Maximum                         : -31
+dialnorm_Maximum/String                  : -31 dB
+dialnorm_Count                           : 300
+

@@ -1,0 +1,192 @@
+
+#
+# '/mnt/sdcard/Download/cds-data/video/video_03_mpeg2_ps_640x358(3min).ps'
+#
+General
+Count                                    : 284
+Count of stream of this kind             : 1
+Kind of stream                           : General
+Kind of stream                           : General
+Stream identifier                        : 0
+Count of video streams                   : 1
+Count of audio streams                   : 1
+Video_Format_List                        : MPEG Video
+Video_Format_WithHint_List               : MPEG Video
+Codecs Video                             : MPEG-2 Video
+Audio_Format_List                        : MPEG Audio
+Audio_Format_WithHint_List               : MPEG Audio
+Audio codecs                             : MPEG-1 Audio layer 2
+Complete name                            : /mnt/sdcard/Download/cds-data/video/video_03_mpeg2_ps_640x358(3min).ps
+Folder name                              : /mnt/sdcard/Download/cds-data/video
+File name                                : video_03_mpeg2_ps_640x358(3min)
+File extension                           : ps
+Format                                   : MPEG-PS
+Format                                   : MPEG-PS
+Format/Extensions usually used           : mpeg mpg m2p vob pss
+Commercial name                          : MPEG-PS
+Internet media type                      : video/MP2P
+Codec                                    : MPEG-PS
+Codec                                    : MPEG-PS
+Codec/Extensions usually used            : mpeg mpg m2p vob pss
+File size                                : 19438490
+File size                                : 18.5 MiB
+File size                                : 19 MiB
+File size                                : 19 MiB
+File size                                : 18.5 MiB
+File size                                : 18.54 MiB
+Duration                                 : 179085
+Duration                                 : 2mn 59s
+Duration                                 : 2mn 59s 85ms
+Duration                                 : 2mn 59s
+Duration                                 : 00:02:59.085
+Overall bit rate mode                    : VBR
+Overall bit rate mode                    : Variable
+Overall bit rate                         : 868347
+Overall bit rate                         : 868 Kbps
+Stream size                              : 387278
+Stream size                              : 378 KiB (2%)
+Stream size                              : 378 KiB
+Stream size                              : 378 KiB
+Stream size                              : 378 KiB
+Stream size                              : 378.2 KiB
+Stream size                              : 378 KiB (2%)
+Proportion of this stream                : 0.01992
+File last modification date              : UTC 2014-11-26 06:30:20
+File last modification date (local)      : 2014-11-26 15:30:20
+
+Video
+Count                                    : 273
+Count of stream of this kind             : 1
+Kind of stream                           : Video
+Kind of stream                           : Video
+Stream identifier                        : 0
+StreamOrder                              : 1
+FirstPacketOrder                         : 0
+ID                                       : 224
+ID                                       : 224 (0xE0)
+Format                                   : MPEG Video
+Commercial name                          : MPEG-2 Video
+Format version                           : Version 2
+Format profile                           : Main@Main
+Format settings, BVOP                    : No
+Format settings, BVOP                    : No
+Format settings, Matrix                  : Default
+Format settings, Matrix                  : Default
+Format settings, GOP                     : N=12
+Internet media type                      : video/MPV
+Codec                                    : MPEG-2V
+Codec                                    : MPEG-2 Video
+Codec/Family                             : MPEG-V
+Codec profile                            : Main@Main
+Codec settings, Matrix                   : Default
+Duration                                 : 179080
+Duration                                 : 2mn 59s
+Duration                                 : 2mn 59s 80ms
+Duration                                 : 2mn 59s
+Duration                                 : 00:02:59.080
+Bit rate mode                            : VBR
+Bit rate mode                            : Variable
+Bit rate                                 : 723067
+Bit rate                                 : 723 Kbps
+Width                                    : 640
+Width                                    : 640 pixels
+Height                                   : 358
+Height                                   : 358 pixels
+Pixel aspect ratio                       : 0.746
+Display aspect ratio                     : 1.333
+Display aspect ratio                     : 4:3
+Frame rate                               : 25.000
+Frame rate                               : 25.000 fps
+Frame count                              : 4477
+Resolution                               : 8
+Resolution                               : 8 bits
+Colorimetry                              : 4:2:0
+Color space                              : YUV
+Chroma subsampling                       : 4:2:0
+Bit depth                                : 8
+Bit depth                                : 8 bits
+Scan type                                : Progressive
+Scan type                                : Progressive
+Interlacement                            : PPF
+Interlacement                            : Progressive
+Compression mode                         : Lossy
+Compression mode                         : Lossy
+Bits/(Pixel*Frame)                       : 0.126
+Delay                                    : 55426284.956
+Delay                                    : 15h 23mn
+Delay                                    : 15h 23mn 46s 284ms
+Delay                                    : 15h 23mn
+Delay                                    : 15:23:46.284
+Delay_DropFrame                          : No
+Delay, origin                            : Container
+Delay, origin                            : Container
+Delay_Original                           : 0
+Delay_Original                           : 00:00:00.000
+Delay_Original_Settings                  : drop_frame_flag=0 / closed_gop=0 / broken_link=0
+Delay_Original_DropFrame                 : No
+Delay_Original_Source                    : Stream
+Time code of first frame                 : 00:00:00:00
+Time code source                         : Group of pictures header
+Stream size                              : 16185852
+Stream size                              : 15.4 MiB (83%)
+Stream size                              : 15 MiB
+Stream size                              : 15 MiB
+Stream size                              : 15.4 MiB
+Stream size                              : 15.44 MiB
+Stream size                              : 15.4 MiB (83%)
+Proportion of this stream                : 0.83267
+Buffer size                              : 28672
+intra_dc_precision                       : 8
+
+Audio
+Count                                    : 222
+Count of stream of this kind             : 1
+Kind of stream                           : Audio
+Kind of stream                           : Audio
+Stream identifier                        : 0
+StreamOrder                              : 0
+FirstPacketOrder                         : 1
+ID                                       : 192
+ID                                       : 192 (0xC0)
+Format                                   : MPEG Audio
+Commercial name                          : MPEG Audio
+Format version                           : Version 1
+Format profile                           : Layer 2
+Internet media type                      : audio/mpeg
+Codec                                    : MPA1L2
+Codec                                    : MPEG-1 Audio layer 2
+Duration                                 : 179085
+Duration                                 : 2mn 59s
+Duration                                 : 2mn 59s 85ms
+Duration                                 : 2mn 59s
+Duration                                 : 00:02:59.085
+Bit rate mode                            : CBR
+Bit rate mode                            : Constant
+Bit rate                                 : 128000
+Bit rate                                 : 128 Kbps
+Channel(s)                               : 2
+Channel(s)                               : 2 channels
+Sampling rate                            : 44100
+Sampling rate                            : 44.1 KHz
+Samples count                            : 7898112
+Frame count                              : 6856
+Compression mode                         : Lossy
+Compression mode                         : Lossy
+Delay                                    : 55426284.967
+Delay                                    : 15h 23mn
+Delay                                    : 15h 23mn 46s 284ms
+Delay                                    : 15h 23mn
+Delay                                    : 15:23:46.284
+Delay, origin                            : Container
+Delay, origin                            : Container
+Delay relative to video                  : 0
+Video0 delay                             : 0
+Stream size                              : 2865360
+Stream size                              : 2.73 MiB (15%)
+Stream size                              : 3 MiB
+Stream size                              : 2.7 MiB
+Stream size                              : 2.73 MiB
+Stream size                              : 2.733 MiB
+Stream size                              : 2.73 MiB (15%)
+Proportion of this stream                : 0.14741
+

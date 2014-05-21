@@ -1,0 +1,222 @@
+
+#
+# '/mnt/sdcard/Download/cds-data/video/video_09_divx (3min).divx'
+#
+General
+Count                                    : 285
+Count of stream of this kind             : 1
+Kind of stream                           : General
+Kind of stream                           : General
+Stream identifier                        : 0
+Count of video streams                   : 1
+Count of audio streams                   : 1
+Video_Format_List                        : MPEG-4 Visual
+Video_Format_WithHint_List               : MPEG-4 Visual (DivX 5)
+Codecs Video                             : DivX 5
+Audio_Format_List                        : AC-3
+Audio_Format_WithHint_List               : AC-3
+Audio codecs                             : AC3
+Complete name                            : /mnt/sdcard/Download/cds-data/video/video_09_divx (3min).divx
+Folder name                              : /mnt/sdcard/Download/cds-data/video
+File name                                : video_09_divx (3min)
+File extension                           : divx
+Format                                   : AVI
+Format                                   : AVI
+Format/Info                              : Audio Video Interleave
+Format/Extensions usually used           : avi
+Commercial name                          : AVI
+Internet media type                      : video/vnd.avi
+Interleaved                              : Yes
+Codec                                    : AVI
+Codec                                    : AVI
+Codec/Info                               : Audio Video Interleave
+Codec/Extensions usually used            : avi
+File size                                : 70364752
+File size                                : 67.1 MiB
+File size                                : 67 MiB
+File size                                : 67 MiB
+File size                                : 67.1 MiB
+File size                                : 67.11 MiB
+Duration                                 : 180001
+Duration                                 : 3mn 0s
+Duration                                 : 3mn 0s 1ms
+Duration                                 : 3mn 0s
+Duration                                 : 00:03:00.001
+Overall bit rate                         : 3127305
+Overall bit rate                         : 3 127 Kbps
+Stream size                              : 185411
+Stream size                              : 181 KiB (0%)
+Stream size                              : 181 KiB
+Stream size                              : 181 KiB
+Stream size                              : 181 KiB
+Stream size                              : 181.1 KiB
+Stream size                              : 181 KiB (0%)
+Proportion of this stream                : 0.00263
+File last modification date              : UTC 2014-11-26 06:30:37
+File last modification date (local)      : 2014-11-26 15:30:37
+Writing application                      : DivX 3.4.1.0004
+IDFV                                     : DMF 2.0.0
+
+Video
+Count                                    : 272
+Count of stream of this kind             : 1
+Kind of stream                           : Video
+Kind of stream                           : Video
+Stream identifier                        : 0
+StreamOrder                              : 0
+ID                                       : 0
+ID                                       : 0
+Format                                   : MPEG-4 Visual
+Commercial name                          : MPEG-4 Visual
+Format settings                          : BVOP1
+Format settings, BVOP                    : 1
+Format settings, BVOP                    : 1
+Format settings, QPel                    : No
+Format settings, QPel                    : No
+Format settings, GMC                     : 0
+Format settings, GMC                     : No warppoints
+Format settings, Matrix                  : Default (H.263)
+Format settings, Matrix                  : Default (H.263)
+Internet media type                      : video/MP4V-ES
+Muxing mode                              : Packed bitstream
+Codec ID                                 : DX50
+Codec ID/Hint                            : DivX 5
+Codec ID/Url                             : http://mediaarea.net/DX50
+Codec                                    : DX50
+Codec                                    : DivX 5
+Codec/Family                             : MPEG-4V
+Codec/Url                                : http://www.divx.com
+Codec/CC                                 : DX50
+Codec settings                           : BVOP / Packed Bitstream
+Codec settings, Packet bitstream         : Yes
+Codec settings, BVOP                     : Yes
+Codec settings, QPel                     : No
+Codec settings, GMC                      : 0
+Codec settings, GMC                      : No warppoints
+Codec settings, Matrix                   : Default (H.263)
+Duration                                 : 179980
+Duration                                 : 2mn 59s
+Duration                                 : 2mn 59s 980ms
+Duration                                 : 2mn 59s
+Duration                                 : 00:02:59.980
+Bit rate                                 : 2991413
+Bit rate                                 : 2 991 Kbps
+Width                                    : 1920
+Width                                    : 1 920 pixels
+Height                                   : 1080
+Height                                   : 1 080 pixels
+Pixel aspect ratio                       : 1.000
+Display aspect ratio                     : 1.778
+Display aspect ratio                     : 16:9
+Frame rate                               : 29.970
+Frame rate                               : 29.970 fps
+Frame count                              : 5394
+Resolution                               : 8
+Resolution                               : 8 bits
+Colorimetry                              : 4:2:0
+Color space                              : YUV
+Chroma subsampling                       : 4:2:0
+Bit depth                                : 8
+Bit depth                                : 8 bits
+Scan type                                : Progressive
+Scan type                                : Progressive
+Interlacement                            : PPF
+Interlacement                            : Progressive
+Compression mode                         : Lossy
+Compression mode                         : Lossy
+Bits/(Pixel*Frame)                       : 0.048
+Delay                                    : 0
+Delay                                    : 00:00:00.000
+Stream size                              : 67299323
+Stream size                              : 64.2 MiB (96%)
+Stream size                              : 64 MiB
+Stream size                              : 64 MiB
+Stream size                              : 64.2 MiB
+Stream size                              : 64.18 MiB
+Stream size                              : 64.2 MiB (96%)
+Proportion of this stream                : 0.95644
+Title                                    : Video 
+Writing library                          : DivX503b3330p
+Writing library                          : DivX 3330
+Writing library/Name                     : DivX
+Writing library/Version                  : 3330
+
+Audio
+Count                                    : 235
+Count of stream of this kind             : 1
+Kind of stream                           : Audio
+Kind of stream                           : Audio
+Stream identifier                        : 0
+StreamOrder                              : 1
+ID                                       : 1
+ID                                       : 1
+Format                                   : AC-3
+Format/Info                              : Audio Coding 3
+Commercial name                          : AC-3
+Mode extension                           : CM (complete main)
+Format settings, Endianness              : Big
+Codec ID                                 : 2000
+Codec                                    : AC3
+Codec                                    : AC3
+Codec/Family                             : AC3
+Codec/Info                               : Dolby AC3
+Codec/CC                                 : 2000
+Duration                                 : 180001
+Duration                                 : 3mn 0s
+Duration                                 : 3mn 0s 1ms
+Duration                                 : 3mn 0s
+Duration                                 : 00:03:00.001
+Bit rate mode                            : CBR
+Bit rate mode                            : Constant
+Bit rate                                 : 128000
+Bit rate                                 : 128 Kbps
+Channel(s)                               : 2
+Channel(s)                               : 2 channels
+Channel positions                        : Front: L R
+Channel positions                        : 2/0/0
+ChannelLayout                            : L R
+Sampling rate                            : 44100
+Sampling rate                            : 44.1 KHz
+Samples count                            : 7938044
+Resolution                               : 16
+Resolution                               : 16 bits
+Bit depth                                : 16
+Bit depth                                : 16 bits
+Compression mode                         : Lossy
+Compression mode                         : Lossy
+Delay                                    : 0
+Delay                                    : 00:00:00.000
+Delay, origin                            : Stream
+Delay, origin                            : Raw stream
+Delay relative to video                  : 0
+Video0 delay                             : 0
+Stream size                              : 2880018
+Stream size                              : 2.75 MiB (4%)
+Stream size                              : 3 MiB
+Stream size                              : 2.7 MiB
+Stream size                              : 2.75 MiB
+Stream size                              : 2.747 MiB
+Stream size                              : 2.75 MiB (4%)
+Proportion of this stream                : 0.04093
+Alignment                                : Split
+Alignment                                : Split accross interleaves
+Interleave, duration                     : 1.00
+Interleave, duration                     : 33
+Interleave, duration                     : 33 ms (1.00 video frame)
+Interleave, preload duration             : 500
+Interleave, preload duration             : 500 ms
+Title                                    : Audio 
+bsid                                     : 8
+dialnorm                                 : -31
+dialnorm/String                          : -31 dB
+dsurmod                                  : 0
+acmod                                    : 2
+lfeon                                    : 0
+dialnorm_Average                         : -31
+dialnorm_Average/String                  : -31 dB
+dialnorm_Minimum                         : -31
+dialnorm_Minimum/String                  : -31 dB
+dialnorm_Maximum                         : -31
+dialnorm_Maximum/String                  : -31 dB
+dialnorm_Count                           : 300
+

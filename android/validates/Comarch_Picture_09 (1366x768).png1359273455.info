@@ -1,0 +1,77 @@
+
+#
+# '/mnt/sdcard/Download/cds-data/image/png/Comarch_Picture_09 (1366x768).png'
+#
+General
+Count                                    : 284
+Count of stream of this kind             : 1
+Kind of stream                           : General
+Kind of stream                           : General
+Stream identifier                        : 0
+Count of image streams                   : 1
+Image_Format_List                        : PNG
+Image_Format_WithHint_List               : PNG
+Codecs Image                             : PNG
+Complete name                            : /mnt/sdcard/Download/cds-data/image/png/Comarch_Picture_09 (1366x768).png
+Folder name                              : /mnt/sdcard/Download/cds-data/image/png
+File name                                : Comarch_Picture_09 (1366x768)
+File extension                           : png
+Format                                   : PNG
+Format                                   : PNG
+Format/Info                              : Portable Network Graphic
+Format/Extensions usually used           : png
+Commercial name                          : PNG
+Internet media type                      : image/png
+Codec                                    : PNG
+Codec                                    : PNG
+Codec/Info                               : Portable Network Graphic
+Codec/Extensions usually used            : png
+File size                                : 605408
+File size                                : 591 KiB
+File size                                : 591 KiB
+File size                                : 591 KiB
+File size                                : 591 KiB
+File size                                : 591.2 KiB
+Stream size                              : 0
+Stream size                              : 0.00 Byte (0%)
+Stream size                              :  Byte0
+Stream size                              : 0.0 Byte
+Stream size                              : 0.00 Byte
+Stream size                              : 0.000 Byte
+Stream size                              : 0.00 Byte (0%)
+Proportion of this stream                : 0.00000
+File last modification date              : UTC 2014-11-26 06:30:06
+File last modification date (local)      : 2014-11-26 15:30:06
+
+Image
+Count                                    : 105
+Count of stream of this kind             : 1
+Kind of stream                           : Image
+Kind of stream                           : Image
+Stream identifier                        : 0
+Format                                   : PNG
+Format/Info                              : Portable Network Graphic
+Commercial name                          : PNG
+Format_Compression                       : LZ77
+Internet media type                      : image/png
+Codec                                    : PNG
+Codec                                    : PNG
+Width                                    : 1366
+Width                                    : 1 366 pixels
+Height                                   : 768
+Height                                   : 768 pixels
+Resolution                               : 8
+Resolution                               : 8 bits
+Bit depth                                : 8
+Bit depth                                : 8 bits
+Compression mode                         : Lossless
+Compression mode                         : Lossless
+Stream size                              : 605408
+Stream size                              : 591 KiB (100%)
+Stream size                              : 591 KiB
+Stream size                              : 591 KiB
+Stream size                              : 591 KiB
+Stream size                              : 591.2 KiB
+Stream size                              : 591 KiB (100%)
+Proportion of this stream                : 1.00000
+

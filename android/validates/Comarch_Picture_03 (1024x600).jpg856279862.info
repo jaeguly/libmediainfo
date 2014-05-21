@@ -1,0 +1,75 @@
+
+#
+# '/mnt/sdcard/Download/cds-data/image/jpg/Comarch_Picture_03 (1024x600).jpg'
+#
+General
+Count                                    : 284
+Count of stream of this kind             : 1
+Kind of stream                           : General
+Kind of stream                           : General
+Stream identifier                        : 0
+Count of image streams                   : 1
+Image_Format_List                        : JPEG
+Image_Format_WithHint_List               : JPEG
+Codecs Image                             : JPEG
+Complete name                            : /mnt/sdcard/Download/cds-data/image/jpg/Comarch_Picture_03 (1024x600).jpg
+Folder name                              : /mnt/sdcard/Download/cds-data/image/jpg
+File name                                : Comarch_Picture_03 (1024x600)
+File extension                           : jpg
+Format                                   : JPEG
+Format                                   : JPEG
+Format/Extensions usually used           : jpeg jpg jpe
+Commercial name                          : JPEG
+Internet media type                      : image/jpeg
+Codec                                    : JPEG
+Codec                                    : JPEG
+Codec/Extensions usually used            : jpeg jpg jpe
+File size                                : 420650
+File size                                : 411 KiB
+File size                                : 411 KiB
+File size                                : 411 KiB
+File size                                : 411 KiB
+File size                                : 410.8 KiB
+Stream size                              : 0
+Stream size                              : 0.00 Byte (0%)
+Stream size                              :  Byte0
+Stream size                              : 0.0 Byte
+Stream size                              : 0.00 Byte
+Stream size                              : 0.000 Byte
+Stream size                              : 0.00 Byte (0%)
+Proportion of this stream                : 0.00000
+File last modification date              : UTC 2014-11-26 06:29:59
+File last modification date (local)      : 2014-11-26 15:29:59
+
+Image
+Count                                    : 105
+Count of stream of this kind             : 1
+Kind of stream                           : Image
+Kind of stream                           : Image
+Stream identifier                        : 0
+Format                                   : JPEG
+Commercial name                          : JPEG
+Internet media type                      : image/jpeg
+Codec                                    : JPEG
+Codec                                    : JPEG
+Width                                    : 1024
+Width                                    : 1 024 pixels
+Height                                   : 600
+Height                                   : 600 pixels
+Color space                              : YUV
+Chroma subsampling                       : 4:4:4
+Resolution                               : 8
+Resolution                               : 8 bits
+Bit depth                                : 8
+Bit depth                                : 8 bits
+Compression mode                         : Lossy
+Compression mode                         : Lossy
+Stream size                              : 420650
+Stream size                              : 411 KiB (100%)
+Stream size                              : 411 KiB
+Stream size                              : 411 KiB
+Stream size                              : 411 KiB
+Stream size                              : 410.8 KiB
+Stream size                              : 411 KiB (100%)
+Proportion of this stream                : 1.00000
+

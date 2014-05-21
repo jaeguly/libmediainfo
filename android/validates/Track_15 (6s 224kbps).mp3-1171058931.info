@@ -1,0 +1,103 @@
+
+#
+# '/mnt/sdcard/Download/cds-data/audio/Track_15 (6s 224kbps).mp3'
+#
+General
+Count                                    : 284
+Count of stream of this kind             : 1
+Kind of stream                           : General
+Kind of stream                           : General
+Stream identifier                        : 0
+Count of audio streams                   : 1
+Audio_Format_List                        : MPEG Audio
+Audio_Format_WithHint_List               : MPEG Audio
+Audio codecs                             : MPEG-1 Audio layer 3
+Complete name                            : /mnt/sdcard/Download/cds-data/audio/Track_15 (6s 224kbps).mp3
+Folder name                              : /mnt/sdcard/Download/cds-data/audio
+File name                                : Track_15 (6s 224kbps)
+File extension                           : mp3
+Format                                   : MPEG Audio
+Format                                   : MPEG Audio
+Format/Extensions usually used           : m1a mpa1 mp1 m2a mpa2 mp2 mp3
+Commercial name                          : MPEG Audio
+Internet media type                      : audio/mpeg
+Codec                                    : MPEG Audio
+Codec                                    : MPEG Audio
+Codec/Extensions usually used            : m1a mpa1 mp1 m2a mpa2 mp2 mp3
+File size                                : 169819
+File size                                : 166 KiB
+File size                                : 166 KiB
+File size                                : 166 KiB
+File size                                : 166 KiB
+File size                                : 165.8 KiB
+Duration                                 : 6034
+Duration                                 : 6s 34ms
+Duration                                 : 6s 34ms
+Duration                                 : 6s 34ms
+Duration                                 : 00:00:06.034
+Overall bit rate mode                    : CBR
+Overall bit rate mode                    : Constant
+Overall bit rate                         : 224000
+Overall bit rate                         : 224 Kbps
+Stream size                              : 128
+Stream size                              : 128 Bytes (0%)
+Stream size                              : 128 Bytes
+Stream size                              : 128 Bytes
+Stream size                              : 128 Bytes
+Stream size                              : 128.0 Bytes
+Stream size                              : 128 Bytes (0%)
+Proportion of this stream                : 0.00075
+Title                                    : Track_15
+Album                                    : Album_1
+Track name                               : Track_15
+Performer                                : Andrew
+File last modification date              : UTC 2014-11-26 06:29:52
+File last modification date (local)      : 2014-11-26 15:29:52
+Writing library                          : LAME3.99r
+Writing library                          : LAME3.99r
+
+Audio
+Count                                    : 222
+Count of stream of this kind             : 1
+Kind of stream                           : Audio
+Kind of stream                           : Audio
+Stream identifier                        : 0
+Format                                   : MPEG Audio
+Commercial name                          : MPEG Audio
+Format version                           : Version 1
+Format profile                           : Layer 3
+Format settings                          : Joint stereo
+Mode                                     : Joint stereo
+Internet media type                      : audio/mpeg
+Codec                                    : MPA1L3
+Codec                                    : MPEG-1 Audio layer 3
+Codec profile                            : Joint stereo
+Duration                                 : 6034
+Duration                                 : 6s 34ms
+Duration                                 : 6s 34ms
+Duration                                 : 6s 34ms
+Duration                                 : 00:00:06.034
+Bit rate mode                            : CBR
+Bit rate mode                            : Constant
+Bit rate                                 : 224000
+Bit rate                                 : 224 Kbps
+Channel(s)                               : 2
+Channel(s)                               : 2 channels
+Sampling rate                            : 44100
+Sampling rate                            : 44.1 KHz
+Samples count                            : 266112
+Frame count                              : 231
+Compression mode                         : Lossy
+Compression mode                         : Lossy
+Stream size                              : 168960
+Stream size                              : 165 KiB (99%)
+Stream size                              : 165 KiB
+Stream size                              : 165 KiB
+Stream size                              : 165 KiB
+Stream size                              : 165.0 KiB
+Stream size                              : 165 KiB (99%)
+Proportion of this stream                : 0.99494
+Writing library                          : LAME3.99r
+Writing library                          : LAME3.99r
+Encoding settings                        : -m j -V 4 -q 3 -lowpass 19.4 -b 224
+
