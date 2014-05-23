@@ -31,6 +31,13 @@ public class MediaInfoReportRetrieverTask extends MediaInfoRetrieverTask {
             }
         }
 
+        // Info about the library
+        publishProgress(MediaInfo.optionStatic("Info_Version", ""));
+
+        String[] infos = {"Info_Parameters", "Info_Capacities", "Info_Codecs"};
+        for (String info : infos)
+            publishProgress("\n\n", info, "\n", MediaInfo.optionStatic(info));
+
 
         MediaInfo mi = new MediaInfo();
 
