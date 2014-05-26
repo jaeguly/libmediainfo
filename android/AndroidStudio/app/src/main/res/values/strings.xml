@@ -8,5 +8,6 @@
     <string name="action_clear_messages">Clear messages</string>
     <string name="action_copy_clipboard">Copy to clipboard</string>
     <string name="action_detailed_info">About this version</string>
+    <string name="action_app_exit">Exit</string>
 
 </resources>

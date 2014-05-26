@@ -101,7 +101,17 @@ public class MainActivity extends ActionBarActivity {
                         clipboard.setPrimaryClip(android.content.ClipData.newPlainText("copied text", text));
                     }
                 }
+
                 return true;
+
+            case R.id.action_app_exit:
+
+                moveTaskToBack(true);
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
+
+                return true;
+
             default:
                 break;
         }

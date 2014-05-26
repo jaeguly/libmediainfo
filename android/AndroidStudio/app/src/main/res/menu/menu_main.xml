@@ -31,4 +31,10 @@
         android:orderInCategory="110"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/action_app_exit"
+        android:title="@string/action_app_exit"
+        android:orderInCategory="130"
+        app:showAsAction="never"/>
+
 </menu>
