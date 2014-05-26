@@ -72,7 +72,18 @@ public class MainActivity extends ActionBarActivity {
                 if (mMessageView != null)
                     mMessageView.setText("");
 
-                new RequestMediaInfoReportRetriever().execute();
+                new AsyncTask<String, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(String... params) {
+
+                        AsyncTask task = new MediaLibraryInfoRetrieverTask(mMessageView);
+                        setMediaInfoTask(task);
+                        task.execute(params);
+
+                        return null;
+                    }
+                }.execute("");
+
                 return true;
 
             case R.id.action_copy_clipboard:
