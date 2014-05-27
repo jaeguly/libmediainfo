@@ -53,3 +53,15 @@ operator<<(basic_ostream<_CharT, _Traits>& __os, unsinged char __c) {
 ```
 stream << (signed int) n;
 ```
+
+### Miscellaneous
+
+***Target Test Environments***
+
+* mediainfo command line
+  * ubuntu 12.04
+  * mac osx
+* android
+  * armeabi
+  * armeabi-v7a
+  * x86-64
