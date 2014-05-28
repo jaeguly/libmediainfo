@@ -7,11 +7,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 
 import java.io.File;
@@ -35,7 +38,26 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        // Set up ShareActionProvider's default share intent
+        MenuItem shareItem = menu.findItem(R.id.action_share);
+        mShareActionProvider = (ShareActionProvider) shareItem.getActionProvider();
+        mShareActionProvider.setShareIntent(createShareIntent());
+
+        // Return true to display menu
         return true;
+    }
+
+    /**
+     * Returns an Intent which can be used to share this item's content with other applications.
+     *
+     * @return Intent to be given to a ShareActionProvider.
+     */
+    public Intent createShareIntent() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, mMessageView.getText());
+        return intent;
     }
 
     @Override
@@ -47,6 +69,10 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         switch (id) {
+            case R.id.action_share:
+                mShareActionProvider.setShareIntent(createShareIntent());
+                break;
+
             case R.id.action_exampleogg_test:
                 if (mMessageView != null)
                     mMessageView.setText("");
@@ -133,6 +159,21 @@ public class MainActivity extends Activity {
         super.onResume();
 
         mMessageView = (TextView) findViewById(R.id.message_view_a);
+        mMessageView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (mShareActionProvider != null)
+                    mShareActionProvider.setShareIntent(createShareIntent());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
 
         // If launches by an intent
         if (getIntent() != null)
@@ -224,6 +265,7 @@ public class MainActivity extends Activity {
         }
     }
 
+    private ShareActionProvider mShareActionProvider;
     public static final String LogDir = "/mnt/sdcard/LogFiles/MediaInfo";
     private TextView mMessageView;
     private AsyncTask mMediaInfoTask;
