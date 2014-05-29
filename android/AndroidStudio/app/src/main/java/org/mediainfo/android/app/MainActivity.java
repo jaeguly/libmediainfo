@@ -20,7 +20,7 @@ import android.widget.TextView;
 import java.io.File;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements MediaInfoRetrieverTask.OnCompleteListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,10 +101,10 @@ public class MainActivity extends Activity {
                     @Override
                     protected Void doInBackground(String... params) {
 
-                        AsyncTask task = new MediaLibraryInfoRetrieverTask(mMessageView);
-                        setMediaInfoTask(task);
+                        MediaInfoRetrieverTask task = new MediaLibraryInfoRetrieverTask(mMessageView);
                         task.execute(params);
 
+                        setMediaInfoTask(task);
                         return null;
                     }
                 }.execute("");
@@ -159,23 +159,8 @@ public class MainActivity extends Activity {
         super.onResume();
 
         mMessageView = (TextView) findViewById(R.id.message_view_a);
-        mMessageView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (mShareActionProvider != null)
-                    mShareActionProvider.setShareIntent(createShareIntent());
-            }
 
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-        });
-
-        // If launches by an intent
+        // for
         if (getIntent() != null)
             handleIntent(getIntent());
     }
@@ -207,9 +192,12 @@ public class MainActivity extends Activity {
     /**
      * Return a old AsyncTask.
      */
-    private void setMediaInfoTask(AsyncTask task) {
+    private void setMediaInfoTask(MediaInfoRetrieverTask task) {
         // If exists already a running task
         cancelMediaInfoTask();
+
+        if (task != null)
+            task.setOnCompleteListener(this);
 
         mMediaInfoTask = task;
     }
@@ -221,6 +209,12 @@ public class MainActivity extends Activity {
         }
     }
 
+    @Override
+    public void onCompletion(MediaInfoRetrieverTask task) {
+        if (mShareActionProvider != null && mMessageView != null)
+            mShareActionProvider.setShareIntent(createShareIntent());
+    }
+
     private class RequestMediaInfoRetriever extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... params) {
@@ -229,10 +223,11 @@ public class MainActivity extends Activity {
             if (!logDir.exists())
                 logDir.mkdirs();
 
-            AsyncTask task = new MediaInfoRetrieverTask(mMessageView, logDir);
-            setMediaInfoTask(task);
+            MediaInfoRetrieverTask task = new MediaInfoRetrieverTask(mMessageView);
+            task.setOutputDir(logDir);
             task.execute(params);
 
+            setMediaInfoTask(task);
             return null;
         }
     }
@@ -241,10 +236,10 @@ public class MainActivity extends Activity {
         @Override
         protected Void doInBackground(String... params) {
 
-            AsyncTask task = new MediaInfoReportRetrieverTask(mMessageView);
-            setMediaInfoTask(task);
+            MediaInfoRetrieverTask task = new MediaInfoReportRetrieverTask(mMessageView);
             task.execute(params);
 
+            setMediaInfoTask(task);
             return null;
         }
     }
@@ -268,6 +263,6 @@ public class MainActivity extends Activity {
     private ShareActionProvider mShareActionProvider;
     public static final String LogDir = "/mnt/sdcard/LogFiles/MediaInfo";
     private TextView mMessageView;
-    private AsyncTask mMediaInfoTask;
+    private MediaInfoRetrieverTask mMediaInfoTask;
 }
 

@@ -21,9 +21,14 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
         mTextView = textView;
     }
 
-    public MediaInfoRetrieverTask(TextView textView, File outputDir) {
+    /** If defines an output directory, will save the result into a file in outputDir. */
+    public void setOutputDir(File outputDir) {
         mOutDir = outputDir;
-        mTextView = textView;
+    }
+
+    /** Register a callback to be invoked when the end of a task. */
+    public void setOnCompleteListener(OnCompleteListener listener) {
+        mCompleteListener = listener;
     }
 
     @Override
@@ -53,9 +58,11 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
             if (isCancelled())
                 break;
 
+            // configurations
             mi.option("Complete", "1");
             mi.option("Inform");
 
+            // retrieve a media information
             printOutput("\n#\n# '" + path + "'\n#\n");
             printOutput(mi.inform());
 
@@ -63,6 +70,7 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
             if (isCancelled())
                 break;
 
+            // releases resources
             mi.close();
             closeOutput();
         }
@@ -72,7 +80,7 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
             closeOutput();
         }
 
-        // release all resources of mi
+        // release all resources of mediainfo
         mi.dispose();
 
         return null;
@@ -88,7 +96,8 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
     @Override
     /** Runs on the UI thread after doInBackground(Params...). */
     protected void onPostExecute(Void result) {
-        // TODO: do something
+        if (mCompleteListener != null)
+            mCompleteListener.onCompletion(this);
     }
 
     @Override
@@ -132,7 +141,17 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
         }
     }
 
+
+    /*
+     * This listener to be invoked when retrieving the media information has completed
+     * and is for something in the UI thread.
+     */
+    public static interface OnCompleteListener {
+        void onCompletion(MediaInfoRetrieverTask task);
+    }
+
     protected File mOutDir;
     protected FileOutputStream mOutStream;
     protected TextView mTextView;
+    protected OnCompleteListener mCompleteListener;
 }
