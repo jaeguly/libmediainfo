@@ -54,8 +54,12 @@ public class MediaInfoReportRetrieverTask extends MediaInfoRetrieverTask {
                 break;
             }
 
+            // reset to inform
+            mi.option("Inform");
+
             // try to inform
             mi.option("Complete", "");
+
             publishProgress("\n\nInform with Complete=false\n", mi.inform());
 
             // checks cancelled
