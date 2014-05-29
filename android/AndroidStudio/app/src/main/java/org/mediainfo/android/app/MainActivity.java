@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ShareActionProvider;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -43,6 +42,16 @@ public class MainActivity extends Activity implements MediaInfoRetrieverTask.OnC
         MenuItem shareItem = menu.findItem(R.id.action_share);
         mShareActionProvider = (ShareActionProvider) shareItem.getActionProvider();
         mShareActionProvider.setShareIntent(createShareIntent());
+        mShareActionProvider.setOnShareTargetSelectedListener(
+                new ShareActionProvider.OnShareTargetSelectedListener() {
+                    @Override
+                    public boolean onShareTargetSelected(ShareActionProvider source, Intent intent) {
+                        final String appName = intent.getComponent().getPackageName();
+                        Toast.makeText(MainActivity.this, appName, Toast.LENGTH_SHORT).show();
+
+                        return false;
+                    }
+                });
 
         // Return true to display menu
         return true;
@@ -258,6 +267,7 @@ public class MainActivity extends Activity implements MediaInfoRetrieverTask.OnC
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }
+
     }
 
     private ShareActionProvider mShareActionProvider;
