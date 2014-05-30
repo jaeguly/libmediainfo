@@ -30,6 +30,12 @@
         android:showAsAction="never"/>
 
     <item
+        android:id="@+id/action_license"
+        android:title="@string/action_license"
+        android:orderInCategory="115"
+        android:showAsAction="never"/>
+
+    <item
         android:id="@+id/action_detailed_info"
         android:title="@string/action_detailed_info"
         android:orderInCategory="110"

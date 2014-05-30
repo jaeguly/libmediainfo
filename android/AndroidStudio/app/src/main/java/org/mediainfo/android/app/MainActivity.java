@@ -1,8 +1,10 @@
 package org.mediainfo.android.app;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -12,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -126,15 +129,48 @@ public class MainActivity extends Activity implements MediaInfoRetrieverTask.OnC
                     String text = mMessageView.getText().toString();
 
                     if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
-                        android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                        android.text.ClipboardManager clipboard =
+                                (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 
                         clipboard.setText(text);
                     } else {
-                        android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                        android.content.ClipboardManager clipboard =
+                                (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 
                         clipboard.setPrimaryClip(android.content.ClipData.newPlainText("copied text", text));
                     }
                 }
+
+                return true;
+
+            case R.id.action_license:
+
+                // Inflate the xml view, res/layout/license.xml
+                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                final View myLicenseView = inflater.inflate(R.layout.license, null, false);
+
+                // myWebView setup
+                WebView myWebView = (WebView) myLicenseView.findViewById(R.id.license_webview);
+                myWebView.setBackgroundColor(0x00000000);
+                myWebView.loadUrl(LICENSE_URL);
+//                myWebView.setWebViewClient(new WebViewClient() {
+//                    @Override
+//                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                        view.loadUrl(url);
+//                        return true;
+//                    }
+//                });
+
+                // AlertDialog popup
+                new AlertDialog.Builder(MainActivity.this).setView(myLicenseView)
+                        .setTitle(R.string.open_source_licenses)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        }).show();
 
                 return true;
 
@@ -270,6 +306,7 @@ public class MainActivity extends Activity implements MediaInfoRetrieverTask.OnC
 
     }
 
+    private static final String LICENSE_URL = "file:///android_asset/License.html";
     private ShareActionProvider mShareActionProvider;
     public static final String LogDir = "/mnt/sdcard/LogFiles/MediaInfo";
     private TextView mMessageView;

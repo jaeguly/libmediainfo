@@ -7,7 +7,10 @@
     <string name="action_cdsdata_test">Test cds-data files</string>
     <string name="action_clear_messages">Clear messages</string>
     <string name="action_copy_clipboard">Copy to clipboard</string>
+    <string name="action_license">License</string>
     <string name="action_detailed_info">About</string>
     <string name="action_app_exit">Exit</string>
+    <string name="open_source_licenses">Open source licenses</string>
+    <string name="thanks">This product uses various open source software.\nThese source code has been modified, including little improvement, extending Android Environment.\nThanks to a MediaInfo project.</string>
 
 </resources>
