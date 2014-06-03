@@ -264,7 +264,7 @@ public class MainActivity extends Activity implements MediaInfoRetrieverTask.OnC
         @Override
         protected Void doInBackground(String... params) {
 
-            File logDir = new File(LogDir);
+            File logDir = new File(LOG_DIR);
             if (!logDir.exists())
                 logDir.mkdirs();
 
@@ -307,8 +307,8 @@ public class MainActivity extends Activity implements MediaInfoRetrieverTask.OnC
     }
 
     private static final String LICENSE_URL = "file:///android_asset/License.html";
+    private static final String LOG_DIR = "/mnt/sdcard/LogFiles/MediaInfo";
     private ShareActionProvider mShareActionProvider;
-    public static final String LogDir = "/mnt/sdcard/LogFiles/MediaInfo";
     private TextView mMessageView;
     private MediaInfoRetrieverTask mMediaInfoTask;
 }
