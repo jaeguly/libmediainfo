@@ -5,7 +5,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-MEDIAINFO_DIR       = ../../../../../..
+MEDIAINFO_DIR       = ../../../../../../libmediainfo_0.7.67
 LIBZEN_INC_DIR		= $(MEDIAINFO_DIR)/ZenLib/Source
 LIBZEN_SRC_DIR		= $(MEDIAINFO_DIR)/ZenLib/Source/ZenLib
 LIBMEDIAINFO_INC_DIR= $(MEDIAINFO_DIR)/MediaInfoLib/Source
