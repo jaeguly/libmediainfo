@@ -1,0 +1,208 @@
+
+#
+# '/mnt/sdcard/Download/cds-data/video/video_03_mpeg2_ps (3min).ps'
+#
+General
+Count                                    : 284
+Count of stream of this kind             : 1
+Kind of stream                           : General
+Kind of stream                           : General
+Stream identifier                        : 0
+Count of video streams                   : 1
+Count of audio streams                   : 1
+Count of menu streams                    : 1
+Video_Format_List                        : MPEG Video
+Video_Format_WithHint_List               : MPEG Video
+Codecs Video                             : MPEG-2 Video
+Audio_Format_List                        : MPEG Audio
+Audio_Format_WithHint_List               : MPEG Audio
+Audio codecs                             : MPEG-1 Audio layer 2
+Menu_Format_List                         : DVD-Video
+Menu_Format_WithHint_List                : DVD-Video
+Menu codecs                              : DVD-Video
+Complete name                            : /mnt/sdcard/Download/cds-data/video/video_03_mpeg2_ps (3min).ps
+Folder name                              : /mnt/sdcard/Download/cds-data/video
+File name                                : video_03_mpeg2_ps (3min)
+File extension                           : ps
+Format                                   : MPEG-PS
+Format                                   : MPEG-PS
+Format/Extensions usually used           : mpeg mpg m2p vob pss
+Commercial name                          : MPEG-PS
+Internet media type                      : video/MP2P
+Codec                                    : MPEG-PS
+Codec                                    : MPEG-PS
+Codec/Extensions usually used            : mpeg mpg m2p vob pss
+File size                                : 39858176
+File size                                : 38.0 MiB
+File size                                : 38 MiB
+File size                                : 38 MiB
+File size                                : 38.0 MiB
+File size                                : 38.01 MiB
+Duration                                 : 180040
+Duration                                 : 3mn 0s
+Duration                                 : 3mn 0s 40ms
+Duration                                 : 3mn 0s
+Duration                                 : 00:03:00.040
+Overall bit rate mode                    : VBR
+Overall bit rate mode                    : Variable
+Overall bit rate                         : 1771081
+Overall bit rate                         : 1 771 Kbps
+Stream size                              : 807640
+Stream size                              : 789 KiB (2%)
+Stream size                              : 789 KiB
+Stream size                              : 789 KiB
+Stream size                              : 789 KiB
+Stream size                              : 788.7 KiB
+Stream size                              : 789 KiB (2%)
+Proportion of this stream                : 0.02026
+File last modification date              : UTC 2014-11-26 06:30:17
+File last modification date (local)      : 2014-11-26 15:30:17
+
+Video
+Count                                    : 275
+Count of stream of this kind             : 1
+Kind of stream                           : Video
+Kind of stream                           : Video
+Stream identifier                        : 0
+FirstPacketOrder                         : 0
+ID                                       : 224
+ID                                       : 224 (0xE0)
+Format                                   : MPEG Video
+Commercial name                          : MPEG-2 Video
+Format version                           : Version 2
+Format profile                           : Main@High 1440
+Format settings                          : BVOP
+Format settings, BVOP                    : Yes
+Format settings, BVOP                    : Yes
+Format settings, Matrix                  : Default
+Format settings, Matrix                  : Default
+Format settings, GOP                     : M=3, N=12
+Internet media type                      : video/MPV
+Codec                                    : MPEG-2V
+Codec                                    : MPEG-2 Video
+Codec/Family                             : MPEG-V
+Codec profile                            : Main@High 1440
+Codec settings, Matrix                   : Default
+Duration                                 : 180040
+Duration                                 : 3mn 0s
+Duration                                 : 3mn 0s 40ms
+Duration                                 : 3mn 0s
+Duration                                 : 00:03:00.040
+Bit rate mode                            : VBR
+Bit rate mode                            : Variable
+Bit rate                                 : 1607836
+Bit rate                                 : 1 608 Kbps
+Maximum bit rate                         : 2400000
+Maximum bit rate                         : 2 400 Kbps
+Width                                    : 1376
+Width                                    : 1 376 pixels
+Height                                   : 768
+Height                                   : 768 pixels
+Pixel aspect ratio                       : 0.744
+Display aspect ratio                     : 1.333
+Display aspect ratio                     : 4:3
+Frame rate                               : 25.000
+Frame rate                               : 25.000 fps
+Frame count                              : 4501
+Resolution                               : 8
+Resolution                               : 8 bits
+Colorimetry                              : 4:2:0
+Color space                              : YUV
+Chroma subsampling                       : 4:2:0
+Bit depth                                : 8
+Bit depth                                : 8 bits
+Scan type                                : Progressive
+Scan type                                : Progressive
+Interlacement                            : PPF
+Interlacement                            : Progressive
+Compression mode                         : Lossy
+Compression mode                         : Lossy
+Bits/(Pixel*Frame)                       : 0.061
+Delay                                    : 184.656
+Delay                                    : 184ms
+Delay                                    : 184ms
+Delay                                    : 184ms
+Delay                                    : 00:00:00.184
+Delay_DropFrame                          : No
+Delay, origin                            : Container
+Delay, origin                            : Container
+Delay_Original                           : 0
+Delay_Original                           : 00:00:00.000
+Delay_Original_Settings                  : drop_frame_flag=0 / closed_gop=0 / broken_link=0
+Delay_Original_DropFrame                 : No
+Delay_Original_Source                    : Stream
+Time code of first frame                 : 00:00:00:00
+Time code source                         : Group of pictures header
+Stream size                              : 36184360
+Stream size                              : 34.5 MiB (91%)
+Stream size                              : 35 MiB
+Stream size                              : 35 MiB
+Stream size                              : 34.5 MiB
+Stream size                              : 34.51 MiB
+Stream size                              : 34.5 MiB (91%)
+Proportion of this stream                : 0.90783
+Buffer size                              : 114688
+intra_dc_precision                       : 8
+
+Audio
+Count                                    : 222
+Count of stream of this kind             : 1
+Kind of stream                           : Audio
+Kind of stream                           : Audio
+Stream identifier                        : 0
+FirstPacketOrder                         : 1
+ID                                       : 192
+ID                                       : 192 (0xC0)
+Format                                   : MPEG Audio
+Commercial name                          : MPEG Audio
+Format version                           : Version 1
+Format profile                           : Layer 2
+Internet media type                      : audio/mpeg
+Codec                                    : MPA1L2
+Codec                                    : MPEG-1 Audio layer 2
+Duration                                 : 179136
+Duration                                 : 2mn 59s
+Duration                                 : 2mn 59s 136ms
+Duration                                 : 2mn 59s
+Duration                                 : 00:02:59.136
+Bit rate mode                            : CBR
+Bit rate mode                            : Constant
+Bit rate                                 : 128000
+Bit rate                                 : 128 Kbps
+Channel(s)                               : 2
+Channel(s)                               : 2 channels
+Sampling rate                            : 48000
+Sampling rate                            : 48.0 KHz
+Samples count                            : 8598528
+Frame count                              : 7464
+Compression mode                         : Lossy
+Compression mode                         : Lossy
+Delay                                    : 184.656
+Delay                                    : 184ms
+Delay                                    : 184ms
+Delay                                    : 184ms
+Delay                                    : 00:00:00.184
+Delay, origin                            : Container
+Delay, origin                            : Container
+Delay relative to video                  : 0
+Video0 delay                             : 0
+Stream size                              : 2866176
+Stream size                              : 2.73 MiB (7%)
+Stream size                              : 3 MiB
+Stream size                              : 2.7 MiB
+Stream size                              : 2.73 MiB
+Stream size                              : 2.733 MiB
+Stream size                              : 2.73 MiB (7%)
+Proportion of this stream                : 0.07191
+
+Menu
+Count                                    : 77
+Count of stream of this kind             : 1
+Kind of stream                           : Menu
+Kind of stream                           : Menu
+Stream identifier                        : 0
+Format                                   : DVD-Video
+Commercial name                          : DVD-Video
+Codec                                    : DVD-Video
+Codec                                    : DVD-Video
+

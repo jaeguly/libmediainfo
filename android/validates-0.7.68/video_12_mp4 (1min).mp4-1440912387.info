@@ -1,0 +1,188 @@
+
+#
+# '/mnt/sdcard/Download/cds-data/video/video_12_mp4 (1min).mp4'
+#
+General
+Count                                    : 284
+Count of stream of this kind             : 1
+Kind of stream                           : General
+Kind of stream                           : General
+Stream identifier                        : 0
+Count of video streams                   : 1
+Count of audio streams                   : 1
+Video_Format_List                        : AVC
+Video_Format_WithHint_List               : AVC
+Codecs Video                             : AVC
+Audio_Format_List                        : AAC
+Audio_Format_WithHint_List               : AAC
+Audio codecs                             : AAC LC
+Complete name                            : /mnt/sdcard/Download/cds-data/video/video_12_mp4 (1min).mp4
+Folder name                              : /mnt/sdcard/Download/cds-data/video
+File name                                : video_12_mp4 (1min)
+File extension                           : mp4
+Format                                   : MPEG-4
+Format                                   : MPEG-4
+Format/Extensions usually used           : mp4 m4v m4a m4b m4p 3gpp 3gp 3gpp2 3g2 k3g jpm jpx mqv ismv isma f4v
+Commercial name                          : MPEG-4
+Internet media type                      : video/mp4
+Codec ID                                 : M4V 
+Codec                                    : MPEG-4
+Codec                                    : MPEG-4
+Codec/Extensions usually used            : mp4 m4v m4a m4b m4p 3gpp 3gp 3gpp2 3g2 k3g jpm jpx mqv ismv isma f4v
+File size                                : 13449025
+File size                                : 12.8 MiB
+File size                                : 13 MiB
+File size                                : 13 MiB
+File size                                : 12.8 MiB
+File size                                : 12.83 MiB
+Duration                                 : 59900
+Duration                                 : 59s 900ms
+Duration                                 : 59s 900ms
+Duration                                 : 59s 900ms
+Duration                                 : 00:00:59.900
+Overall bit rate mode                    : VBR
+Overall bit rate mode                    : Variable
+Overall bit rate                         : 1796197
+Overall bit rate                         : 1 796 Kbps
+Stream size                              : 38556
+Stream size                              : 37.7 KiB (0%)
+Stream size                              : 38 KiB
+Stream size                              : 38 KiB
+Stream size                              : 37.7 KiB
+Stream size                              : 37.65 KiB
+Stream size                              : 37.7 KiB (0%)
+Proportion of this stream                : 0.00287
+HeaderSize                               : 36
+DataSize                                 : 13410477
+FooterSize                               : 38512
+IsStreamable                             : No
+Encoded date                             : UTC 1970-01-01 00:00:00
+Tagged date                              : UTC 1970-01-01 00:00:00
+File last modification date              : UTC 2014-11-26 06:30:42
+File last modification date (local)      : 2014-11-26 15:30:42
+
+Video
+Count                                    : 274
+Count of stream of this kind             : 1
+Kind of stream                           : Video
+Kind of stream                           : Video
+Stream identifier                        : 0
+StreamOrder                              : 0
+ID                                       : 1
+ID                                       : 1
+Format                                   : AVC
+Format/Info                              : Advanced Video Codec
+Format/Url                               : http://developers.videolan.org/x264.html
+Commercial name                          : AVC
+Format profile                           : Baseline@L5.1
+Format settings                          : 1 Ref Frames
+Format settings, CABAC                   : No
+Format settings, CABAC                   : No
+Format settings, ReFrames                : 1
+Format settings, ReFrames                : 1 frame
+Internet media type                      : video/H264
+Codec ID                                 : avc1
+Codec ID/Info                            : Advanced Video Coding
+Codec ID/Url                             : http://www.apple.com/quicktime/download/standalone.html
+Codec                                    : AVC
+Codec                                    : AVC
+Codec/Family                             : AVC
+Codec/Info                               : Advanced Video Codec
+Codec/Url                                : http://developers.videolan.org/x264.html
+Codec/CC                                 : avc1
+Codec profile                            : Baseline@L5.1
+Codec settings                           : 1 Ref Frames
+Codec settings, CABAC                    : No
+Codec_Settings_RefFrames                 : 1
+Duration                                 : 59900
+Duration                                 : 59s 900ms
+Duration                                 : 59s 900ms
+Duration                                 : 59s 900ms
+Duration                                 : 00:00:59.900
+Bit rate                                 : 1695708
+Bit rate                                 : 1 696 Kbps
+Width                                    : 1920
+Width                                    : 1 920 pixels
+Height                                   : 1080
+Height                                   : 1 080 pixels
+Pixel aspect ratio                       : 1.000
+Display aspect ratio                     : 1.778
+Display aspect ratio                     : 16:9
+Rotation                                 : 0.000
+Frame rate mode                          : CFR
+Frame rate mode                          : Constant
+Frame rate                               : 30.000
+Frame rate                               : 30.000 fps
+Frame count                              : 1797
+Resolution                               : 8
+Resolution                               : 8 bits
+Colorimetry                              : 4:2:0
+Color space                              : YUV
+Chroma subsampling                       : 4:2:0
+Bit depth                                : 8
+Bit depth                                : 8 bits
+Scan type                                : Progressive
+Scan type                                : Progressive
+Interlacement                            : PPF
+Interlacement                            : Progressive
+Bits/(Pixel*Frame)                       : 0.027
+Stream size                              : 12696611
+Stream size                              : 12.1 MiB (94%)
+Stream size                              : 12 MiB
+Stream size                              : 12 MiB
+Stream size                              : 12.1 MiB
+Stream size                              : 12.11 MiB
+Stream size                              : 12.1 MiB (94%)
+Proportion of this stream                : 0.94405
+Encoded date                             : UTC 1970-01-01 00:00:00
+Tagged date                              : UTC 1970-01-01 00:00:00
+
+Audio
+Count                                    : 222
+Count of stream of this kind             : 1
+Kind of stream                           : Audio
+Kind of stream                           : Audio
+Stream identifier                        : 0
+StreamOrder                              : 1
+ID                                       : 2
+ID                                       : 2
+Format                                   : AAC
+Format/Info                              : Advanced Audio Codec
+Commercial name                          : AAC
+Format profile                           : LC
+Codec ID                                 : 40
+Codec                                    : AAC LC
+Codec                                    : AAC LC
+Codec/Family                             : AAC
+Codec/CC                                 : 40
+Duration                                 : 59862
+Duration                                 : 59s 862ms
+Duration                                 : 59s 862ms
+Duration                                 : 59s 862ms
+Duration                                 : 00:00:59.862
+Bit rate mode                            : VBR
+Bit rate mode                            : Variable
+Bit rate                                 : 96000
+Bit rate                                 : 96.0 Kbps
+Channel(s)                               : 2
+Channel(s)                               : 2 channels
+Channel positions                        : Front: L R
+Channel positions                        : 2/0/0
+ChannelLayout                            : L R
+Sampling rate                            : 48000
+Sampling rate                            : 48.0 KHz
+Samples count                            : 2873376
+Frame count                              : 2806
+Compression mode                         : Lossy
+Compression mode                         : Lossy
+Stream size                              : 713858
+Stream size                              : 697 KiB (5%)
+Stream size                              : 697 KiB
+Stream size                              : 697 KiB
+Stream size                              : 697 KiB
+Stream size                              : 697.1 KiB
+Stream size                              : 697 KiB (5%)
+Proportion of this stream                : 0.05308
+Encoded date                             : UTC 1970-01-01 00:00:00
+Tagged date                              : UTC 1970-01-01 00:00:00
+
