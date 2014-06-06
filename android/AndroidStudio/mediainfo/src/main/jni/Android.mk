@@ -5,7 +5,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-MEDIAINFO_DIR       = ../../../../../../libmediainfo_0.7.67
+MEDIAINFO_DIR       = ../../../../../../libmediainfo_0.7.68
 LIBZEN_INC_DIR		= $(MEDIAINFO_DIR)/ZenLib/Source
 LIBZEN_SRC_DIR		= $(MEDIAINFO_DIR)/ZenLib/Source/ZenLib
 LIBMEDIAINFO_INC_DIR= $(MEDIAINFO_DIR)/MediaInfoLib/Source
@@ -272,7 +272,6 @@ LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBMEDIAINFO_INC_DIR)/ThirdParty/tinyxml2
 LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBZEN_INC_DIR)
 LOCAL_CFLAGS			+= -Wall $(USER_CFLAGS)
 LOCAL_LDLIBS			:= -llog -lz -lm
-LOCAL_STATIC_LIBRARIES	+= stlport_static
 
 include $(BUILD_SHARED_LIBRARY)
 
