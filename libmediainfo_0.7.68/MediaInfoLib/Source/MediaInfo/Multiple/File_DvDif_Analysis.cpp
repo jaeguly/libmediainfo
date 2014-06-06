@@ -491,7 +491,7 @@ void File_DvDif::Errors_Stats_Update()
         //Frame number
         Ztring Frame_Number_Padded=Ztring::ToZtring(Speed_FrameCount-1);
         if (Frame_Number_Padded.size()<8)
-            Frame_Number_Padded.insert(0, 8-Frame_Number_Padded.size(), __T(' '));
+            Frame_Number_Padded.insert((size_t)0, 8-Frame_Number_Padded.size(), __T(' '));
         Errors_Stats_Line+=Frame_Number_Padded;
         Errors_Stats_Line+=__T('\t');
 
@@ -896,7 +896,7 @@ void File_DvDif::Errors_Stats_Update()
                     Video_STA_Errors_Count+=Video_STA_Errors[Pos];
                     Ztring Video_STA_Errors_Count_Padded=Ztring::ToZtring(Video_STA_Errors[Pos]);
                     if (Video_STA_Errors_Count_Padded.size()<8)
-                        Video_STA_Errors_Count_Padded.insert(0, 8-Video_STA_Errors_Count_Padded.size(), __T(' '));
+                        Video_STA_Errors_Count_Padded.insert((size_t)0, 8-Video_STA_Errors_Count_Padded.size(), __T(' '));
                     Video_STA_Errors_Details+=Video_STA_Errors_Count_Padded;
                     Video_STA_Errors_Details+=__T(" \"");
                     Video_STA_Errors_Details+=Ztring::ToZtring(Pos, 16);
@@ -910,7 +910,7 @@ void File_DvDif::Errors_Stats_Update()
             {
                 Ztring Video_STA_Errors_Count_Padded=Ztring::ToZtring(((float)Video_STA_Errors_Count)*100/((DSF_IsValid && DSF)?1500:1350)*(QU_FSC?2:1), 2);
                 if (Video_STA_Errors_Count_Padded.size()<5)
-                    Video_STA_Errors_Count_Padded.insert(0, 5-Video_STA_Errors_Count_Padded.size(), __T(' '));
+                    Video_STA_Errors_Count_Padded.insert((size_t)0, 5-Video_STA_Errors_Count_Padded.size(), __T(' '));
                 Errors_Stats_Line_Details+=Video_STA_Errors_Count_Padded+__T("%");
                 Video_STA_Errors_Details.resize(Video_STA_Errors_Details.size()-2);
                 Errors_Stats_Line_Details+=__T(" (")+Video_STA_Errors_Details+__T(")");
@@ -946,7 +946,7 @@ void File_DvDif::Errors_Stats_Update()
                         Audio_Errors_Count+=Audio_Errors[Pos];
                         Ztring Audio_Errors_Count_Padded=Ztring::ToZtring(Audio_Errors[Pos]);
                         if (Audio_Errors_Count_Padded.size()<2)
-                            Audio_Errors_Count_Padded.insert(0, 2-Audio_Errors_Count_Padded.size(), __T(' '));
+                            Audio_Errors_Count_Padded.insert((size_t)0, 2-Audio_Errors_Count_Padded.size(), __T(' '));
                         Audio_Errors_Details+=Audio_Errors_Count_Padded;
                         Audio_Errors_Details+=__T(" Dseq=");
                         Audio_Errors_Details+=Ztring::ToZtring(Pos, 16);
@@ -976,7 +976,7 @@ void File_DvDif::Errors_Stats_Update()
 
                     Ztring Audio_Errors_Count_Padded=Ztring::ToZtring(((float)Audio_Errors_Count)*100/((DSF_IsValid && DSF)?54:45)*(QU_FSC?2:1), 2);
                     if (Audio_Errors_Count_Padded.size()<2)
-                        Audio_Errors_Count_Padded.insert(0, 2-Audio_Errors_Count_Padded.size(), __T(' '));
+                        Audio_Errors_Count_Padded.insert((size_t)0, 2-Audio_Errors_Count_Padded.size(), __T(' '));
                     if (ErrorsAreAlreadyDetected)
                         Errors_Stats_Line_Details+=__T(", ");
                     if (Audio_Errors_Count<(size_t)((QU_System?6:5)*9))
@@ -1322,7 +1322,7 @@ void File_DvDif::Errors_Stats_Update_Finnish()
                 Errors_Count+=Video_STA_Errors_Total[Pos];
                 Ztring Errors_Count_Padded=Ztring::ToZtring(Video_STA_Errors_Total[Pos]);
                 if (Errors_Count_Padded.size()<8)
-                    Errors_Count_Padded.insert(0, 8-Errors_Count_Padded.size(), __T(' '));
+                    Errors_Count_Padded.insert((size_t)0, 8-Errors_Count_Padded.size(), __T(' '));
                 Errors_Details+=Errors_Count_Padded;
                 Errors_Details+=__T(" \"");
                 Errors_Details+=Ztring::ToZtring(Pos, 16);
@@ -1334,7 +1334,7 @@ void File_DvDif::Errors_Stats_Update_Finnish()
             Errors_Stats_End_Lines+=__T("Total video error concealment: ");
             Ztring Errors_Count_Padded=Ztring::ToZtring(Errors_Count);
             if (Errors_Count_Padded.size()<8)
-                Errors_Count_Padded.insert(0, 8-Errors_Count_Padded.size(), __T(' '));
+                Errors_Count_Padded.insert((size_t)0, 8-Errors_Count_Padded.size(), __T(' '));
             Errors_Stats_End_Lines+=__T(" ")+Errors_Count_Padded+__T(" errors");
             Errors_Details.resize(Errors_Details.size()-2);
             Errors_Stats_End_Lines+=__T(" (")+Errors_Details+__T(")")+__T('&');
@@ -1358,7 +1358,7 @@ void File_DvDif::Errors_Stats_Update_Finnish()
                     Errors_Count+=Audio_Errors_Total[Channel][Pos];
                     Ztring Errors_Count_Padded=Ztring::ToZtring(Audio_Errors_Total[Channel][Pos]);
                     if (Errors_Count_Padded.size()<8)
-                        Errors_Count_Padded.insert(0, 8-Errors_Count_Padded.size(), __T(' '));
+                        Errors_Count_Padded.insert((size_t)0, 8-Errors_Count_Padded.size(), __T(' '));
                     Errors_Details+=Errors_Count_Padded;
                     Errors_Details+=__T(" Dseq=");
                     Errors_Details+=Ztring::ToZtring(Pos, 16);
@@ -1370,7 +1370,7 @@ void File_DvDif::Errors_Stats_Update_Finnish()
                 Errors_Stats_End_Lines+=__T("Total audio error code for CH")+Ztring::ToZtring(Channel+1)+__T(": ");
                 Ztring Errors_Count_Padded=Ztring::ToZtring(Errors_Count);
                 if (Errors_Count_Padded.size()<8)
-                    Errors_Count_Padded.insert(0, 8-Errors_Count_Padded.size(), __T(' '));
+                    Errors_Count_Padded.insert((size_t)0, 8-Errors_Count_Padded.size(), __T(' '));
                 Errors_Stats_End_Lines+=__T(" ")+Errors_Count_Padded+__T(" errors");
                 Errors_Details.resize(Errors_Details.size()-2);
                 Errors_Stats_End_Lines+=__T(" (")+Errors_Details+__T(")")+__T('&');
@@ -1471,14 +1471,14 @@ void File_DvDif::Errors_Stats_Update_Finnish()
                 int64u Start=Pos?Speed_TimeStampsZ[Pos-1].Last.FramePos:0;
                 Ztring Start_Padded=Ztring::ToZtring(Start);
                 if (Start_Padded.size()<8)
-                    Start_Padded.insert(0, 8-Start_Padded.size(), __T(' '));
+                    Start_Padded.insert((size_t)0, 8-Start_Padded.size(), __T(' '));
 
                 Errors_Stats_End_Lines+=Start_Padded;
 
                 int64u End=Speed_TimeStampsZ[Pos].Last.FramePos-1;
                 Ztring End_Padded=Ztring::ToZtring(End);
                 if (End_Padded.size()<8)
-                    End_Padded.insert(0, 8-End_Padded.size(), __T(' '));
+                    End_Padded.insert((size_t)0, 8-End_Padded.size(), __T(' '));
                 Errors_Stats_End_Lines+=__T(" - ")+End_Padded;
 
                 Errors_Stats_End_Lines+=__T('&');

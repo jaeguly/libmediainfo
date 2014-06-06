@@ -41,6 +41,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <cmath>
+#include <ctype.h>
 #include "ZenLib/OS_Utils.h"
 #include "ZenLib/File.h"
 using namespace std;
@@ -795,7 +796,7 @@ Ztring& Ztring::From_Number (const int8s I, int8u Radix)
     #else
         toStringStream Stream;
         #ifdef UNICODE
-            Stream << setbase(Radix) << I;
+            Stream << setbase(Radix) << (signed int)I;
         #else //UNICODE
             Stream << setbase(Radix) << (size_t)I; //On linux (at least), (un)signed char is detected as a char
         #endif //UNICODE
@@ -829,14 +830,14 @@ Ztring& Ztring::From_Number (const int8u I, int8u Radix)
             {
                 if (I<(((int8u)1)<<Pos))
                     break;
-                insert(0, 1, (I&(((int8u)1)<<Pos))?__T('1'):__T('0'));
+                insert((size_t)0, 1, (I&(((int8u)1)<<Pos))?__T('1'):__T('0'));
             }
         }
         else
         {
             toStringStream Stream;
             #ifdef UNICODE
-                Stream << setbase(Radix) << I;
+                Stream << setbase(Radix) << (unsigned int)I;
             #else //UNICODE
                 Stream << setbase(Radix) << (size_t)I; //On linux (at least), (un)signed char is detected as a char
             #endif //UNICODE
@@ -896,7 +897,7 @@ Ztring& Ztring::From_Number (const int16u I, int8u Radix)
             {
                 if (I<(((int16u)1)<<Pos))
                     break;
-                insert(0, 1, (I&(((int16u)1)<<Pos))?__T('1'):__T('0'));
+                insert((size_t)0, 1, (I&(((int16u)1)<<Pos))?__T('1'):__T('0'));
             }
         }
         else
@@ -959,7 +960,7 @@ Ztring& Ztring::From_Number (const int32u I, int8u Radix)
             {
                 if (I<(((int32u)1)<<Pos))
                     break;
-                insert(0, 1, (I&(((int32u)1)<<Pos))?__T('1'):__T('0'));
+                insert((size_t)0, 1, (I&(((int32u)1)<<Pos))?__T('1'):__T('0'));
             }
         }
         else
@@ -1022,7 +1023,7 @@ Ztring& Ztring::From_Number (const int64u I, int8u Radix)
             {
                 if (I<(((int64u)1)<<Pos))
                     break;
-                insert(0, 1, (I&(((int64u)1)<<Pos))?__T('1'):__T('0'));
+                insert((size_t)0, 1, (I&(((int64u)1)<<Pos))?__T('1'):__T('0'));
             }
         }
         else

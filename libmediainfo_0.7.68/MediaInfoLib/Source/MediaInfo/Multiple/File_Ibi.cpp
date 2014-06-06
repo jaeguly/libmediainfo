@@ -534,11 +534,19 @@ void File_Ibi::CompressedIndex()
 
     //Uncompressing
     int8u* Dest;
+#ifdef __EXCEPTIONS
     try
+#else
+	if (true)
+#endif
     {
         Dest=new int8u[Dest_Size];
     }
+#ifdef __EXCEPTIONS
     catch (...)
+#else
+	if (false)
+#endif
     {
         //Memory error
         Reject();

@@ -2287,7 +2287,11 @@ bool File_Ac3::FrameSynchPoint_Test()
             Save_Buffer_Size=Buffer_Size;
 
             //Exception handling
+            #ifdef __EXCEPTIONS
             try
+            #else
+			if (true)
+            #endif // __EXCEPTIONS
             {
                 int8u* Buffer_Little=new int8u[Size];
                 for (size_t Pos=0; Pos+1<Size; Pos+=2)
@@ -2314,7 +2318,11 @@ bool File_Ac3::FrameSynchPoint_Test()
 
                 delete[] Buffer_Little;
             }
+            #ifdef __EXCEPTIONS
             catch(...)
+            #else
+			if (false)
+            #endif // __EXCEPTIONS
             {
             }
             Buffer=Save_Buffer; Save_Buffer=NULL;

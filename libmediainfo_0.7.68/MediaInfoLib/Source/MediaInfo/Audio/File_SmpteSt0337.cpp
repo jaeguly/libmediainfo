@@ -920,7 +920,9 @@ void File_SmpteSt0337::Data_Parse()
     const int8u* Save_Buffer=NULL;
     size_t Save_Buffer_Offset=0;
     size_t Save_Buffer_Size=0;
+    #if MEDIAINFO_DEMUX
     int64u Save_Element_Size=0;
+    #endif //MEDIAINFO_DEMUX
 
     if (Endianness=='L'|| Container_Bits!=Stream_Bits)
     {
@@ -1099,7 +1101,9 @@ void File_SmpteSt0337::Data_Parse()
         Save_Buffer=Buffer;
         Save_Buffer_Offset=Buffer_Offset;
         Save_Buffer_Size=Buffer_Size;
+    #if MEDIAINFO_DEMUX
         Save_Element_Size=Element_Size;
+    #endif //MEDIAINFO_DEMUX
         File_Offset+=Buffer_Offset;
         Buffer=Info;
         Buffer_Offset=0;

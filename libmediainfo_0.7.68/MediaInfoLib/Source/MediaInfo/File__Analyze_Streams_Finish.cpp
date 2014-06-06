@@ -124,7 +124,7 @@ void File__Analyze::TestContinuousFileNames(size_t CountOfFiles, Ztring FileExte
             Pos++;
             Ztring Pos_Ztring; Pos_Ztring.From_Number(Pos);
             if (Numbers_Size>Pos_Ztring.size())
-                Pos_Ztring.insert(0, Numbers_Size-Pos_Ztring.size(), __T('0'));
+                Pos_Ztring.insert((size_t)0, Numbers_Size-Pos_Ztring.size(), __T('0'));
             Ztring Next=FileToTest.Path_Get()+PathSeparator+FileToTest_Name+Pos_Ztring+__T('.')+(FileExtension.empty()?FileToTest.Extension_Get():FileExtension);
             if (!File::Exists(Next))
                 break;

@@ -1627,7 +1627,7 @@ void File_Mpeg_Descriptors::Descriptor_05()
                                         {
                                             Ztring Temp; Temp.From_Number(format_identifier, 16);
                                             if (Temp.size()<8)
-                                                Temp.insert(0, 8-Temp.size(), __T('0'));
+                                                Temp.insert((size_t)0, 8-Temp.size(), __T('0'));
                                             Complete_Stream->Streams[elementary_PID]->Infos["format_identifier"]=__T("0x")+Temp;
                                         }
                                         Complete_Stream->Streams[elementary_PID]->Infos_Option["format_identifier"]=__T("N NT");

@@ -1953,7 +1953,7 @@ void File_Mxf::Streams_Finish_Descriptor(const int128u DescriptorUID, const int1
         {
             CodecID.From_Number(Descriptor->second.EssenceContainer.lo, 16);
             if (CodecID.size()<16)
-                CodecID.insert(0, 16-CodecID.size(), __T('0'));
+                CodecID.insert((size_t)0, 16-CodecID.size(), __T('0'));
             Format.From_Local(Mxf_EssenceContainer(Descriptor->second.EssenceContainer));
         }
         if (Descriptor->second.EssenceCompression.hi!=(int64u)-1)
@@ -1963,7 +1963,7 @@ void File_Mxf::Streams_Finish_Descriptor(const int128u DescriptorUID, const int1
             Ztring EssenceCompression;
             EssenceCompression.From_Number(Descriptor->second.EssenceCompression.lo, 16);
             if (EssenceCompression.size()<16)
-                EssenceCompression.insert(0, 16-EssenceCompression.size(), __T('0'));
+                EssenceCompression.insert((size_t)0, 16-EssenceCompression.size(), __T('0'));
             CodecID+=EssenceCompression;
             Ztring Format_FromCompression; Format_FromCompression.From_Local(Mxf_EssenceCompression(Descriptor->second.EssenceCompression));
             if (!Format_FromCompression.empty())
@@ -9329,32 +9329,32 @@ void File_Mxf::Get_Timestamp(Ztring &Value)
     Ztring Temp;
     Temp.From_Number(Month);
     if (Temp.size()<2)
-        Temp.insert(0, 1, __T('0'));
+        Temp.insert((size_t)0, 1, __T('0'));
     Value+=Temp;
     Value+=__T('-');
     Temp.From_Number(Day);
     if (Temp.size()<2)
-        Temp.insert(0, 1, __T('0'));
+        Temp.insert((size_t)0, 1, __T('0'));
     Value+=Temp;
     Value+=__T(' ');
     Temp.From_Number(Hours);
     if (Temp.size()<2)
-        Temp.insert(0, 1, __T('0'));
+        Temp.insert((size_t)0, 1, __T('0'));
     Value+=Temp;
     Value+=__T(':');
     Temp.From_Number(Minutes);
     if (Temp.size()<2)
-        Temp.insert(0, 1, __T('0'));
+        Temp.insert((size_t)0, 1, __T('0'));
     Value+=Temp;
     Value+=__T(':');
     Temp.From_Number(Seconds);
     if (Temp.size()<2)
-        Temp.insert(0, 1, __T('0'));
+        Temp.insert((size_t)0, 1, __T('0'));
     Value+=Temp;
     Value+=__T('.');
     Temp.From_Number(Milliseconds*4);
     if (Temp.size()<3)
-        Temp.insert(0, 3-Temp.size(), __T('0'));
+        Temp.insert((size_t)0, 3-Temp.size(), __T('0'));
     Value+=Temp;
 }
 

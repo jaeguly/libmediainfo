@@ -26,6 +26,7 @@
 #include "ZenLib/ZtringListListF.h"
 #include "ZenLib/File.h"
 #include <algorithm>
+#include <ctype.h>
 using namespace ZenLib;
 using namespace std;
 //---------------------------------------------------------------------------
@@ -2156,9 +2157,13 @@ void MediaInfo_Config::Log_Send (int8u Type, int8u Severity, int32u MessageCode,
     Event.Reserved3=(int8u)-1;
     Event.MessageCode=MessageCode;
     Event.Reserved4=(int32u)-1;
+    #ifndef WSTRING_MISSING
     wstring MessageU=Message.To_Unicode();
+    #endif // WSTRING_MISSING
     string MessageA=Message.To_Local();
+    #ifndef WSTRING_MISSING
     Event.MessageStringU=MessageU.c_str();
+    #endif // WSTRING_MISSING
     Event.MessageStringA=MessageA.c_str();
     Event_Send((const int8u*)&Event, sizeof(MediaInfo_Event_Log_0));
 }

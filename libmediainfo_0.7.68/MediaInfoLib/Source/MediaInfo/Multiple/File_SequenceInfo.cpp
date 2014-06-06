@@ -135,7 +135,7 @@ bool File_SequenceInfo::FileHeader_Begin()
                     {
                         Ztring Number=Ztring::ToZtring(DirNumber);
                         if (Number.size()<DirNumberCount)
-                            Number.insert(0, DirNumberCount-Number.size(), __T('0'));
+                            Number.insert((size_t)0, DirNumberCount-Number.size(), __T('0'));
 
                         Directory=DirectoryBase;
                         Directory+=Number;
@@ -205,7 +205,7 @@ bool File_SequenceInfo::FileHeader_Begin()
                             {
                                 Number=Ztring::ToZtring(FileNumber);
                                 if (Number.size()<FileNumberCount)
-                                    Number.insert(0, FileNumberCount-Number.size(), __T('0'));
+                                    Number.insert((size_t)0, FileNumberCount-Number.size(), __T('0'));
 
                                 FullFile=FileBase;
                                 FullFile.insert(FullFile.size()-Extension.size()-1, Number);

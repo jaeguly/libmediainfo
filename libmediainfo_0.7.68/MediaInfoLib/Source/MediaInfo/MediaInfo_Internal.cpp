@@ -415,7 +415,9 @@ void MediaInfo_Internal::Entry()
                 Event.Type=0xC0;
                 Event.Severity=0xFF;
                 Event.MessageCode=0;
+				#ifndef WSTRING_MISSING
                 Event.MessageStringU=L"Libmms cupport is disabled due to compilation options";
+				#endif // WSTRING_MISSING
                 Event.MessageStringA="Libmms cupport is disabled due to compilation options";
                 MediaInfoLib::Config.Event_Send((const int8u*)&Event, sizeof(MediaInfo_Event_Log_0));
             #endif //MEDIAINFO_EVENTS
@@ -449,7 +451,9 @@ void MediaInfo_Internal::Entry()
                 Event.Type=0xC0;
                 Event.Severity=0xFF;
                 Event.MessageCode=0;
+				#ifndef WSTRING_MISSING
                 Event.MessageStringU=L"Libcurl support is disabled due to compilation options";
+				#endif // WSTRING_MISSING
                 Event.MessageStringA="Libcurl support is disabled due to compilation options";
                 MediaInfoLib::Config.Event_Send((const int8u*)&Event, sizeof(MediaInfo_Event_Log_0));
             #endif //MEDIAINFO_EVENTS
@@ -680,7 +684,9 @@ size_t MediaInfo_Internal::Open_Buffer_Init (int64u File_Size_, const String &Fi
             Event.StreamIDs_Size=0;
             Event.Stream_Size=File_Size_;
             Event.FileName=NULL;
+			#ifndef WSTRING_MISSING
             Event.FileName_Unicode=File_Name.c_str();
+			#endif // WSTRING_MISSING
             Config.Event_Send(NULL, (const int8u*)&Event, sizeof(MediaInfo_Event_General_Start_0));
         }
     #endif //MEDIAINFO_EVENTS
@@ -738,7 +744,9 @@ size_t MediaInfo_Internal::Open_Buffer_Init (int64u File_Size_, int64u File_Offs
             Event.StreamIDs_Size=0;
             Event.Stream_Size=File_Size_;
             Event.FileName=NULL;
+			#ifndef WSTRING_MISSING
             Event.FileName_Unicode=NULL;
+			#endif // WSTRING_MISSING
             Config.Event_Send(NULL, (const int8u*)&Event, sizeof(MediaInfo_Event_General_Start_0));
         }
     #endif //MEDIAINFO_EVENTS

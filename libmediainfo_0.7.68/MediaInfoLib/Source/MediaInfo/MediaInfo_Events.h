@@ -261,8 +261,10 @@ struct MediaInfo_Event_Log_0
     MediaInfo_int8u         Reserved3;
     MediaInfo_int32u        MessageCode;
     MediaInfo_int32u        Reserved4;
+    #ifndef WSTRING_MISSING
     const wchar_t*          MessageString;
     const wchar_t*          MessageStringU;
+    #endif // WSTRING_MISSING
     const char*             MessageStringA;
 };
 
