@@ -11,6 +11,7 @@ import android.widget.TextView;
 import org.mediainfo.android.MediaInfo;
 import org.mediainfo.android.app.util.FileTreeWalker;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -124,10 +125,12 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
 
                 String infoFileName = new File(filePath).getName() + ".info";
 
-                mOutStream = new FileOutputStream(
-                        // The file will be truncated if it exists,
-                        // and created if it doesn't exist.
-                        new File(mOutDir, infoFileName)
+                mOutStream = new BufferedOutputStream(
+                        new FileOutputStream(
+                            // The file will be truncated if it exists,
+                            // and created if it doesn't exist.
+                            new File(mOutDir, infoFileName)
+                        )
                 );
 
             } catch (IOException e) {
@@ -152,6 +155,13 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
 
     private void closeOutput() {
         if (mOutStream != null) {
+
+            try {
+                mOutStream.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             try {
                 mOutStream.close();
             } catch (IOException e) {
@@ -170,7 +180,7 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
     }
 
     protected File mOutDir;
-    protected FileOutputStream mOutStream;
+    protected BufferedOutputStream mOutStream;
     protected TextView mTextView;
     protected OnCompleteListener mCompleteListener;
 }
