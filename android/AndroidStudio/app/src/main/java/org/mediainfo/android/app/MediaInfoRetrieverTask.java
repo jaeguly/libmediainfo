@@ -26,12 +26,20 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
         mTextView = textView;
     }
 
-    /** If defines an output directory, will save the result into a file in outputDir. */
+    /**
+     * If defines an output directory, will save the result into a file in outputDir.
+     */
     public void setOutputDir(File outputDir) {
+        //  if dir doesn't exists, then create it
+        if (!outputDir.exists())
+            outputDir.mkdirs();
+
         mOutDir = outputDir;
     }
 
-    /** Register a callback to be invoked when the end of a task. */
+    /**
+     * Register a callback to be invoked when the end of a task.
+     */
     public void setOnCompleteListener(OnCompleteListener listener) {
         mCompleteListener = listener;
     }
@@ -110,12 +118,18 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
         // TODO: do something
     }
 
-    private void openOutput(String file) {
+    private void openOutput(String filePath) {
         if (mOutDir != null) {
             try {
+
+                String infoFileName = new File(filePath).getName() + ".info";
+
                 mOutStream = new FileOutputStream(
-                        File.createTempFile(new File(file).getName(), ".info", mOutDir)
+                        // The file will be truncated if it exists,
+                        // and created if it doesn't exist.
+                        new File(mOutDir, infoFileName)
                 );
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

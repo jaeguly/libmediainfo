@@ -25,6 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class MainActivity extends Activity implements MediaInfoRetrieverTask.OnCompleteListener {
@@ -265,11 +267,18 @@ public class MainActivity extends Activity implements MediaInfoRetrieverTask.OnC
             mShareActionProvider.setShareIntent(createShareIntent());
     }
 
+    // get the current time stamp for log directory
+    private static String getCurrentTimeStamp() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmm");
+        Date now = new Date();
+        return dateFormat.format(now);
+    }
+
     private class RequestMediaInfoRetriever extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... params) {
 
-            File logDir = new File(LOG_DIR);
+            File logDir = new File(LOG_DIR + "/" + getCurrentTimeStamp());
             if (!logDir.exists())
                 logDir.mkdirs();
 
