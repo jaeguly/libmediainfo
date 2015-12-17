@@ -22,17 +22,18 @@ public class MediaLibraryInfoRetrieverTask extends MediaInfoRetrieverTask {
     /** Override this method to perform a computation on a background thread. */
     protected Void doInBackground(String... paths) {
 
+        MediaInfo mi = new MediaInfo();
         // Info about the library
-        publishProgress(MediaInfo.optionStatic("Info_Version"));
+        publishProgress(mi.getMIOption("Info_Version"));
 
         publishProgress("\n\n\n### Parameters\n\n");
-        publishProgress(MediaInfo.optionStatic("Info_Parameters"));
+        publishProgress(mi.getMIOption("Info_Parameters"));
 
         publishProgress("\n\n\n### Codecs\n\n");
-        publishProgress(MediaInfo.optionStatic("Info_Codecs"));
+        publishProgress(mi.getMIOption("Info_Codecs"));
 
         publishProgress("\n\n\n### Capacities\n\n");
-        publishProgress(MediaInfo.optionStatic("Info_Capacities"));
+        publishProgress(mi.getMIOption("Info_Capacities"));
 
         return null;
     }

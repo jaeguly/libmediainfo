@@ -65,27 +65,21 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
             if (isCancelled())
                 break;
 
-            mi.open(path);
             openOutput(path);
 
             // checks cancelled
             if (isCancelled())
                 break;
 
-            // configurations
-            mi.option("Complete", "1");
-            mi.option("Inform");
-
             // retrieve a media information
             printOutput("\n#\n# '" + path + "'\n#\n");
-            printOutput(mi.inform());
+            printOutput(mi.getMI(path);
 
             // checks cancelled
             if (isCancelled())
                 break;
 
             // releases resources
-            mi.close();
             closeOutput();
         }
 
@@ -93,9 +87,6 @@ public class MediaInfoRetrieverTask extends AsyncTask<String, String, Void> {
             mi.close();
             closeOutput();
         }
-
-        // release all resources of mediainfo
-        mi.dispose();
 
         return null;
     }
