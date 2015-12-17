@@ -2,10 +2,9 @@
 # MediaInfo library
 #
 
-
 LOCAL_PATH := $(call my-dir)
 
-MEDIAINFO_DIR       = ../../../../../../libmediainfo_0.7.68
+MEDIAINFO_DIR       = ../../../../../../libmediainfo_0.7.80
 LIBZEN_INC_DIR		= $(MEDIAINFO_DIR)/ZenLib/Source
 LIBZEN_SRC_DIR		= $(MEDIAINFO_DIR)/ZenLib/Source/ZenLib
 LIBMEDIAINFO_INC_DIR= $(MEDIAINFO_DIR)/MediaInfoLib/Source
@@ -82,6 +81,7 @@ LOCAL_SRC_FILES := \
 	$(LIBMEDIAINFO_SRC_DIR)/MediaInfo_Config.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/MediaInfo_Config_Automatic.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/MediaInfo_Config_MediaInfo.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/MediaInfo_Config_PerPackage.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/MediaInfo_File.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/MediaInfo_Inform.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/MediaInfo_Internal.cpp \
@@ -111,6 +111,7 @@ LOCAL_SRC_FILES := \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Amv.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Ape.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Au.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Caf.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Celt.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_ChannelGrouping.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Dts.cpp \
@@ -124,6 +125,7 @@ LOCAL_SRC_FILES := \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Mpc.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_MpcSv8.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Mpega.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_OpenMG.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Opus.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Pcm.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Pcm_M2ts.cpp \
@@ -132,8 +134,8 @@ LOCAL_SRC_FILES := \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Rkau.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_ScreamTracker3.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_SmpteSt0302.cpp \
-	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_SmpteSt0331.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_SmpteSt0337.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_SmpteSt0331.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Speex.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Tak.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Audio/File_Tta.cpp \
@@ -144,10 +146,15 @@ LOCAL_SRC_FILES := \
 	$(LIBMEDIAINFO_SRC_DIR)/Duplicate/File__Duplicate__Writer.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Duplicate/File__Duplicate_MpegTs.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Export/Export_EbuCore.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Export/Export_Fims.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Export/Export_Mpeg7.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Export/Export_PBCore.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Export/Export_PBCore2.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Export/Export_reVTMD.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Image/File_ArriRaw.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Image/File_Bmp.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Image/File_Bpg.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Image/File_Dds.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Image/File_Dpx.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Image/File_Exr.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Image/File_Gif.cpp \
@@ -160,6 +167,8 @@ LOCAL_SRC_FILES := \
 	$(LIBMEDIAINFO_SRC_DIR)/Image/File_Tiff.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Image/File_Tga.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File__ReferenceFilesHelper.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File__ReferenceFilesHelper_Resource.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File__ReferenceFilesHelper_Sequence.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_Aaf.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_Ancillary.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_Bdmv.cpp \
@@ -174,10 +183,10 @@ LOCAL_SRC_FILES := \
 	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_Dvdv.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_Dxw.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_Flv.cpp \
-	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_Gxf.cpp \
-	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_Gxf_TimeCode.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_HdsF4m.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_Hls.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_Gxf.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_Gxf_TimeCode.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_Ibi.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_Ibi_Creation.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Multiple/File_Ism.cpp \
@@ -220,20 +229,24 @@ LOCAL_SRC_FILES := \
 	$(LIBMEDIAINFO_SRC_DIR)/Tag/File_Id3v2.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Tag/File_Lyrics3.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Tag/File_Lyrics3v2.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Tag/File_PropertyList.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Tag/File_VorbisCom.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Tag/File_Xmp.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Text/File_AribStdB24B37.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Text/File_Cdp.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Text/File_Cmml.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Text/File_DvbSubtitle.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Text/File_DtvccTransport.cpp \
-	$(LIBMEDIAINFO_SRC_DIR)/Text/File_Kate.cpp \
-	$(LIBMEDIAINFO_SRC_DIR)/Text/File_AribStdB24B37.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Text/File_Eia608.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Text/File_Eia708.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Text/File_Kate.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Text/File_N19.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Text/File_OtherText.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Text/File_Pdf.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Text/File_Pgs.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Text/File_Scc.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Text/File_Scte20.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Text/File_Sdp.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Text/File_SubRip.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Text/File_Teletext.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Text/File_TimedText.cpp \
@@ -245,11 +258,13 @@ LOCAL_SRC_FILES := \
 	$(LIBMEDIAINFO_SRC_DIR)/Video/File_AvsV.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Video/File_Canopus.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Video/File_Dirac.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Video/File_Ffv1.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Video/File_Flic.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Video/File_Fraps.cpp \
-	$(LIBMEDIAINFO_SRC_DIR)/Video/File_Lagarith.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Video/File_H263.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Video/File_Hevc.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Video/File_HuffYuv.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/Video/File_Lagarith.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Video/File_Mpeg4v.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Video/File_Mpegv.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Video/File_ProRes.cpp \
@@ -258,21 +273,36 @@ LOCAL_SRC_FILES := \
 	$(LIBMEDIAINFO_SRC_DIR)/Video/File_Vc3.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Video/File_Vp8.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/Video/File_Y4m.cpp \
+    $(LIBMEDIAINFO_SRC_DIR)/../MediaInfoDLL/MediaInfoDLL.cpp \
 	$(LIBMEDIAINFO_SRC_DIR)/../ThirdParty/md5/md5.c \
 	$(LIBMEDIAINFO_SRC_DIR)/../ThirdParty/tinyxml2/tinyxml2.cpp \
+	$(LIBMEDIAINFO_SRC_DIR)/../ThirdParty/aes-gladman/aes_modes.c \
+	$(LIBMEDIAINFO_SRC_DIR)/../ThirdParty/aes-gladman/aescrypt.c \
+	$(LIBMEDIAINFO_SRC_DIR)/../ThirdParty/aes-gladman/aeskey.c \
+	$(LIBMEDIAINFO_SRC_DIR)/../ThirdParty/aes-gladman/aestab.c \
+	$(LIBMEDIAINFO_SRC_DIR)/../ThirdParty/sha1-gladman/sha1.c \
+	$(LIBMEDIAINFO_SRC_DIR)/../ThirdParty/sha2-gladman/sha2.c \
+	$(LIBMEDIAINFO_SRC_DIR)/../ThirdParty/hmac-gladman/hmac.c \
+	$(LIBMEDIAINFO_SRC_DIR)/../ThirdParty/hmac-gladman/pwd2key.c \
 	wchar_multibyte.cpp \
 	libmediainfo-jni.cpp
 
 LOCAL_C_INCLUDES        += $(LOCAL_PATH)/$(THIRDPARTY_DIR)
 LOCAL_C_INCLUDES        += $(LOCAL_PATH)/$(THIRDPARTY_DIR)/glob
 LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBMEDIAINFO_INC_DIR)
+LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBMEDIAINFO_INC_DIR)/MediaInfo
+LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBMEDIAINFO_INC_DIR)/../MediaInfoDLL
 LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBMEDIAINFO_INC_DIR)/ThirdParty/base64
 LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBMEDIAINFO_INC_DIR)/ThirdParty/md5
 LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBMEDIAINFO_INC_DIR)/ThirdParty/tinyxml2
+LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBMEDIAINFO_INC_DIR)/ThirdParty/aes-gladman
+LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBMEDIAINFO_INC_DIR)/ThirdParty/sha1-gladman
+LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBMEDIAINFO_INC_DIR)/ThirdParty/sha2-gladman
+LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBMEDIAINFO_INC_DIR)/ThirdParty/hmac-gladman
 LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBZEN_INC_DIR)
+LOCAL_C_INCLUDES		+= $(LOCAL_PATH)/$(LIBZEN_INC_DIR)/ZenLib
 LOCAL_CFLAGS			+= -Wall $(USER_CFLAGS)
 LOCAL_LDLIBS			:= -llog -lz -lm
+LOCAL_CXXFLAGS		    += -DUNICODE
 
 include $(BUILD_SHARED_LIBRARY)
-
-
