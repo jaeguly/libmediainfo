@@ -1,12 +1,9 @@
 #include <assert.h>
 #include <jni.h>
 
-
 // if need to debug messages, comment out below undef lines.
 #undef _DEBUG
 #undef DEBUG
-
-
 
 #if defined(WIN32) && defined(_DEBUG)
 #   include <vld.h>
@@ -125,7 +122,7 @@ private:
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  Declarations of exported functions 
+//  Declarations of exported functions
 //
 ////////////////////////////////////////////////////////////////////////////
 
@@ -145,6 +142,9 @@ extern "C" {
     JNIEXPORT jstring JNICALL MediaInfo_option2(JNIEnv* pEnv, jobject self, jlong handle, jstring option);
     JNIEXPORT jstring JNICALL MediaInfo_optionStatic(JNIEnv* pEnv, jclass clazz, jstring option, jstring value);
     JNIEXPORT jstring JNICALL MediaInfo_optionStatic2(JNIEnv* pEnv, jclass clazz, jstring option);
+
+    JNIEXPORT jstring JNICALL MediaInfo_getMediaInfo(JNIEnv* pEnv, jobject self, jstring filename);
+    JNIEXPORT jstring JNICALL MediaInfo_getMediaInfoOption(JNIEnv* pEnv, jobject self, jstring param);
 }
 
 
@@ -163,6 +163,8 @@ static const JNINativeMethod gMethods[] = {
     { "option", "(JLjava/lang/String;)Ljava/lang/String;", (void*)MediaInfo_option2},
     { "optionStatic", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", (void*)MediaInfo_optionStatic},
     { "optionStatic", "(Ljava/lang/String;)Ljava/lang/String;", (void*)MediaInfo_optionStatic2},
+    { "getMediaInfo", "(Ljava/lang/String;)Ljava/lang/String;", (void*)MediaInfo_getMediaInfo},
+    { "getMediaInfoOption", "(Ljava/lang/String;)Ljava/lang/String;", (void*)MediaInfo_getMediaInfoOption},
 };
 
 JNIEXPORT jint JNICALL
@@ -201,7 +203,7 @@ JNI_OnLoad (JavaVM * vm, void * reserved)
     env->DeleteLocalRef(clazz);
 
     return JNI_VERSION_1_6;
-} 
+}
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -241,25 +243,20 @@ static inline jstring
 NewJString(JNIEnv *pEnv, String str)
 {
     jsize len = str.size();
-    const Char *raw = (Char *) str.c_str();
 
-    // Allocate a buffer for the java string to pass JavaVM.
-    // First arguments "" is such a hack for only a buffer allocation.
-    jstring jstr = pEnv->NewString((jchar*)"", len);
+    char* cstr = new char[1048576];
+    wcstombs(cstr, str.c_str(), len);
+    jstring jstr = pEnv->NewStringUTF(cstr);
     jchar* jchars = (jchar*) pEnv->GetStringChars(jstr, NULL);
 
-    assert(raw != NULL);
-    assert(jchars != NULL);
-
-    // Discard two lead bytes in raw string
-    while (len-- > 0)
-        *jchars++ = (jchar) *raw++;
-
-    if (!jstr) {
-        LOGW("env->NewString('%s', %d) fails!\n", PrintableChars(str.c_str()), str.size());
-    }
-
     pEnv->ReleaseStringChars(jstr, jchars);
+
+
+    #if defined(_DEBUG) || defined(DEBUG)
+        const char *nativeString = (pEnv)->GetStringUTFChars(jstr, NULL);
+        LOG("NewJString(JNIEnv *pEnv, String str) -> jstring = '%s'\n", nativeString);
+        pEnv->ReleaseStringUTFChars(jstr, nativeString);
+    #endif
 
     return jstr;
 }
@@ -380,6 +377,11 @@ MediaInfo_close(JNIEnv* pEnv, jobject self, jlong handle)
     MediaInfo* pMediaInfo = GetMediaInfo(handle);
     if (pMediaInfo)
         pMediaInfo->Close();
+
+    //if (pMediaInfo)
+    //    LOGW("MediaInfo->Close() ok!\n");
+    //else
+    //    LOGW("MediaInfo->Close() fail!\n");
 }
 
 JNIEXPORT jstring JNICALL
@@ -474,9 +476,8 @@ MediaInfo_informDetail(JNIEnv* pEnv, jobject self, jlong handle)
     LOG("MediaInfo->Inform() returns '%s'.\n", PrintableChars(strInfo.c_str()));
 
     return NewJString(pEnv, strInfo);
-
 }
- 
+
 JNIEXPORT jint JNICALL
 MediaInfo_countGet(JNIEnv* pEnv, jobject self, jlong handle, jint streamKind, jint streamNum)
 {
@@ -578,3 +579,59 @@ MediaInfo_optionStatic2(JNIEnv* pEnv, jclass clazz, jstring option)
     return NewJString(pEnv, strResult);
 }
 
+JNIEXPORT jstring JNICALL
+MediaInfo_getMediaInfo(JNIEnv* pEnv, jobject self, jstring filename)
+{
+    const char *CStrfilename = pEnv->GetStringUTFChars(filename, NULL);
+    if (NULL == CStrfilename)
+        return NULL;
+
+    jsize len = pEnv->GetStringUTFLength(filename);
+    wchar_t* cstr = new wchar_t[1048576];;
+    mbstowcs(cstr, CStrfilename, len);
+
+    pEnv->ReleaseStringUTFChars(filename, CStrfilename);
+
+    MediaInfo MI;
+
+    String strInfo;
+
+    //strInfo += __T("\r\n\r\nOpen\r\n");
+    MI.Open(cstr);
+    //strInfo += __T("\r\n\r\nInform with Complete=false\r\n");
+    MI.Option(__T("Complete"));
+    strInfo = MI.Inform().c_str();
+    //strInfo += __T("\r\n\r\nClose\r\n");
+    MI.Close();
+
+    LOG("MediaInfo_getMediaInfo('%s', ..) returns '%s'.\n",
+        PrintableChars(strInfo.c_str()), PrintableChars2(strInfo.c_str()));
+
+    return NewJString(pEnv, strInfo);
+}
+
+JNIEXPORT jstring JNICALL
+MediaInfo_getMediaInfoOption(JNIEnv* pEnv, jobject self, jstring param)
+{
+    const char *CStrparam = pEnv->GetStringUTFChars(param, NULL);
+    if (NULL == CStrparam)
+        return NULL;
+
+    jsize len = pEnv->GetStringUTFLength(param);
+    wchar_t* cstr = new wchar_t[1048576];;
+    mbstowcs(cstr, CStrparam, len);
+
+    pEnv->ReleaseStringUTFChars(param, CStrparam);
+
+    MediaInfo MI;
+
+    String strInfo;
+
+    strInfo = MI.Option(cstr).c_str();
+    MI.Close();
+
+    LOG("MediaInfo_getMediaInfoOption('%s', ..) returns '%s'.\n",
+        PrintableChars(strInfo.c_str()), PrintableChars2(strInfo.c_str()));
+
+    return NewJString(pEnv, strInfo);
+}
