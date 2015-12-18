@@ -40,7 +40,8 @@ public class MediaInfo {
     }
 
     public MediaInfo() {
-        handle = create();
+        //handle = create();
+        System.out.println("MediaInfo created");
     }
 
     public void dispose() {
@@ -188,6 +189,16 @@ public class MediaInfo {
         return option(handle, name);
     }
 
+    public String getMI(String filename) {
+        String result = getMediaInfo(filename);
+        return result;
+    }
+
+    public String getMIOption(String param) {
+        String result = getMediaInfoOption(param);
+        return result;
+    }
+
     /**
      * Configuration or get information about MediaInfo
      * <p/>
@@ -295,13 +306,12 @@ public class MediaInfo {
 
     private native String option(long handle, String option);
 
+    private native String getMediaInfo(String filename);
+
+    private native String getMediaInfoOption(String param);
 
     static {
-        try {
-            System.loadLibrary("mediainfo");
-        } catch (Exception e) {
-            System.out.println("can't load mediainfo libraries!");
-        }
+       System.loadLibrary("mediainfo");
     }
 }
 

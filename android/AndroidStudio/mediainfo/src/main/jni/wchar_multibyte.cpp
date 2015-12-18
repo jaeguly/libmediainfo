@@ -35,9 +35,10 @@ typedef struct {
 //#define NULL (0)
 #define MB_MAX_LEN      (8)
 
-#include "libiconv/lib/ascii.h"
-#include "libiconv/lib/ksc5601.h"
-#include "libiconv/lib/cp949.h"
+//#include "libiconv/lib/ascii.h"
+//#include "libiconv/lib/ksc5601.h"
+//#include "libiconv/lib/cp949.h"
+#include "libiconv/lib/utf8.h"
 
 #include <android/log.h>
 
@@ -84,7 +85,9 @@ size_t mbstowcs(wchar_t* wcstr, const char* mbstr, size_t max)
 
         while (*p) {
             
-            res = cp949_mbtowc(conv, &wc, (const unsigned char*) p, mbend - p);
+            res = utf8_mbtowc(conv, &wc, (const unsigned char*) p, mbend - p);
+            //LOGW("utf8_mbtowc(conv, &wc, '%s', %d) return %d", p, mbend - p, res);
+            //res = cp949_mbtowc(conv, &wc, (const unsigned char*) p, mbend - p);
             //LOG("cp949_mbtowc(conv, &wc, '%s', %d) return %d", p, mbend - p, res);
             if (res <= 0) {
                 //LOGW("mbstowcs(NULL, '%s', %d) returns %d", mbstr, max, -1);
@@ -99,6 +102,7 @@ size_t mbstowcs(wchar_t* wcstr, const char* mbstr, size_t max)
 
         res = count;
         LOG("mbstowcs(NULL, '%s', %d) returns %d", mbstr, max, res);
+        //LOGW("mbstowcs(NULL, '%s', %d) returns %d", mbstr, max, res);
 
     } else {
 
@@ -106,7 +110,9 @@ size_t mbstowcs(wchar_t* wcstr, const char* mbstr, size_t max)
         wchar_t* t = wcstr;
  
         while ((p < mbend) && (t < tend)) {
-            res = cp949_mbtowc(conv, &wc, (const unsigned char*) p, mbend - p);
+            res = utf8_mbtowc(conv, &wc, (const unsigned char*) p, mbend - p);
+            //LOGW("utf8_mbtowc(conv, &wc, '%s', %d) return %d", p, mbend - p, res);
+            //res = cp949_mbtowc(conv, &wc, (const unsigned char*) p, mbend - p);
             //LOG("cp949_mbtowc(conv, &wc, '%s', %d) return %d", p, mbend - p, res);
             if (res <= 0) {
                 //LOGW("mbstowcs(wchar_t*, '%s', %d) returns %d", mbstr, max, -1);
@@ -121,6 +127,7 @@ size_t mbstowcs(wchar_t* wcstr, const char* mbstr, size_t max)
         res = t - wcstr;
 
         LOG("mbstowcs(%x %x %x, '%s', %d) returns %d", wcstr[0], wcstr[1], wcstr[2], mbstr, max, res);
+        //LOGW("mbstowcs(%x %x %x, '%s', %d) returns %d", wcstr[0], wcstr[1], wcstr[2], mbstr, max, res);
     }
 
     return res;
@@ -162,7 +169,8 @@ size_t wcstombs(char* mbstr, const wchar_t* wcstr, size_t max)
 
         while (*pwc) {
             
-            res = cp949_wctomb(conv, cbuf, *pwc, MB_MAX_LEN);
+            res = utf8_wctomb(conv, cbuf, *pwc, MB_MAX_LEN);
+            //res = cp949_wctomb(conv, cbuf, *pwc, MB_MAX_LEN);
 
             if (res <= 0) {
                 //LOGW("wcstombs(NULL, %s, %d) returns %d", wcstr, max, -1);
@@ -183,7 +191,8 @@ size_t wcstombs(char* mbstr, const wchar_t* wcstr, size_t max)
         char* t = mbstr;
  
         while ((pwc < wcend) && (t < tend)) {
-            res = cp949_wctomb(conv, (unsigned char*)t, *pwc, tend - t);
+            res = utf8_wctomb(conv, (unsigned char*)t, *pwc, tend - t);
+            //res = cp949_wctomb(conv, (unsigned char*)t, *pwc, tend - t);
             //LOG("cp949_wctomb(conv, t, wc, %d) return %d", tend - t, res);
 
             if (res <= 0) {
@@ -236,7 +245,8 @@ int wctomb(char *pmb, wchar_t character)
     }
 
     const conv_t conv = 0; // dummy handle for iconv
-    int res = cp949_wctomb(conv, (unsigned char*)pmb, character, MB_MAX_LEN);
+    int res = utf8_wctomb(conv, (unsigned char*)pmb, character, MB_MAX_LEN);
+    //int res = cp949_wctomb(conv, (unsigned char*)pmb, character, MB_MAX_LEN);
     if (res < 0)
         res = -1;
 

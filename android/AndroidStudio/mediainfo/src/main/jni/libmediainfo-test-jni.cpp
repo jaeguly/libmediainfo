@@ -151,13 +151,14 @@ Java_org_mediainfo_android_MediaInfo_getByName(JNIEnv* pEnv, jobject self, jlong
 	std::string localInfo = strInfo.To_Local();
 
 	// test for wctomb()
-	char cbuf[ZenLib::Ztring::MB_MAX_LEN];
+	/*char cbuf[ZenLib::Ztring::MB_MAX_LEN];
 	int bytes = wctomb(cbuf, strInfo.at(0));
 	if (bytes > 0)
 		cbuf[bytes] = '\0';
 
     LOG("__getByName() returns '%s'.\n\t\tThe local string is '%s'. cbuf is '%s' %d bytes.\n",
 		ConvChars(strInfo.c_str()), localInfo.c_str(), cbuf, bytes);
+	*/
 
     jstring res = pEnv->NewString(CastChars(strInfo.c_str()), strInfo.size());
 
